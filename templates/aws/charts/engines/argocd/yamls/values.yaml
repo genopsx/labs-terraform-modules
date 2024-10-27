@@ -11,7 +11,7 @@ dex:
         secretKeyRef:
           name: ${argocd_github_sso_secret}
           key: clientSecret
-%{ endif ~}          
+%{ endif ~}
 configs:
   params:
     server.insecure: true
@@ -85,7 +85,7 @@ server:
     hostname: ${hostname}
   extraArgs:
     - --insecure
-%{ if argo_rollouts_extension_enable ~}    
+%{ if argo_rollouts_extension_enable ~}
   extensions:
     enabled: true
     extensionList:

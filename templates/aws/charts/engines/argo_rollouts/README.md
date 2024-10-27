@@ -7,7 +7,7 @@
 # General
 
 ## &nbsp;&nbsp; Documentation
-  
+
    | Name | Link |
    |------|------|
    | Git Repository | https://github.com/argoproj/argo-rollouts |
@@ -59,7 +59,7 @@
   | <a name="output_argo_rollouts_demo_url"></a> [argo\_rollouts\_demo\_url](#output\_argo\_rollouts\_demo\_url) | Argo-Rollouts web demo application URL | `argo_rollouts_customized_demo_enabled=true`<br>or<br>`argo_rollouts_traffic_light_demo_enabled=true` |
 
   - These url's will be presented as **_Terraform outputs_**, For example:
-   
+
   <p align="center">
     <img src="https://github.com/Opsfleet/labs-terraform/assets/10208228/1f2952fa-ee6a-4a6b-bcec-f98028addeb9" width="1000"/>
   </p>
@@ -69,7 +69,7 @@
 # Terragrunt
 
 ## &nbsp;&nbsp; Configuration File
-  
+
   | Name | Link |
   |------|------|
   | <a name="link_terragrunt.hcl"></a> [terragrunt.hcl](#link\_terragrunt.hcl) | https://github.com/Opsfleet/labs-terraform/blob/main/labs/dev/aws/sandbox/eu-west-1/infra-01/app_cluster/030_engines/terragrunt.hcl |
@@ -95,7 +95,7 @@
 #### &nbsp;&nbsp;&nbsp;&nbsp; <ins>Resources</ins>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. One Rollout instance (Green application).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. One Service instance. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. One Service instance.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3. One Ingress instance.
 
@@ -166,7 +166,7 @@
       - pause: {duration: 10s}
       - analysis:
           templates:
-          - templateName: ${fifth_analysis}  ✅ ✅ 
+          - templateName: ${fifth_analysis}  ✅ ✅
   ```
 
 #### &nbsp;&nbsp;&nbsp;&nbsp; <ins>AnalysisTemplate Output</ins>
@@ -179,7 +179,7 @@
     - name: EXIT_CODE
       value: "${exit_code}"
     command: ["/bin/sh"]
-    args: ["-c", "exit $(EXIT_CODE)"]      
+    args: ["-c", "exit $(EXIT_CODE)"]  
   ```
 
 ---
@@ -208,14 +208,14 @@
 
 # UI Dashboards
 ## &nbsp;&nbsp; Argo-Rollouts server
- 
+
   <p align="center">
     <img src="https://github.com/Opsfleet/labs-terraform/assets/10208228/a5b2ce17-2abe-41d7-9858-d7fc63a45314" width="1000"/>
   </p>
 
   ---
 ## &nbsp;&nbsp; Argo-Rollouts web demo application
- 
+
   <p align="center">
     <img src="https://github.com/Opsfleet/labs-terraform/assets/10208228/9bcd6418-0fdb-43f9-8c2f-64978c3b9775" width="1000"/>
   </p>
@@ -233,11 +233,11 @@
   $ sudo mv ./kubectl-argo-rollouts-darwin-amd64 /usr/local/bin/kubectl-argo-rollouts
   ```
   ---
-## &nbsp;&nbsp; Watch your rollouts 
+## &nbsp;&nbsp; Watch your rollouts
   ```
   $ kubectl argo rollouts get rollout ${ROLLOUT} -n ${NAMESPACE} --watch
   ```
-  
+
   <p align="center">
     <img src="https://github.com/Opsfleet/labs-terraform/assets/10208228/d1338468-fe22-41df-9c17-5e86f54ced30" width="800"/>
   </p>

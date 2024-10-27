@@ -69,7 +69,7 @@
 
 
 ############################################################################################
-# new 
+# new
 
 #tfsec:ignore:aws-eks-no-public-cluster-access
 #tfsec:ignore:aws-eks-no-public-cluster-access-to-cidr

@@ -42,7 +42,7 @@ resource "kubectl_manifest" "main_project" {
 }
 
 resource "kubectl_manifest" "argocd_root_app" {
-  count = var.create_root_app == true ? 1 : 0 
+  count = var.create_root_app == true ? 1 : 0
   depends_on = [ helm_release.argocd, kubectl_manifest.main_project ]
   apply_only = true
   yaml_body = <<YAML
@@ -65,7 +65,7 @@ resource "kubectl_manifest" "argocd_root_app" {
     destination:
       server: ${var.root_app_destination}
   YAML
-} 
+}
 
 
 # set {

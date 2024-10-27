@@ -1,7 +1,7 @@
 resource "aws_ecr_repository" "ecr_repository" {
   for_each = local.repositories
   name     = each.key
-	
+
   image_scanning_configuration {
 	  scan_on_push = true
   }

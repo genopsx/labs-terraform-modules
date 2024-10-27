@@ -8,7 +8,7 @@ spec:
   - name: analysis-simulator
     failureLimit: 0 # Caused the rollout to cancel back
     provider:
-      job: 
+      job:
         spec:
           backoffLimit: 0
           template:

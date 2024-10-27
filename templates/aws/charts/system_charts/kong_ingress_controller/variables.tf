@@ -19,5 +19,5 @@ variable "kong_chart_version" {
 variable "extra_values" {
   description = "Extra values to pass to the chart"
   type        = map(string)
-  default = {}  
+  default = {}
 }

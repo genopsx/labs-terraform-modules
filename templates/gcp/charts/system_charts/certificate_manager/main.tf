@@ -32,7 +32,7 @@ resource "helm_release" "cert_manager" {
 
 # ## Cert Manager Cluster Issuer - Staging issuer - NOT FOR PRODUCTION
 # resource "kubernetes_manifest" "letsencrypt_cluster_issuer_staging" {
-#   count = var.cert_manager_issuer_staging_mode == true ? 1 : 0 
+#   count = var.cert_manager_issuer_staging_mode == true ? 1 : 0
 #   manifest = yamldecode(<<-EOT
 #     apiVersion: cert-manager.io/v1
 #     kind: ClusterIssuer
@@ -48,12 +48,12 @@ resource "helm_release" "cert_manager" {
 #         solvers:
 #         - http01:
 #             ingress:
-#               class: ${var.ingress_class_name}    
+#               class: ${var.ingress_class_name}
 #     EOT
 #     )
 # }
 # resource "kubernetes_manifest" "letsencrypt_cluster_issuer_prod" {
-#   count = var.cert_manager_issuer_production_mode == true ? 1 : 0 
+#   count = var.cert_manager_issuer_production_mode == true ? 1 : 0
 #   manifest = yamldecode(<<-EOT
 #     apiVersion: cert-manager.io/v1
 #     kind: ClusterIssuer

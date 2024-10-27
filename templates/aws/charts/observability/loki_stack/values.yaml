@@ -30,7 +30,7 @@ grafana:
       - ${release_name}.${domain}
     path: /
     pathType: Prefix
-%{ if jaeger_enabled ~}    
+%{ if jaeger_enabled ~}
   datasources:
     additional-datasources.yaml:
       apiVersion: 1
@@ -48,11 +48,11 @@ grafana:
 prometheus:
   enabled: true
   alertmanager:
-    persistentVolume: 
+    persistentVolume:
       enabled: true
       size: ${prometheus_alert_manager_volume_size}
   server:
-    persistentVolume: 
+    persistentVolume:
       enabled: true
       size: ${prometheus_server_volume_size}
 loki:

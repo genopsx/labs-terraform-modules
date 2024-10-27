@@ -7,16 +7,16 @@
 # General
 ## &nbsp;&nbsp; Documentation
 ### &nbsp;&nbsp; <ins>Argo Events</ins>
-  
+
   | Name | Link |
   |------|------|
   | Git Repository | https://github.com/argoproj/argo-events |
   | Helm Chart Versions | https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-events |
 
   ---
-  
+
 ### &nbsp;&nbsp; <ins>Argo Workflows</ins>
-  
+
   | Name | Link |
   |------|------|
   | Git Repository | https://github.com/argoproj/argo-workflows |
@@ -60,7 +60,7 @@
 # Terragrunt
 
 ## &nbsp;&nbsp; Configuration File
-  
+
   | Name | Link |
   |------|------|
   | <a name="link_terragrunt.hcl"></a> [terragrunt.hcl](#link\_terragrunt.hcl) | https://github.com/Opsfleet/labs-terraform/blob/main/labs/dev/aws/sandbox/eu-west-1/infra-01/app_cluster/030_engines/terragrunt.hcl |

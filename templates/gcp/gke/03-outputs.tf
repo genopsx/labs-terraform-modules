@@ -1,7 +1,7 @@
 output "cluster_name" {
   value = module.gke[0].name
 }
-  
+
 output "cluster_domain" {
   value = module.dns-public-zone.domain
 }
@@ -14,5 +14,5 @@ output "ca_certificate" {
   sensitive = true
 }
 output "location" {
-  value = module.gke[0].location  
+  value = module.gke[0].location
 }

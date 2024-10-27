@@ -12,7 +12,7 @@ variable "region" {
   description = "The region to host the cluster in"
   type        = string
 }
-    
+
 variable "namespace" {
   description = "The namespace to install the chart"
   type        = string
@@ -44,5 +44,5 @@ variable "domain_name" {
 variable "extra_values" {
   description = "Extra values to pass to the chart"
   type        = map(string)
-  default = {}  
+  default = {}
 }

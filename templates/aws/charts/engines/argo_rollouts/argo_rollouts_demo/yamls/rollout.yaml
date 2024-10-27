@@ -63,4 +63,4 @@ spec:
       - pause: {duration: 10s}
       - analysis:
           templates:
-          - templateName: ${fifth_analysis}    
+          - templateName: ${fifth_analysis}
