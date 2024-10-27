@@ -1,6 +1,6 @@
 # cert_manager_issuers
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -41,4 +41,4 @@ No modules.
 |------|-------------|
 | <a name="output_certificate_issuer_name_prod"></a> [certificate\_issuer\_name\_prod](#output\_certificate\_issuer\_name\_prod) | n/a |
 | <a name="output_certificate_issuer_name_staging"></a> [certificate\_issuer\_name\_staging](#output\_certificate\_issuer\_name\_staging) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

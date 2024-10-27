@@ -1,6 +1,6 @@
 # system_configurations
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -39,4 +39,4 @@ No resources.
 |------|-------------|
 | <a name="output_certificate_issuer_name_production"></a> [certificate\_issuer\_name\_production](#output\_certificate\_issuer\_name\_production) | n/a |
 | <a name="output_certificate_issuer_name_staging"></a> [certificate\_issuer\_name\_staging](#output\_certificate\_issuer\_name\_staging) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

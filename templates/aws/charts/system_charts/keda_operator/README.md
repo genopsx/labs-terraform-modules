@@ -68,7 +68,7 @@ Execute `terraform apply` to create the resources on AWS as defined in the modul
 - **SQS Scaler:** Set `enable_sqs_scaler` to `true` and specify `sqs_name` and `sqs_queue_length` to deploy an SQS scaler.
 - **Python Application Deployment:** The module deploys a Python application for demonstration purposes. Customize the application deployment as needed in `py.tf`.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -111,4 +111,4 @@ Execute `terraform apply` to create the resources on AWS as defined in the modul
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

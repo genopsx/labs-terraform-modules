@@ -1,6 +1,6 @@
 # gke
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -64,4 +64,4 @@
 | <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | n/a |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | n/a |
 | <a name="output_location"></a> [location](#output\_location) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

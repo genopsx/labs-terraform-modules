@@ -8,13 +8,17 @@ kubectl get secret --namespace loki-stack loki-stack-grafana -o jsonpath="{.data
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | ~> 2.12.1 |
 
 ## Modules
 
@@ -43,6 +47,7 @@ No modules.
 | <a name="input_github_oauth_client_secret"></a> [github\_oauth\_client\_secret](#input\_github\_oauth\_client\_secret) | Github OAuth Client Secret | `string` | `""` | no |
 | <a name="input_github_oauth_enabled"></a> [github\_oauth\_enabled](#input\_github\_oauth\_enabled) | Enable or not Github OAuth | `bool` | `false` | no |
 | <a name="input_ingress_enabled"></a> [ingress\_enabled](#input\_ingress\_enabled) | Enable or not ingress for loki stack | `bool` | `false` | no |
+| <a name="input_jaeger_enabled"></a> [jaeger\_enabled](#input\_jaeger\_enabled) | Enable Grafana Jaeger Datasource | `bool` | `false` | no |
 | <a name="input_loki_volume_size"></a> [loki\_volume\_size](#input\_loki\_volume\_size) | Size of EBS volume for loki | `string` | `"20Gi"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of release | `string` | `"loki-stack"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace name to deploy helm release | `string` | `"loki-stack"` | no |
@@ -54,7 +59,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_id"></a> [id](#output\_id) | n/a |
+| <a name="output_grafana_url"></a> [grafana\_url](#output\_grafana\_url) | n/a |
 <!-- END_TF_DOCS --><!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -110,4 +115,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_grafana_url"></a> [grafana\_url](#output\_grafana\_url) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

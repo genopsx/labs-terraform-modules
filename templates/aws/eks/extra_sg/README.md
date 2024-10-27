@@ -1,6 +1,6 @@
 # add_sg
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -48,4 +48,4 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

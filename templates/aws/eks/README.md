@@ -1,6 +1,6 @@
 # eks
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -89,4 +89,4 @@
 | <a name="output_r53_zone_id"></a> [r53\_zone\_id](#output\_r53\_zone\_id) | Cluster route53 zone id |
 | <a name="output_r53_zone_name"></a> [r53\_zone\_name](#output\_r53\_zone\_name) | Cluster route53 zone name |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC ID, where the cluster was deployed |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

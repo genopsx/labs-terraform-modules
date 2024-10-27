@@ -1,6 +1,6 @@
 # keda_poc
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -72,4 +72,4 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_keda_irsa_role_arn"></a> [keda\_irsa\_role\_arn](#output\_keda\_irsa\_role\_arn) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

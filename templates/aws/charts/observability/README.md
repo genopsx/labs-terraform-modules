@@ -1,6 +1,6 @@
 # observability
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -65,4 +65,4 @@ No resources.
 | <a name="output_grafana_url"></a> [grafana\_url](#output\_grafana\_url) | n/a |
 | <a name="output_jaeger_url"></a> [jaeger\_url](#output\_jaeger\_url) | n/a |
 | <a name="output_kubeshark_url"></a> [kubeshark\_url](#output\_kubeshark\_url) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

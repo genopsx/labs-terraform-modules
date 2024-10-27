@@ -179,7 +179,7 @@
     - name: EXIT_CODE
       value: "${exit_code}"
     command: ["/bin/sh"]
-    args: ["-c", "exit $(EXIT_CODE)"]  
+    args: ["-c", "exit $(EXIT_CODE)"]
   ```
 
 ---
@@ -244,7 +244,7 @@
 
 ---
 ## Have Fun 😃
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -291,4 +291,4 @@
 |------|-------------|
 | <a name="output_argo_rollouts_demo_url"></a> [argo\_rollouts\_demo\_url](#output\_argo\_rollouts\_demo\_url) | n/a |
 | <a name="output_argo_rollouts_url"></a> [argo\_rollouts\_url](#output\_argo\_rollouts\_url) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

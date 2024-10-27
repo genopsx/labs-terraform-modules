@@ -133,7 +133,7 @@ No modules.
 ## Outputs
 
 No outputs.
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -221,4 +221,4 @@ No outputs.
 | Name | Description |
 |------|-------------|
 | <a name="output_argocd_url"></a> [argocd\_url](#output\_argocd\_url) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

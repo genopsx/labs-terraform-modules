@@ -1,6 +1,6 @@
 # jaeger_service
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -43,4 +43,4 @@ No modules.
 |------|-------------|
 | <a name="output_jaeger_demo_url"></a> [jaeger\_demo\_url](#output\_jaeger\_demo\_url) | n/a |
 | <a name="output_jaeger_url"></a> [jaeger\_url](#output\_jaeger\_url) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

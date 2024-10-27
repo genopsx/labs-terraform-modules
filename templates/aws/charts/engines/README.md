@@ -1,6 +1,6 @@
 # engines
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -98,4 +98,4 @@ No resources.
 | <a name="output_argo_workflows_url"></a> [argo\_workflows\_url](#output\_argo\_workflows\_url) | n/a |
 | <a name="output_argocd_url"></a> [argocd\_url](#output\_argocd\_url) | n/a |
 | <a name="output_jenkins_url"></a> [jenkins\_url](#output\_jenkins\_url) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

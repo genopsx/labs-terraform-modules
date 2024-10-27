@@ -20,7 +20,7 @@
   | Name | Link |
   |------|------|
   | Git Repository | https://github.com/argoproj/argo-workflows |
-  | Helm Chart Versions | https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-workflows |  
+  | Helm Chart Versions | https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-workflows |
 
 ---
 
@@ -75,7 +75,7 @@
 
   ---
 ## Have Fun 😃
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -119,4 +119,4 @@ No modules.
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

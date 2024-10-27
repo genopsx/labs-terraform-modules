@@ -1,24 +1,24 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v1.2.3
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 23.10.1
+    rev: 24.10.0
     hooks:
       - id: black
         language_version: python3
   - repo: https://github.com/PyCQA/autoflake
-    rev: v2.2.1
+    rev: v2.3.1
     hooks:
       - id: autoflake
   - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
+    rev: 7.1.1
     hooks:
       - id: flake8
         args: ['--config=config.flake8']
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.83.2
+    rev: v1.96.1
     hooks:
       - id: terraform_docs
         args:

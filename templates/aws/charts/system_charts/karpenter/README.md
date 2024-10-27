@@ -64,4 +64,4 @@
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | n/a |
 | <a name="output_role_arn"></a> [role\_arn](#output\_role\_arn) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

@@ -1,6 +1,6 @@
 # system_charts
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -74,4 +74,4 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_cluster_secret_store_ref_name"></a> [cluster\_secret\_store\_ref\_name](#output\_cluster\_secret\_store\_ref\_name) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

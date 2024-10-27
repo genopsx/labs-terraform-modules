@@ -3,8 +3,8 @@ module "eks_blueprints_addons" {
   version           = "~> 1.0" #ensure to update this to the latest/desired version
   cluster_name      = var.cluster_name
   cluster_endpoint  = var.cluster_endpoint
-  cluster_version   = var.cluster_version
   oidc_provider_arn = var.oidc_provider_arn
+  cluster_version   = var.cluster_version
   eks_addons_timeouts = {
     create = "5m"
     update = "5m"
@@ -22,7 +22,7 @@ module "eks_blueprints_addons" {
     #     repository: dockerhub-remote.dock.merck.com/velero/velero
     #     tag: v1.14.1
     #   kubectl:
-    #     image: 
+    #     image:
     #       repository: dockerhub-remote.dock.merck.com/bitnami/kubectl
     #       tag: 1.31.2-debian-12-r0
     # EOT

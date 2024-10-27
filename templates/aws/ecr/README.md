@@ -1,6 +1,6 @@
 # ecr
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -41,4 +41,4 @@ No modules.
 |------|-------------|
 | <a name="output_repositories_arns"></a> [repositories\_arns](#output\_repositories\_arns) | n/a |
 | <a name="output_repositories_urls"></a> [repositories\_urls](#output\_repositories\_urls) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

@@ -1,6 +1,6 @@
 # vpc-alls
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -50,4 +50,4 @@
 | <a name="output_private_subnets"></a> [private\_subnets](#output\_private\_subnets) | n/a |
 | <a name="output_public_subnets"></a> [public\_subnets](#output\_public\_subnets) | n/a |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
