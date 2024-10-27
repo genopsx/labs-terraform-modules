@@ -68,3 +68,47 @@ Execute `terraform apply` to create the resources on AWS as defined in the modul
 - **SQS Scaler:** Set `enable_sqs_scaler` to `true` and specify `sqs_name` and `sqs_queue_length` to deploy an SQS scaler.
 - **Python Application Deployment:** The module deploys a Python application for demonstration purposes. Customize the application deployment as needed in `py.tf`.
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_helm"></a> [helm](#provider\_helm) | ~> 2.12.1 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_keda_poc"></a> [keda\_poc](#module\_keda\_poc) | ./keda_poc | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [helm_release.keda](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | n/a | `string` | `"keda"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | The Keda helm chart version | `string` | `"2.14.3"` | no |
+| <a name="input_cluster_oidc_provider_arn"></a> [cluster\_oidc\_provider\_arn](#input\_cluster\_oidc\_provider\_arn) | The Cluster oidc provider | `string` | n/a | yes |
+| <a name="input_keda_poc_enabled"></a> [keda\_poc\_enabled](#input\_keda\_poc\_enabled) | To enable the keda poc or just install the keda operator | `bool` | `false` | no |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"keda"` | no |
+| <a name="input_region"></a> [region](#input\_region) | n/a | `string` | `"eu-west-1"` | no |
+| <a name="input_repository"></a> [repository](#input\_repository) | Keda Chart Repository | `string` | `"https://kedacore.github.io/charts"` | no |
+| <a name="input_sqs_policy_actions"></a> [sqs\_policy\_actions](#input\_sqs\_policy\_actions) | Permissions to attach to the SQS Policy | `list(string)` | <pre>[<br>  "sqs:SendMessage"<br>]</pre> | no |
+
+## Outputs
+
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

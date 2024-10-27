@@ -133,3 +133,92 @@ No modules.
 ## Outputs
 
 No outputs.
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | ~> 5.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.27.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | ~> 2.12.1 |
+| <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | ~> 2.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | >= 2.27.0 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_ecr_registry"></a> [ecr\_registry](#module\_ecr\_registry) | ./ecr_registry | n/a |
+| <a name="module_github_repositories"></a> [github\_repositories](#module\_github\_repositories) | ./github_repositories | n/a |
+| <a name="module_github_sso_argo_workflows"></a> [github\_sso\_argo\_workflows](#module\_github\_sso\_argo\_workflows) | ./github_sso | n/a |
+| <a name="module_github_sso_argocd"></a> [github\_sso\_argocd](#module\_github\_sso\_argocd) | ./github_sso | n/a |
+| <a name="module_gitops_repository"></a> [gitops\_repository](#module\_gitops\_repository) | ./github_repositories | n/a |
+| <a name="module_slack"></a> [slack](#module\_slack) | ./slack | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [helm_release.argocd](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [kubectl_manifest.main_project](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/resources/manifest) | resource |
+| [kubernetes_namespace.argo-workflows-namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
+| [kubernetes_namespace.namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_argo_rollouts_extension_enable"></a> [argo\_rollouts\_extension\_enable](#input\_argo\_rollouts\_extension\_enable) | Whether to install Argo-Rollouts extension for ArgoCD | `bool` | `false` | no |
+| <a name="input_argo_workflows_hostname"></a> [argo\_workflows\_hostname](#input\_argo\_workflows\_hostname) | Argo-Workflows hostname | `string` | n/a | yes |
+| <a name="input_argo_workflows_namespace"></a> [argo\_workflows\_namespace](#input\_argo\_workflows\_namespace) | Argo-Workflows namespace | `string` | n/a | yes |
+| <a name="input_argo_workflows_sso_enabled"></a> [argo\_workflows\_sso\_enabled](#input\_argo\_workflows\_sso\_enabled) | Whether to add argo-workflows to argocd dex | `bool` | `false` | no |
+| <a name="input_argocd_github_sso_secret"></a> [argocd\_github\_sso\_secret](#input\_argocd\_github\_sso\_secret) | Name of secret contains GitHub app credentials | `string` | n/a | yes |
+| <a name="input_argocd_slack_app_secret"></a> [argocd\_slack\_app\_secret](#input\_argocd\_slack\_app\_secret) | Name of secret contains Slack app token | `string` | `"argocd-notifications-secret"` | no |
+| <a name="input_argocd_slack_channel"></a> [argocd\_slack\_channel](#input\_argocd\_slack\_channel) | Name of ArgoCD admins-team on GitHub | `string` | `"argocd-channel"` | no |
+| <a name="input_argocd_slack_enabled"></a> [argocd\_slack\_enabled](#input\_argocd\_slack\_enabled) | Whether to connect ArgoCD to Slack channel | `bool` | `false` | no |
+| <a name="input_awssm_slack_secret_name"></a> [awssm\_slack\_secret\_name](#input\_awssm\_slack\_secret\_name) | Name of AWSSM secret where slack token is stored | `string` | `"argocd-slack-app-token"` | no |
+| <a name="input_awssm_sso_secret_name"></a> [awssm\_sso\_secret\_name](#input\_awssm\_sso\_secret\_name) | Name of AWSSM secret | `string` | n/a | yes |
+| <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Name of the chart to install | `string` | `"argo-cd"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the chart to install | `string` | `"7.4.2"` | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | n/a | `string` | n/a | yes |
+| <a name="input_cluster_secret_store_ref_name"></a> [cluster\_secret\_store\_ref\_name](#input\_cluster\_secret\_store\_ref\_name) | ClusterSecretStore name | `string` | n/a | yes |
+| <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create the namespace if it does not exist | `bool` | `true` | no |
+| <a name="input_ecr_reg_enabled"></a> [ecr\_reg\_enabled](#input\_ecr\_reg\_enabled) | Whether sync ArgoCD to ECR registry | `bool` | `false` | no |
+| <a name="input_eks_oidc_issuer_url"></a> [eks\_oidc\_issuer\_url](#input\_eks\_oidc\_issuer\_url) | eks\_oidc\_issuer\_url | `string` | n/a | yes |
+| <a name="input_extension_url"></a> [extension\_url](#input\_extension\_url) | Argo-Rollouts extension package | `string` | `"https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.5/extension.tar"` | no |
+| <a name="input_github_admins_team"></a> [github\_admins\_team](#input\_github\_admins\_team) | Name of ArgoCD admins-team on GitHub | `string` | `"argocd-admins"` | no |
+| <a name="input_github_org"></a> [github\_org](#input\_github\_org) | GitOps repository organization | `string` | `""` | no |
+| <a name="input_github_repositories"></a> [github\_repositories](#input\_github\_repositories) | n/a | `list(string)` | `[]` | no |
+| <a name="input_github_repositories_enabled"></a> [github\_repositories\_enabled](#input\_github\_repositories\_enabled) | Connect repositories to ArgoCD | `bool` | `false` | no |
+| <a name="input_gitops_repo"></a> [gitops\_repo](#input\_gitops\_repo) | GitOps repository name | `string` | `"gitops"` | no |
+| <a name="input_gitops_repo_enabled"></a> [gitops\_repo\_enabled](#input\_gitops\_repo\_enabled) | Whether sync ArgoCD to GitOps repository | `bool` | `false` | no |
+| <a name="input_hostname"></a> [hostname](#input\_hostname) | Hostname of argocd | `string` | n/a | yes |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace to install the chart into | `string` | n/a | yes |
+| <a name="input_negative_feedback"></a> [negative\_feedback](#input\_negative\_feedback) | Whether to get negattive notifications from ArgoCD | `bool` | `true` | no |
+| <a name="input_possitive_feedback"></a> [possitive\_feedback](#input\_possitive\_feedback) | Whether to get possitive notifications from ArgoCD | `bool` | `false` | no |
+| <a name="input_recreate_pods"></a> [recreate\_pods](#input\_recreate\_pods) | Recreate pods in the deployment if necessary | `bool` | `true` | no |
+| <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
+| <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Name of release | `string` | n/a | yes |
+| <a name="input_repository"></a> [repository](#input\_repository) | Repository to install the chart from | `string` | `"https://argoproj.github.io/argo-helm"` | no |
+| <a name="input_serviceaccount"></a> [serviceaccount](#input\_serviceaccount) | Serviceaccount name to install the chart into | `string` | `"argocd"` | no |
+| <a name="input_slack_poc_enabled"></a> [slack\_poc\_enabled](#input\_slack\_poc\_enabled) | Whether to test your slack channel with ArgoCD notification | `bool` | `false` | no |
+| <a name="input_sso_enabled"></a> [sso\_enabled](#input\_sso\_enabled) | Whether to use ArgoCD SSO | `bool` | `false` | no |
+| <a name="input_timeout"></a> [timeout](#input\_timeout) | Timeout for the helm release | `number` | `3000` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_argocd_url"></a> [argocd\_url](#output\_argocd\_url) | n/a |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

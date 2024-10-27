@@ -244,3 +244,51 @@
 
 ---
 ## Have Fun 😃
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_helm"></a> [helm](#provider\_helm) | ~> 2.12.1 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_argo_rollouts_demo"></a> [argo\_rollouts\_demo](#module\_argo\_rollouts\_demo) | ./argo_rollouts_demo | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [helm_release.argo_rollouts](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Name of release | `string` | `"argo-rollouts"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Helm chart to release | `string` | `"2.35.1"` | no |
+| <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create the namespace if it does not exist | `bool` | `true` | no |
+| <a name="input_customized_demo_enabled"></a> [customized\_demo\_enabled](#input\_customized\_demo\_enabled) | Create your own customize rollouts demo | `bool` | `false` | no |
+| <a name="input_dashboard_enabled"></a> [dashboard\_enabled](#input\_dashboard\_enabled) | Enable argo-rollouts web dashboard | `bool` | `true` | no |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Roure53 hosted zone name | `string` | n/a | yes |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace name to deploy helm release | `string` | n/a | yes |
+| <a name="input_repository"></a> [repository](#input\_repository) | Repository to install the chart from | `string` | `"https://argoproj.github.io/argo-helm"` | no |
+| <a name="input_traffic_light_demo_enabled"></a> [traffic\_light\_demo\_enabled](#input\_traffic\_light\_demo\_enabled) | Create demo rollout | `bool` | `true` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_argo_rollouts_demo_url"></a> [argo\_rollouts\_demo\_url](#output\_argo\_rollouts\_demo\_url) | n/a |
+| <a name="output_argo_rollouts_url"></a> [argo\_rollouts\_url](#output\_argo\_rollouts\_url) | n/a |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
