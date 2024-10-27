@@ -1,0 +1,30 @@
+version: 0.2
+env:
+  shell: /bin/bash
+phases:
+  build:
+    commands:
+      - |
+          if [ "x$CODEBUILD_WEBHOOK_EVENT" != 'xPUSH' ]
+          then
+            echo "Event $CODEBUILD_WEBHOOK_EVENT not supported, exiting ..."
+            exit 0
+          fi
+      - export branch=$(echo $CODEBUILD_WEBHOOK_HEAD_REF | awk -F '/' '{print $NF}')
+      - export repo=$(echo $CODEBUILD_SOURCE_REPO_URL | awk -F '/' '{print $NF}' | sed 's/\.git$//')
+      - echo "Handling branch $branch in repo $repo"
+      - export archive_name="${merge_requests_file_name}.zip"
+      - |
+          for b in $deployment_branches
+          do
+            echo $branch | grep -q -E "^${b}$"
+            if [ $? -eq 0 ]
+            then
+              echo "Branch $branch will be deployed"
+              export archive_name="${deployment_file_name}.zip"
+            fi
+          done
+      - git archive $CODEBUILD_WEBHOOK_HEAD_REF -o $archive_name
+      - export output_bucket_path="${repo}/$archive_name"
+      - echo "Copying $archive_name to ${output_bucket}/$output_bucket_path"
+      - aws s3 cp $archive_name s3://${output_bucket}/$output_bucket_path --quiet

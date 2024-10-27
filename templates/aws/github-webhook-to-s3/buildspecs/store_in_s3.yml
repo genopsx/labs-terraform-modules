@@ -1,0 +1,37 @@
+version: 0.2
+env:
+  shell: /bin/bash
+phases:
+  build:
+    commands:
+      - |
+          # Check that the event is of type PUSH. If not, exit.
+          if [ "x${CODEBUILD_WEBHOOK_EVENT}" != "xPUSH" ]; then
+            echo "Event ${CODEBUILD_WEBHOOK_EVENT} not supported, exiting ..."
+            exit 0
+          fi
+      - export branch=$(echo "${CODEBUILD_WEBHOOK_HEAD_REF}" | awk -F '/' '{print $NF}')
+      - export repo=$(echo "${CODEBUILD_SOURCE_REPO_URL}" | awk -F '/' '{print $NF}' | sed 's/\.git$//')
+      - echo "Handling branch $branch in repo $repo"
+      - |
+          if [[ "${CODEBUILD_WEBHOOK_HEAD_REF}" == "refs/tags/"* ]]; then
+            output_bucket_path_prefix="tags"
+            feature_type="tag"
+          elif [[ "${CODEBUILD_WEBHOOK_HEAD_REF}" == "refs/heads/"* ]]; then
+            output_bucket_path_prefix="branches"
+            feature_type="branch"
+          else
+            echo "Webhook head reference ${CODEBUILD_WEBHOOK_HEAD_REF} not recognised, exiting cleanly."
+            exit 0
+          fi
+
+          feature_name=$(echo "${CODEBUILD_WEBHOOK_HEAD_REF}" | awk -F '/' '{print $NF}')
+          archive_name="${feature_name}.zip"
+          git archive "${CODEBUILD_WEBHOOK_HEAD_REF}" -o "${archive_name}"
+          if [[ "${include_git_metadata}" == "true" ]]; then
+            echo "Adding the .git folder"
+            zip -q -r ${archive_name} .git
+          fi
+          output_bucket_path="${output_bucket_path_prefix}/${repo}/$archive_name"
+          echo "Copying ${feature_type} ${archive_name} to ${output_bucket_path}"
+          aws s3 cp $archive_name s3://${output_bucket}/$output_bucket_path --quiet
