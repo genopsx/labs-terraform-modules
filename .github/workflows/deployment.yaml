@@ -1,0 +1,55 @@
+name: Push code into Provisioner S3 bucket
+
+on: push
+
+env:
+  DEPLOY_ACCOUNT: ${{ vars.DEPLOY_ACCOUNT }}
+  PROVISIONER_REGION: ${{ vars.PROVISIONER_REGION }}
+  DEPLOYMENT_ROLE_NAME: ${{ vars.DEPLOYMENT_ROLE_NAME }}
+  S3_BUCKET_NAME: ${{ vars.S3_BUCKET_NAME }}
+  PRODUCT_ZIP_NAME: ${{ github.event.repository.name }}.zip
+  PRODUCT_S3_KEY: product=${{ github.event.repository.name }}/${{ github.event.repository.name }}.zip
+
+jobs:
+  deploy_dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ env.DEPLOY_ACCOUNT }}:role/${{ env.DEPLOYMENT_ROLE_NAME }}
+          aws-region: ${{ env.PROVISIONER_REGION }}
+
+      - name: Deploy
+        run: |
+          git archive --format=zip ${{ github.ref_name }} > ${{ env.PRODUCT_ZIP_NAME }}
+          aws --region ${{ env.PROVISIONER_REGION }} s3 cp ${{ env.PRODUCT_ZIP_NAME }} s3://${{ env.S3_BUCKET_NAME }}/${{ env.PRODUCT_S3_KEY }}
+        
+  deploy_prd:
+    runs-on: ubuntu-latest
+    environment: prd
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ env.DEPLOY_ACCOUNT }}:role/${{ env.DEPLOYMENT_ROLE_NAME }}
+          aws-region: ${{ env.PROVISIONER_REGION }}
+
+      - name: Deploy
+        run: |
+          zip -r ${{ env.PRODUCT_ZIP_NAME }} *
+          aws --region ${{ env.PROVISIONER_REGION }} s3 cp ${{ env.PRODUCT_ZIP_NAME }} s3://${{ env.S3_BUCKET_NAME }}/${{ env.PRODUCT_S3_KEY }}
