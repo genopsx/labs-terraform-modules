@@ -21,10 +21,13 @@ variable "azs" {
   description = "List of Availability Zones to be used"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "subnet_prefix_extension" {
   type        = number
   description = "CIDR block bits extension to calculate CIDR blocks of each subnetwork."
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "zone_offset" {
   type        = number
   description = "CIDR block bits extension offset to calculate Public subnets, avoiding collisions with Private subnets."

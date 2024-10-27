@@ -20,6 +20,7 @@ variable "domain_name" {
   type        = string
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "region" {
   description = "The region to deploy the kubeshark"
   type        = string

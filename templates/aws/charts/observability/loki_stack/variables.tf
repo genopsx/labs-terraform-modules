@@ -28,12 +28,14 @@ variable "extra_values" {
   default     = {}
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "serviceaccount" {
   type        = string
   description = "Serviceaccount name"
   default     = "loki-stack"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_name" {
   type        = string
   description = "Name of EKS cluster"

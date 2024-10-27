@@ -33,6 +33,8 @@ variable "serviceaccount" {
   description = "Serviceaccount name to install the chart into"
   default     = "argocd"
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "create_namespace" {
   type        = bool
   description = "Create the namespace if it does not exist"

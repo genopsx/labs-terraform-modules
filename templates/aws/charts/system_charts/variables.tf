@@ -25,6 +25,7 @@ variable "domain_name" {
   description = "The domain filter to install external-dns"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "acm_certificate_arn" {
   type = string
 }

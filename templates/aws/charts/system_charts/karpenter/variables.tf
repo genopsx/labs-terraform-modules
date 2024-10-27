@@ -16,6 +16,7 @@ variable "chart_version" {
   default     = "0.37.0"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "create_role_enabled" {
   type        = bool
   description = "Enable or not chart as a component"

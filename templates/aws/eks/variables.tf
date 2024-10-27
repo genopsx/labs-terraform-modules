@@ -244,6 +244,7 @@ variable "oic_role_configurations" {
   }
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_additional_security_group_ids" {
   type        = list(string)
   description = "List of additional security group IDs to attach to the EKS cluster."
@@ -350,12 +351,14 @@ variable "eks_managed_node_groups" {
 }
 
 # variable "eks_managed_node_groups" {}
+# tflint-ignore: terraform_unused_declarations
 variable "ebs_kms_key_arn" {
   type        = string
   description = "The ARN of the KMS key to use for EBS encryption."
   default     = "temp"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "tag_specifications" {
   type        = list(string)
   description = "List of tag specifications to apply to the EKS managed node group."
@@ -379,6 +382,7 @@ variable "autoscaling_average_cpu" {
   default     = 0
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_service_cidr" {
   type        = string
   description = "CIDR block for the EKS cluster service."
@@ -392,12 +396,14 @@ variable "iam_role_nodes_additional_policies" {
   default     = {}
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_primary_security_group_id" {
   type        = string
   description = "Cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control-plane-to-data-plane communication. Referred to as 'Cluster security group' in the EKS console"
   default     = "value"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "vpc_security_group_ids" {
   type        = list(string)
   description = "List of security group IDs to attach to the EKS cluster."

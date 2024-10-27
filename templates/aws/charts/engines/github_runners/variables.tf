@@ -10,6 +10,7 @@ variable "environment" {
   description = "Environment name"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cert_manager_helm_chart_version" {
   type        = string
   default     = "1.11.0"
@@ -22,6 +23,7 @@ variable "github_token" {
   default     = ""
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "token_ssm_parameter" {
   type    = string
   default = ""
@@ -80,6 +82,7 @@ variable "ssm_prefix" {
   default     = "/github"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "runners_deploy_list" {
   type = list(object({
     name          = optional(string)

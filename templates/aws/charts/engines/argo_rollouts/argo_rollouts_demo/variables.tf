@@ -8,6 +8,7 @@ variable "namespace" {
   description = "Namespace name to deploy helm release"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "create_namespace" {
   type        = bool
   description = "Create the namespace if it does not exist"
@@ -25,7 +26,7 @@ variable "app_selector_label" {
 }
 
 variable "traffic_light_demo_enabled" {
-  type = bool
+  type        = bool
   description = "Create traffic_light rollout demo"
-  default = false
+  default     = false
 }

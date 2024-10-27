@@ -15,6 +15,7 @@ variable "jaeger_helm_chart_version" {
   default     = "2.0.1"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "demo_app_enabled" {
   description = "Deploy Jaeger demo application to test the service"
   default     = false
@@ -25,6 +26,7 @@ variable "domain_name" {
   type        = string
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "region" {
   description = "The region to deploy the jaeger"
   type        = string

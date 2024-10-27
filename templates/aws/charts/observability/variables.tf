@@ -5,9 +5,13 @@ variable "cluster_region" {
 variable "cluster_name" {
   type = string
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_oidc_provider_arn" {
   type = string
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "vpc_id" {
   type = string
 }
