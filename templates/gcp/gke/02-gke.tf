@@ -5,6 +5,7 @@ data "google_client_config" "default" {}
 module "gke" {
   count      = var.gke_count
   source     = "terraform-google-modules/kubernetes-engine/google"
+  version    = "33.1.0"
   project_id = var.project_id
   name       = var.cluster_name
   # region                     = "us-central1" - OPTIONAL, needed only for regional clusters
