@@ -66,31 +66,33 @@ variable "hostname" {
 # cert-manager certificate issuer
 variable "certificate_issuer_name" {
   type        = string
-  default = "letsencrypt-prod"
+  default     = "letsencrypt-prod"
   description = "Name of cert-manager certificate issuer"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "configure_initial_gitops_repo" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Flag if needs to configure initial gitops repo"
 }
 
 variable "initial_gitops_repo_url" {
-  type = string
+  type        = string
   description = "Initial gitops repo url"
 }
 
 variable "initial_gitops_repo_username" {
-  type = string
+  type        = string
   description = "Username for initial gitops repo"
 }
 
 variable "initial_gitops_repo_password" {
-  type = string
+  type        = string
   description = "Password for initial gitops repo"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "oauth_enabled" {
   type        = bool
   description = "Enable OAuth login for ArgoCD"
@@ -99,8 +101,8 @@ variable "oauth_enabled" {
 
 variable "configure_sso" {
   type        = bool
-  default = false
-  description = "Flag if needs to configure SSO"  
+  default     = false
+  description = "Flag if needs to configure SSO"
 }
 
 variable "sso_provider" {
@@ -117,65 +119,65 @@ variable "sso_org" {
   type        = string
   description = "SSO organization"
 }
-  
+
 variable "admin_team_name" {
   type        = string
   description = "Name of admin team"
-  default = "argocd-admins"
+  default     = "argocd-admins"
 }
-  
+
 #Main project related variables
 variable "main_project_name" {
-  type = string
+  type        = string
   description = "Name of main project"
-  default = "main"
+  default     = "main"
 }
 
 #Root application related variables
 variable "create_root_app" {
-  type = bool
+  type        = bool
   description = "Flag if needs to create root application"
-  default = false
+  default     = false
 }
 
 variable "root_app_name" {
-  type = string
+  type        = string
   description = "Name of root application"
-  default = "root_app"
+  default     = "root_app"
 }
 variable "root_app_target_revision" {
-  type = string
+  type        = string
   description = "Target revision of root application"
-  default = "HEAD"
+  default     = "HEAD"
 }
 
 variable "root_app_path" {
-  type = string
+  type        = string
   description = "Path of root application"
-  default = "apps"
+  default     = "apps"
 }
 
 variable "root_app_destination" {
-  type = string
+  type        = string
   description = "Destination of root application"
-  default = "in-cluster"
-} 
+  default     = "in-cluster"
+}
 
 variable "root_app_dir_recurse" {
-  type = bool
+  type        = bool
   description = "Flag if root application directory needs to be recursed"
-  default = false
-}        
+  default     = false
+}
 
 variable "root_app_exclude" {
-  type = string
+  type        = string
   description = "List of root application directories to be excluded"
-  default = ""
+  default     = ""
 }
 
 # TODO: OIDC login related variables
 variable "oauth_client_secret_name" {
   type        = string
-  default = ""
+  default     = ""
   description = "Name of AWS secret with OAuth client creds. See README for details"
-}  
+}

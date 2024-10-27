@@ -1,10 +1,12 @@
 #Common vars
 
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_name" {
   type        = string
   description = "Name of K8S cluster"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "repository" {
   type        = string
   description = "All Argo project Repository to install the chart from"
@@ -14,22 +16,25 @@ variable "repository" {
 # cert-manager certificate issuer
 variable "certificate_issuer_name" {
   type        = string
-  default = "letsencrypt-prod"
+  default     = "letsencrypt-prod"
   description = "Name of cert-manager certificate issuer"
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "create_namespace" {
   type        = bool
   description = "Create the namespace if it does not exist"
   default     = true
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "recreate_pods" {
   type        = bool
   description = "Recreate pods in the deployment if necessary"
   default     = true
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "timeout" {
   type        = number
   description = "Timeout for the helm release"
@@ -85,30 +90,30 @@ variable "argocd_hostname" {
 }
 
 variable "argocd_configure_initial_gitops_repo" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Configure initial gitops repo"
 }
 
 variable "argocd_initial_gitops_repo_url" {
-  type = string
+  type        = string
   description = "Initial gitops repo url"
 }
 
 variable "argocd_initial_gitops_repo_username" {
-  type = string
+  type        = string
   description = "value of username for initial gitops repo"
 }
 
 variable "argocd_initial_gitops_repo_password" {
-  type = string
+  type        = string
   description = "value of password for initial gitops repo"
 }
 
 variable "argocd_configure_sso" {
   type        = bool
-  default = false
-  description = "Flag if needs to configure SSO"  
+  default     = false
+  description = "Flag if needs to configure SSO"
 }
 
 variable "argocd_sso_provider" {
@@ -125,60 +130,60 @@ variable "argocd_sso_org" {
   type        = string
   description = "SSO organization"
 }
-  
+
 variable "argocd_admin_team_name" {
   type        = string
   description = "Name of admin team"
-  default = "argocd-admins"
+  default     = "argocd-admins"
 }
 #Main project related variables
 variable "argocd_main_project_name" {
-  type = string
+  type        = string
   description = "Name of main project"
-  default = "main"
+  default     = "main"
 }
 
 #Root application related variables
 variable "argocd_create_root_app" {
-  type = bool
+  type        = bool
   description = "Flag if needs to create root application"
-  default = false
+  default     = false
 }
 
 variable "argocd_root_app_name" {
-  type = string
+  type        = string
   description = "Name of root application"
-  default = "root_app"
+  default     = "root_app"
 }
 
 variable "argocd_root_app_target_revision" {
-  type = string
+  type        = string
   description = "Target revision of root application"
-  default = "HEAD"
+  default     = "HEAD"
 }
 
 variable "argocd_root_app_path" {
-  type = string
+  type        = string
   description = "Path of root application"
-  default = "apps"
+  default     = "apps"
 }
 
 variable "argocd_root_app_destination" {
-  type = string
+  type        = string
   description = "Destination of root application"
-  default = "in-cluster"
-} 
+  default     = "in-cluster"
+}
 
 variable "argocd_root_app_dir_recurse" {
-  type = bool
+  type        = bool
   description = "Flag if root application directory needs to be recursed"
-  default = false
-}        
+  default     = false
+}
 
 variable "argocd_root_app_exclude" {
-  type = string
+  type        = string
   description = "List of root application directories to be excluded"
-  default = ""
+  default     = ""
 }
 
 

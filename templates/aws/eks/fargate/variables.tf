@@ -3,6 +3,7 @@ variable "fargate_profile_additional_policies" {
   description = "Additional policies to be added to the IAM role."
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "fargate_profile_namespace" {
   type        = string
   description = "Namespace to be used by the Fargate Profile."
