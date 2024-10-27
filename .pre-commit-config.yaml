@@ -32,4 +32,4 @@ repos:
         args:
           - --args=--minimum-severity CRITICAL
           - --args=--force-all-dirs
-exclude: templates/aws/airflow
+# exclude: templates/aws/airflow

@@ -1,5 +1,5 @@
 PRE_COMMIT_TERRAFORM_VERSION=latest
-MODULES := $(shell find . -type f -name "config.tf" -exec dirname {} \; | sed 's/^\.\///' | sort)
+MODULES := $(shell find . -type f -name "versions.tf" -exec dirname {} \; | sed 's/^\.\///' | sort)
 OSNAME := $(shell uname -s)
 
 all: lint
