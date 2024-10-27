@@ -1,5 +1,5 @@
 module "fargate" {
-  source                              = "./fargate"
+  source                              = "./fargates"
   for_each                            = var.fargate_profiles
   create_fargate_profile              = var.create_fargate_profile
   cluster_name                        = module.eks.cluster_name

@@ -1,5 +1,5 @@
 module "nodes" {
-  source = "./nodes"
+  source = "./nodegroup"
   #   source                            = "git::git@github.com:kwatatshey/prototyping-modules-repos.git//eks/base/nodes?ref=v1.0.0s"
   for_each                          = var.eks_managed_node_groups
   name                              = each.key

@@ -82,33 +82,39 @@ variable "vpc_id" {
 }
 
 variable "public_subnet_ids" {
-  type    = list(string)
-  default = []
+  type        = list(string)
+  default     = []
+  description = "List of subnet IDs for the EKS Node Group."
 }
 
 variable "private_subnet_ids" {
-  type    = list(string)
-  default = []
+  type        = list(string)
+  default     = []
+  description = "List of subnet IDs for the EKS Node Group."
 }
 
 variable "cluster_name" {
-  type    = string
-  default = "value"
+  type        = string
+  default     = "value"
+  description = "The name of the EKS cluster."
 }
 
 variable "kubernets_version" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
+  description = "The Kubernetes version for the EKS cluster."
 }
 
 variable "tags" {
-  type    = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
+  description = "The tags to apply to the resources"
 }
 
 variable "node_security_group_tags" {
-  type    = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
+  description = "The tags to apply to the node security group."
 }
 
 # variable "on_demand_instance_types" {
@@ -123,18 +129,21 @@ variable "node_security_group_tags" {
 
 
 variable "r53_subzone_name" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
+  description = "Route53 subzone name"
 }
 
 variable "r53_hosted_zone_name" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
+  description = "Route53 hosted zone name"
 }
 
 variable "worker_nodes_kms_key_aliases" {
-  type    = list(string)
-  default = []
+  type        = list(string)
+  default     = []
+  description = "List of aliases for the KMS key"
 }
 
 # variable "additional_policies" {
@@ -197,33 +206,6 @@ variable "nodegroup_subnet_ids" {
   default     = []
 }
 
-
-variable "developer_roles" {
-  type        = list(string)
-  description = "List of Kubernetes developer roles."
-  default     = []
-}
-
-
-variable "developer_users" {
-  type        = list(string)
-  description = "List of Kubernetes developers."
-  default     = []
-}
-
-variable "developer_user_group" {
-  type        = string
-  description = "Name of the kube group for developers."
-  default     = "value"
-}
-
-variable "kubernetes_groups" {
-  type        = string
-  description = "Name of the Kubernetes group."
-  default     = "value"
-}
-
-
 variable "oic_role_configurations" {
   description = "values for the OIDC role configurations."
   type = map(object({
@@ -242,13 +224,6 @@ variable "oic_role_configurations" {
       policy_file         = "value"
     }
   }
-}
-
-# tflint-ignore: terraform_unused_declarations
-variable "cluster_additional_security_group_ids" {
-  type        = list(string)
-  description = "List of additional security group IDs to attach to the EKS cluster."
-  default     = []
 }
 
 variable "enable_creation_role_with_oidc" {
@@ -350,21 +325,6 @@ variable "eks_managed_node_groups" {
   }
 }
 
-# variable "eks_managed_node_groups" {}
-# tflint-ignore: terraform_unused_declarations
-variable "ebs_kms_key_arn" {
-  type        = string
-  description = "The ARN of the KMS key to use for EBS encryption."
-  default     = "temp"
-}
-
-# tflint-ignore: terraform_unused_declarations
-variable "tag_specifications" {
-  type        = list(string)
-  description = "List of tag specifications to apply to the EKS managed node group."
-  default     = []
-}
-
 # variable "subnet_ids" {
 #   type        = list(string)
 #   description = "List of subnet IDs to launch the EKS managed node group in."
@@ -382,32 +342,10 @@ variable "autoscaling_average_cpu" {
   default     = 0
 }
 
-# tflint-ignore: terraform_unused_declarations
-variable "cluster_service_cidr" {
-  type        = string
-  description = "CIDR block for the EKS cluster service."
-  default     = "value"
-}
-
-
 variable "iam_role_nodes_additional_policies" {
   type        = map(string)
   description = "List of additional IAM policies to attach to EKS managed node groups."
   default     = {}
-}
-
-# tflint-ignore: terraform_unused_declarations
-variable "cluster_primary_security_group_id" {
-  type        = string
-  description = "Cluster security group that was created by Amazon EKS for the cluster. Managed node groups use this security group for control-plane-to-data-plane communication. Referred to as 'Cluster security group' in the EKS console"
-  default     = "value"
-}
-
-# tflint-ignore: terraform_unused_declarations
-variable "vpc_security_group_ids" {
-  type        = list(string)
-  description = "List of security group IDs to attach to the EKS cluster."
-  default     = []
 }
 
 variable "node_add_policy_name" {
