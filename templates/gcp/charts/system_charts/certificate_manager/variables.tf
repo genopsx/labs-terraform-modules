@@ -16,6 +16,7 @@ variable "cert_manager_helm_chart_version" {
   description = "Cert Manager Helm chart version."
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cert_manager_issuer_staging_mode" {
   description = "Whether to create a staging issuer for cert-manager"
   type        = bool
