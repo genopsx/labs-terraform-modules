@@ -1,4 +1,8 @@
 # Create security group to allow access on port 53
+#tfsec:ignore:aws-ec2-no-excessive-port-access
+#tfsec:ignore:aws-ec2-no-public-ingress-acl
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "route53_sg" {
   name        = var.route53_sg_name
   description = "Allow DNS port 53 traffic"

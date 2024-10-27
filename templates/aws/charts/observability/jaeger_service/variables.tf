@@ -18,6 +18,7 @@ variable "jaeger_helm_chart_version" {
 # tflint-ignore: terraform_unused_declarations
 variable "demo_app_enabled" {
   description = "Deploy Jaeger demo application to test the service"
+  type        = bool
   default     = false
 }
 

@@ -63,48 +63,49 @@ variable "sqs_queue_length" {
   description = "The queue length used to scaled the workloads"
 }
 
-# tflint-ignore: terraform_unused_declarations
 variable "sqs_policy_actions" {
   default     = ["sqs:SendMessage"]
   description = "Permissions to attach to the SQS Policy"
+  type        = list(string)
 }
 
-# tflint-ignore: terraform_unused_declarations
 variable "cluster_oidc_provider_arn" {
   description = "The Cluster oidc provider"
+  type        = string
 }
 
-# tflint-ignore: terraform_unused_declarations
 variable "enable_keda_poc" {
   default     = false
   description = "To enable the keda poc or just install the keda operator"
+  type        = bool
 }
 
-# tflint-ignore: terraform_unused_declarations
 variable "cooldown_period" {
   description = "The time it takes to scale back down in seconds"
   default     = 2
+  type        = number
 }
 
-# tflint-ignore: terraform_unused_declarations
 variable "min_replica_count" {
   description = "The minimum replica count"
   default     = 0
+  type        = number
 }
 
-# tflint-ignore: terraform_unused_declarations
 variable "max_replica_count" {
   description = "The maximum replica count"
   default     = 10
+  type        = number
 }
 
-# tflint-ignore: terraform_unused_declarations
+
 variable "polling_interval" {
   description = "The interval at which keda polls the target in seconds"
   default     = 2
+  type        = number
 }
 
-# tflint-ignore: terraform_unused_declarations
 variable "region" {
   default = "eu-west-1"
+  type    = string
 }
