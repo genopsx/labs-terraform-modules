@@ -1,7 +1,7 @@
 module "dns-public-zone" {
-  source  = "terraform-google-modules/cloud-dns/google"
+  source = "terraform-google-modules/cloud-dns/google"
   # version = "4.0"
-  project_id = "${var.project_id}"
+  project_id = var.project_id
   type       = "public"
   name       = replace("${var.cluster_name}.${var.cluster_parent_hosted_zone}", ".", "-")
   domain     = "${var.cluster_name}.${var.cluster_parent_hosted_zone}."

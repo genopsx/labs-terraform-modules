@@ -8,6 +8,7 @@ variable "cluster_name" {
 variable "cluster_oidc_provider_arn" {
   type = string
 }
+# tflint-ignore: terraform_unused_declarations
 variable "vpc_id" {
   type = string
 }
@@ -47,46 +48,67 @@ variable "airflow_serviceaccount" {
 }
 
 ## GitHub Actions Runners Controller
+# tflint-ignore: terraform_unused_declarations
 variable "github_actions_runner_controller_enabled" {
   type    = bool
   default = false
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_runner_serviceaccount" {
   type    = string
   default = "actions-runner-system"
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_runners_extra_values" {
   type    = map(any)
   default = {}
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_token" {
   type    = string
   default = ""
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_token_ssm_parameter" {
   type    = string
   default = ""
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_runner_reg_url" {
   type    = string
   default = ""
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_webhook_server_enabled" {
   type    = bool
   default = false
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_webhook_server_host" {
   type    = string
   default = ""
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_webhook_server_path" {
   type    = string
   default = "/"
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_webhook_server_secret_enabled" {
   type    = bool
   default = false
 }
+
+# tflint-ignore: terraform_unused_declarations
 variable "github_runners_deploy_list" {
   type = list(object({
     name          = optional(string)
