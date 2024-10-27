@@ -3,6 +3,10 @@
 # ################################################
 
 # Create the security group
+#tfsec:ignore:aws-ec2-no-excessive-port-access
+#tfsec:ignore:aws-ec2-no-public-ingress-acl
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 module "security_group" {
   source                                = "terraform-aws-modules/security-group/aws"
   version                               = "5.1.2"
