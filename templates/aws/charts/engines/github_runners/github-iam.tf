@@ -7,8 +7,8 @@ module "actions_runner_controller" {
   create_role                           = var.enabled
   role_name_prefix                      = var.serviceaccount
   attach_external_secrets_policy        = true
-  external_secrets_ssm_parameter_arns   = [ "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/${local.token_ssm_parameter}" ]
-  external_secrets_secrets_manager_arns = [ "arn:aws:none" ]
+  external_secrets_ssm_parameter_arns   = ["arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/${local.token_ssm_parameter}"]
+  external_secrets_secrets_manager_arns = ["arn:aws:none"]
 
   #  cert_manager_hosted_zone_arns         = local.github_runner.r53_parent_zone_id
 

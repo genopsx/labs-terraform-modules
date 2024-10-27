@@ -19,7 +19,7 @@ resource "helm_release" "argocd" {
 }
 
 resource "kubectl_manifest" "main_project" {
-  depends_on = [ helm_release.argocd ]
+  depends_on = [helm_release.argocd]
   # apply_only = true
   yaml_body = <<YAML
   apiVersion: argoproj.io/v1alpha1
@@ -42,10 +42,10 @@ resource "kubectl_manifest" "main_project" {
 }
 
 resource "kubectl_manifest" "argocd_root_app" {
-  count = var.create_root_app == true ? 1 : 0
-  depends_on = [ helm_release.argocd, kubectl_manifest.main_project ]
+  count      = var.create_root_app == true ? 1 : 0
+  depends_on = [helm_release.argocd, kubectl_manifest.main_project]
   apply_only = true
-  yaml_body = <<YAML
+  yaml_body  = <<YAML
   apiVersion: argoproj.io/v1alpha1
   kind: Application
   metadata:

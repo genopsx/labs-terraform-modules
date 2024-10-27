@@ -3,11 +3,11 @@ locals {
 
   untagged_images_rule = [{
     rulePriority = 1
-    description = "Remove untagged images after ${var.days_to_remove_untagged_images} days."
+    description  = "Remove untagged images after ${var.days_to_remove_untagged_images} days."
     selection = {
-      tagStatus = "untagged"
-      countType = "sinceImagePushed"
-      countUnit = "days"
+      tagStatus   = "untagged"
+      countType   = "sinceImagePushed"
+      countUnit   = "days"
       countNumber = var.days_to_remove_untagged_images
     }
     action = {
@@ -17,12 +17,12 @@ locals {
 
   pull_request_images_rule = [{
     rulePriority = 2
-    description = "Remove images created by pull-requests older than ${var.pr_image_count} days."
+    description  = "Remove images created by pull-requests older than ${var.pr_image_count} days."
     selection = {
-      tagStatus = "tagged"
+      tagStatus      = "tagged"
       tagPatternList = ["*pull_request*"],
-      countType = "imageCountMoreThan"
-      countNumber = var.pr_image_count
+      countType      = "imageCountMoreThan"
+      countNumber    = var.pr_image_count
     }
     action = {
       type = "expire"
@@ -31,10 +31,10 @@ locals {
 
   remove_max_images_rule = [{
     rulePriority = 3
-    description = "Expire images older than ${var.max_image_count} days.",
+    description  = "Expire images older than ${var.max_image_count} days.",
     selection = {
-      tagStatus = "any"
-      countType = "imageCountMoreThan"
+      tagStatus   = "any"
+      countType   = "imageCountMoreThan"
       countNumber = var.max_image_count
     }
     action = {

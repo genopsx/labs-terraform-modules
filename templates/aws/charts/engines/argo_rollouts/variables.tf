@@ -17,15 +17,15 @@ variable "repository" {
 }
 
 variable "customized_demo_enabled" {
-  type = bool
+  type        = bool
   description = "Create your own customize rollouts demo"
-  default = false
+  default     = false
 }
 
 variable "traffic_light_demo_enabled" {
-  type = bool
+  type        = bool
   description = "Create demo rollout"
-  default = true
+  default     = true
 }
 
 variable "namespace" {

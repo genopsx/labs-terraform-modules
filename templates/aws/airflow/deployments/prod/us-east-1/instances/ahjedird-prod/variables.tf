@@ -127,6 +127,6 @@ variable "redis_automatic_failover" {
 }
 
 variable "rds_application_tag" {
-  type = string
+  type    = string
   default = "aparflow"
 }

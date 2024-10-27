@@ -18,7 +18,7 @@ resource "kubernetes_manifest" "letsencrypt_cluster_issuer_staging" {
             ingress:
               class: ${var.ingress_class_name}
     EOT
-    )
+  )
 }
 resource "kubernetes_manifest" "letsencrypt_cluster_issuer_prod" {
   count = var.cert_manager_issuer_production_mode == true ? 1 : 0
@@ -39,7 +39,7 @@ resource "kubernetes_manifest" "letsencrypt_cluster_issuer_prod" {
             ingress:
               class: ${var.ingress_class_name}
     EOT
-    )
+  )
 }
 
 # module "issuers" {

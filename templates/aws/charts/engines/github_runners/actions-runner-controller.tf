@@ -1,7 +1,7 @@
 ### Helm Actions Runner Controller deployment
 resource "helm_release" "actions-runner-controller" {
-  depends_on       = [ aws_ssm_parameter.runnerRegistrationToken[0], aws_ssm_parameter.github_webhook_secret_token ]
-  count = var.enabled ? 1 : 0
+  depends_on = [aws_ssm_parameter.runnerRegistrationToken[0], aws_ssm_parameter.github_webhook_secret_token]
+  count      = var.enabled ? 1 : 0
 
   name             = "actions-runner-controller"
   repository       = "https://actions-runner-controller.github.io/actions-runner-controller"
@@ -30,5 +30,5 @@ resource "helm_release" "actions-runner-controller" {
     value = var.runnerGithubURL
   }
 
-  values = [ local.githubWebhookServer ]
+  values = [local.githubWebhookServer]
 }

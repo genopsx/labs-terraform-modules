@@ -6,7 +6,7 @@ resource "helm_release" "argo_rollouts" {
   namespace        = var.namespace
   create_namespace = var.create_namespace
 
-  values           = [
+  values = [
     local.argo_rollouts_values_yaml
   ]
 

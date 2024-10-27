@@ -20,24 +20,24 @@ module "loki-stack" {
 }
 
 module "kubeshark" {
-    count               = var.kubeshark_enabled ? 1 : 0
-    source              = "./kubeshark_service"
-    name                = var.kubeshark_name
-    namespace           = var.kubeshark_namespace
-    domain_name         = var.domain_name
-    region              = var.cluster_region
-    acm_certificate_arn = var.acm_certificate_arn
-    scheme              = var.kubeshark_scheme
+  count               = var.kubeshark_enabled ? 1 : 0
+  source              = "./kubeshark_service"
+  name                = var.kubeshark_name
+  namespace           = var.kubeshark_namespace
+  domain_name         = var.domain_name
+  region              = var.cluster_region
+  acm_certificate_arn = var.acm_certificate_arn
+  scheme              = var.kubeshark_scheme
 }
 
 module "jaeger" {
-    count               = var.jaeger_enabled ? 1 : 0
-    source              = "./jaeger_service"
-    name                = var.jaeger_name
-    namespace           = var.jaeger_namespace
-    domain_name         = var.domain_name
-    region              = var.cluster_region
-    acm_certificate_arn = var.acm_certificate_arn
-    scheme              = var.jaeger_scheme
-    demo_app_enabled    = var.jaeger_demo_app_enabled
+  count               = var.jaeger_enabled ? 1 : 0
+  source              = "./jaeger_service"
+  name                = var.jaeger_name
+  namespace           = var.jaeger_namespace
+  domain_name         = var.domain_name
+  region              = var.cluster_region
+  acm_certificate_arn = var.acm_certificate_arn
+  scheme              = var.jaeger_scheme
+  demo_app_enabled    = var.jaeger_demo_app_enabled
 }

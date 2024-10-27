@@ -8,7 +8,7 @@ data "aws_ssm_parameter" "runnerRegistrationToken" {
 }
 
 data "aws_ssm_parameter" "WebhookServer_token" {
-  count = var.webhook_server_secret_enabled && var.enabled && var.webhook_server_enabled ? 1 : 0
-  name = local.webhook_secret_token_ssm_parameter
-  depends_on = [ aws_ssm_parameter.github_webhook_secret_token ]
+  count      = var.webhook_server_secret_enabled && var.enabled && var.webhook_server_enabled ? 1 : 0
+  name       = local.webhook_secret_token_ssm_parameter
+  depends_on = [aws_ssm_parameter.github_webhook_secret_token]
 }

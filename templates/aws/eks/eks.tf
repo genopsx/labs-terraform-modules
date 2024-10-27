@@ -88,7 +88,7 @@ module "eks" {
   cluster_enabled_log_types                = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
   subnet_ids                               = concat(var.public_subnet_ids, var.private_subnet_ids)
   #subnet_ids = concat(var.public_subnet_ids)
-  vpc_id     = var.vpc_id
+  vpc_id = var.vpc_id
   # cluster_additional_security_group_ids    = [aws_security_group.node_security_group_additional_rules.id, aws_security_group.alb.id]
   # cluster_additional_security_group_ids = [aws_security_group.cluster_additional_security_group_ids.id]
   cluster_additional_security_group_ids = [

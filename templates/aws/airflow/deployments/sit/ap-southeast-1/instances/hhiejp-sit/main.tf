@@ -28,8 +28,8 @@ provider "aws" {
     }
   }
   assume_role {
-      role_arn  =   "arn:aws:iam::015811401862:role/airflow-eks-deployment-role"
-    }
+    role_arn = "arn:aws:iam::015811401862:role/airflow-eks-deployment-role"
+  }
 }
 
 # AWS provider with different region that will be used for cross-region replication
@@ -49,8 +49,8 @@ provider "aws" {
     }
   }
   assume_role {
-      role_arn  =   "arn:aws:iam::015811401862:role/airflow-eks-deployment-role"
-    }
+    role_arn = "arn:aws:iam::015811401862:role/airflow-eks-deployment-role"
+  }
 }
 
 # AWS provider with static us-east-1 region. In us-east-1 region there will be AWS secretsmanager secret that will have sensitive values that are common across instances.
@@ -58,8 +58,8 @@ provider "aws" {
   region = "us-east-1"
   alias  = "secrets"
   assume_role {
-      role_arn  =   "arn:aws:iam::015811401862:role/airflow-eks-deployment-role"
-    }
+    role_arn = "arn:aws:iam::015811401862:role/airflow-eks-deployment-role"
+  }
 }
 
 

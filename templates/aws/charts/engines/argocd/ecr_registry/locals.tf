@@ -1,4 +1,4 @@
-locals{
+locals {
 
   ecr_authorization_token_yaml_path = "${path.module}/yamls/ecr-authorization-token.yaml"
   ecr_generator_yaml_path           = "${path.module}/yamls/ecr-generator.yaml"

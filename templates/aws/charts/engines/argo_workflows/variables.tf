@@ -27,24 +27,24 @@ variable "argo_workflows_chart_name" {
   default     = "argo-workflows"
 }
 
-variable argo_events_chart_version {
+variable "argo_events_chart_version" {
   type        = string
   default     = "2.4.4"
   description = "Version of argo-events chart"
 }
 
-variable argo_workflows_chart_version {
+variable "argo_workflows_chart_version" {
   type        = string
   default     = "0.41.0"
   description = "Version of argo-workflows chart"
 }
 
-variable hostname {
+variable "hostname" {
   type        = string
   description = "Argo-Workflows hostname"
 }
 
-variable sso_enabled {
+variable "sso_enabled" {
   type        = string
   description = "Single sign-on (SSO) authentication for argo-workflows"
 }

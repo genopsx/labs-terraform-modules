@@ -7,15 +7,15 @@ locals {
   analysis_yaml_path       = "${path.module}/yamls/analysis-template.yaml"
 
   analysis_success_yaml = templatefile(local.analysis_yaml_path, {
-    namespace = var.namespace
+    namespace    = var.namespace
     name_postfix = "success"
-    exit_code = 0
+    exit_code    = 0
   })
 
   analysis_fail_yaml = templatefile(local.analysis_yaml_path, {
-    namespace = var.namespace
+    namespace    = var.namespace
     name_postfix = "fail"
-    exit_code = 1
+    exit_code    = 1
   })
 
   root_service_yaml = templatefile(local.root_service_yaml_path, {
@@ -55,7 +55,7 @@ locals {
     image_tag          = "green"
   })
 
-    argo_demo_rollout_yellow_yaml = templatefile(local.rollout_yaml_path, {
+  argo_demo_rollout_yellow_yaml = templatefile(local.rollout_yaml_path, {
     namespace          = var.namespace
     first_analysis     = kubectl_manifest.analysis_template_success.name
     second_analysis    = kubectl_manifest.analysis_template_success.name

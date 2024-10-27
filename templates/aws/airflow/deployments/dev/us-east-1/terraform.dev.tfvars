@@ -22,7 +22,7 @@ environment = "dev"
 target_vpc_id = "vpc-06ad777c1f6aba4fc"
 # Subnet IDs of Merck routable subnets
 eks_routable_subnets = ["subnet-0b16f389f4ebba576", "subnet-0623e4b7dfcf0707c"]
-routable_subnets = ["subnet-0b16f389f4ebba576", "subnet-0623e4b7dfcf0707c", "subnet-09545792cf47b29ca", "subnet-0036b06aa4973e2a0"]
+routable_subnets     = ["subnet-0b16f389f4ebba576", "subnet-0623e4b7dfcf0707c", "subnet-09545792cf47b29ca", "subnet-0036b06aa4973e2a0"]
 # Subnet IDs of Merck non-routable NAT gateway subnets
 non_routable_subnets = ["subnet-0650d66e03533dedb", "subnet-0737013c6334c78b4"]
 

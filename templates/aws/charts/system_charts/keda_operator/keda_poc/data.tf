@@ -1,8 +1,8 @@
 data "aws_iam_policy_document" "py-sqs-policy-document" {
   version = "2012-10-17"
   statement {
-    sid    = "SQS"
-    effect = "Allow"
+    sid     = "SQS"
+    effect  = "Allow"
     actions = var.sqs_policy_actions
     principals {
       type        = "AWS"

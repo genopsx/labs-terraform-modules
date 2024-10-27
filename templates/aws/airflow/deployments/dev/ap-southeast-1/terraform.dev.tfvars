@@ -36,7 +36,7 @@ enabled_cluster_log_types = ["audit", "authenticator"]
 vpc_cni_addon_version    = "v1.18.3-eksbuild.1"
 coredns_addon_version    = "v1.10.1-eksbuild.7"
 kube_proxy_addon_version = "v1.28.6-eksbuild.2"
-  
+
 # EFS drive throughput mode
 efs_throughput_mode = "elastic"
 

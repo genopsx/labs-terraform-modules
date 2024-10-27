@@ -4,42 +4,42 @@ variable "create_github_repo" {
 }
 
 variable "github_org" {
-  type = string
+  type        = string
   description = "GitOps repository organization"
-  default = ""
+  default     = ""
 }
 
 variable "github_repo" {
-  type = string
+  type        = string
   description = "Github repository name"
 }
 
 variable "github_main_branch" {
-  type = string
+  type        = string
   description = "GitOps repository main branch"
-  default = "main"
+  default     = "main"
 }
 
 variable "apps_of_apps_path" {
-  type = string
+  type        = string
   description = "Path to all application Yamls in GitOps repository"
-  default = "applications"
+  default     = "applications"
 }
 
 variable "namespace" {
-  type = string
+  type        = string
   description = "ArgoCD namespace"
-  default = "argocd"
+  default     = "argocd"
 }
 
 variable "github_ssh_public_key_name" {
-  type = string
+  type        = string
   description = "Deploy key name on GitHub, where the public key is stored"
-  default = "argocd"
+  default     = "argocd"
 }
 
 variable "app_proj" {
-  type = string
+  type        = string
   description = "name of argocd application project"
-  default = "main-proj"
+  default     = "main-proj"
 }

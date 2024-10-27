@@ -52,11 +52,11 @@ module "iam-irsa" {
 module "eks-fargate-infra" {
   source = "../../../modules/eks-fargate-infra"
 
-  cluster_name     = module.eks.cluster_name
-  profile_name     = "${var.project_prefix}-eks-airflfow-fargate-infra"
-  fargate_role_arn = module.iam-eks-srv.fargate_role_arn
-  subnet_ids       = var.non_routable_subnets
-  coredns_replicas = var.coredns_replicas
+  cluster_name             = module.eks.cluster_name
+  profile_name             = "${var.project_prefix}-eks-airflfow-fargate-infra"
+  fargate_role_arn         = module.iam-eks-srv.fargate_role_arn
+  subnet_ids               = var.non_routable_subnets
+  coredns_replicas         = var.coredns_replicas
   vpc_cni_addon_version    = var.vpc_cni_addon_version
   coredns_addon_version    = var.coredns_addon_version
   kube_proxy_addon_version = var.kube_proxy_addon_version
