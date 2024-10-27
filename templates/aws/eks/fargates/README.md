@@ -7,9 +7,8 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.70 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.27.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.9.0 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | >= 3.0.0 |
 
 ## Providers
 
@@ -41,5 +40,10 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_fargate_profile_arn"></a> [fargate\_profile\_arn](#output\_fargate\_profile\_arn) | The Amazon Resource Name (ARN) of the Fargate Profile |
+| <a name="output_fargate_profile_id"></a> [fargate\_profile\_id](#output\_fargate\_profile\_id) | The ID of the Fargate Profile |
+| <a name="output_fargate_profile_name"></a> [fargate\_profile\_name](#output\_fargate\_profile\_name) | The name of the Fargate Profile |
+| <a name="output_fargate_profile_pod_execution_role_arn"></a> [fargate\_profile\_pod\_execution\_role\_arn](#output\_fargate\_profile\_pod\_execution\_role\_arn) | The Amazon Resource Name (ARN) of the pod execution role |
 <!-- END_TF_DOCS -->
