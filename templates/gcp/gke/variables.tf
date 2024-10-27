@@ -139,6 +139,7 @@ variable "cert_manager_issuer_staging_mode" {
   default     = true
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cert_manager_issuer_email" {
   description = "The email to use for the cert-manager issuer"
   type        = string

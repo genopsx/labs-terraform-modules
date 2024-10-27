@@ -78,9 +78,3 @@ module "vpc" {
 
   }
 }
-
-locals {
-  private = "private"
-  public  = "public"
-
-}
