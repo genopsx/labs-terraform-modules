@@ -9,7 +9,7 @@ locals {
   gitops_registry_yaml = templatefile(local.gitops_registry_yaml_path, {
     namespace              = var.namespace
     github_repository_name = local.github_repository_name
-    ssh_clone_url          = "${trimsuffix(local.ssh_clone_url, ".git")}"
+    ssh_clone_url          = trimsuffix(local.ssh_clone_url, ".git")
     private_key_openssh    = local.private_key_openssh
   })
 
