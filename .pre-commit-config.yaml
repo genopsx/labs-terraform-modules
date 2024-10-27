@@ -32,4 +32,11 @@ repos:
         args:
           - --args=--minimum-severity CRITICAL
           - --args=--force-all-dirs
-# exclude: templates/aws/airflow
+exclude: ^templates/aws/airflow/ # single directory recursive
+# exclude: ^(templates/aws/airflow|iac|automation)/ # multiple directories recursive (templates/aws/airflow, iac, automation)
+ 
+#  The  exclude  key is used to exclude certain directories from the pre-commit checks. 
+#  The  repos  key is a list of repositories that contain the hooks that will be run. Each repository has a  hooks  key that contains a list of hooks that will be run. 
+#  The  id  key is the name of the hook that will be run. The  args  key is a list of arguments that will be passed to the hook. 
+#  The  language_version  key is used to specify the version of the language that the hook should be run with. 
+#  The  rev  key is used to specify the version of the repository that should be used
