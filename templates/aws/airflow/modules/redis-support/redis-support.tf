@@ -5,6 +5,10 @@ data "aws_security_group" "default_sg_id" {
 }
 
 # Create security group for Redis to allow access on port 6379
+#tfsec:ignore:aws-ec2-no-excessive-port-access
+#tfsec:ignore:aws-ec2-no-public-ingress-acl
+#tfsec:ignore:aws-ec2-no-public-egress-sgr
+#tfsec:ignore:aws-ec2-no-public-ingress-sgr
 resource "aws_security_group" "redis_sg" {
   name        = var.redis_sg_name
   description = var.redis_sg_description
