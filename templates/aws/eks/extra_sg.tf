@@ -1,6 +1,6 @@
 # Module for ALB Ingress Security Group
 module "security_alb_ingress" {
-  source = "./add_sg"
+  source = "./extra_sg"
   #   source                          = "git::git@github.com:kwatatshey/prototyping-modules-repos.git//security?ref=v1.0.0s"
   additional_sg_name              = "alb-ingress"
   description                     = "Security group for ALB ingress"
@@ -110,7 +110,7 @@ module "security_alb_ingress" {
 
 # Module for Node Security Group
 module "security_node" {
-  source = "./add_sg"
+  source = "./extra_sg"
   #   source                          = "git::git@github.com:kwatatshey/prototyping-modules-repos.git//security?ref=v1.0.0s"
   additional_sg_name              = "node"
   description                     = "Security group for nodes"

@@ -27,8 +27,8 @@
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | 20.8.5 |
 | <a name="module_fargate"></a> [fargate](#module\_fargate) | ./fargate | n/a |
 | <a name="module_nodes"></a> [nodes](#module\_nodes) | ./nodes | n/a |
-| <a name="module_security_alb_ingress"></a> [security\_alb\_ingress](#module\_security\_alb\_ingress) | ./add_sg | n/a |
-| <a name="module_security_node"></a> [security\_node](#module\_security\_node) | ./add_sg | n/a |
+| <a name="module_security_alb_ingress"></a> [security\_alb\_ingress](#module\_security\_alb\_ingress) | ./extra_sg | n/a |
+| <a name="module_security_node"></a> [security\_node](#module\_security\_node) | ./extra_sg | n/a |
 
 ## Resources
 
