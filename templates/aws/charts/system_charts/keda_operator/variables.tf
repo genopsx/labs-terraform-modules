@@ -20,6 +20,7 @@ variable "chart_version" {
   type        = string
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "sqs_policy_actions" {
   default     = ["sqs:SendMessage"]
   description = "Permissions to attach to the SQS Policy"

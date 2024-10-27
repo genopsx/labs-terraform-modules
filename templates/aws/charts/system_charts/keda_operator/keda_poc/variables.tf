@@ -74,6 +74,7 @@ variable "cluster_oidc_provider_arn" {
   type        = string
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "enable_keda_poc" {
   default     = false
   description = "To enable the keda poc or just install the keda operator"

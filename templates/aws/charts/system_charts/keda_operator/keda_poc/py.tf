@@ -4,9 +4,10 @@ resource "aws_sqs_queue_policy" "py_sqs_access_policy_operator" {
 }
 
 module "py-sqs-policy" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  name   = "py-sqs-queue-policy"
-  policy = data.aws_iam_policy_document.py-sqs-operator-policy-document.json
+  source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
+  version = "2.12.2"
+  name    = "py-sqs-queue-policy"
+  policy  = data.aws_iam_policy_document.py-sqs-operator-policy-document.json
 }
 
 resource "kubectl_manifest" "sa" {
