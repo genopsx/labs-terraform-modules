@@ -58,3 +58,14 @@ variable "kubernetes_groups" {
   description = "Name of the Kubernetes group."
   default     = "value"
 }
+
+variable "security_alb_ingress_security_group_id" {
+  type        = string
+  description = "The security group ID for the ALB ingress controller"
+  default     = "value"
+}
+variable "security_node_security_group_id" {
+  type        = string
+  description = "The security group ID for the EKS nodes"
+  default     = "value"
+}

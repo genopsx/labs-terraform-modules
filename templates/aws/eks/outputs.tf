@@ -90,7 +90,7 @@ output "r53_zone_id" {
 }
 
 output "acm_certificate_arn" {
-  value = module.certificate.acm_certificate_arn
+  value = module.acm_r53.acm_certificate_arn
 }
 
 # Nodegroup outputs

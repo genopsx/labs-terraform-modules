@@ -16,8 +16,10 @@ module "cluster" {
   subnet_ids                               = concat(var.public_subnet_ids, var.private_subnet_ids)
   vpc_id                                   = var.vpc_id
   cluster_additional_security_group_ids = [
-    module.security_alb_ingress.security_group_id,
-    module.security_node.security_group_id
+    # module.security_alb_ingress.security_group_id,
+    # module.security_node.security_group_id
+    var.security_alb_ingress_security_group_id,
+    var.security_node_security_group_id
   ]
   cluster_security_group_tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "owned"
