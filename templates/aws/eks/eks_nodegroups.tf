@@ -25,7 +25,7 @@ module "nodes" {
   autoscaling_average_cpu            = var.autoscaling_average_cpu
   iam_role_nodes_additional_policies = var.iam_role_nodes_additional_policies
   node_add_policy_name               = var.node_add_policy_name
-  ebs_kms_key_arn                    = module.ebs_kms_key.key_arn
+  ebs_kms_key_arn                    = module.ebs_kms_key.ebs_kms_key_arn
   tag_specifications                 = ["instance", "volume", "network-interface"]
   tags                               = var.tags
   depends_on                         = [module.eks]
