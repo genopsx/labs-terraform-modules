@@ -1,6 +1,6 @@
 # image-factory-buildspecs
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -28,4 +28,4 @@ No inputs.
 | Name | Description |
 |------|-------------|
 | <a name="output_buildspecs"></a> [buildspecs](#output\_buildspecs) | The available buildspecs |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
