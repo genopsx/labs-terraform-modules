@@ -16,7 +16,7 @@ resource "aws_sqs_queue_policy" "sqs_access_policy_operator" {
 
 module "sqs-policy" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  version = "2.12.2"
+  version = "5.47.1"
   name    = "sqs-queue-policy"
   policy  = data.aws_iam_policy_document.sqs-operator-policy-document.json
 }
