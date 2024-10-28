@@ -36,3 +36,9 @@ Thumbs.db
 *.sln
 *.swp
 *.swo
+
+# Terraform files
+.terraform/
+terraform-log*
+*.tfplan
+.terragrunt-cache/**
