@@ -36,7 +36,7 @@ Assuming that everything is started from scratch, hence the CodeBuild project no
 		* in the repository that has been targeted by the variable `git_repo`, under `Settings` (on top) and then `Webhooks` (on the left), an entry that looks like `https://codebuild.eu-central-1.amazonaws.com/webhooks?t=...` should be listed
 		* in the organization's settings (if applicable), clicking `Third-party Access` -> `OAuth application policy` (on the left) should show `AWS CodeBuild (<AWS region>)`, (i.e., `AWS CodeBuild (Frankfurt)`) as `Approved`
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -96,4 +96,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_codebuild_role_name"></a> [codebuild\_role\_name](#output\_codebuild\_role\_name) | The name of the CodeBuild role |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

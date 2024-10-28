@@ -1,0 +1,30 @@
+version: 0.2
+env:
+  shell: /bin/bash
+phases:
+  # This is needed to have a unique working folder across multiple runs, otherwise the cache keeps growing.
+  # In fact, Terragrunt creates .terragrunt-cache/<sub folder 1>/<sub folder 2>/.terraform/providers.
+  # The sub folders are unique IDs generated from the current path. For each CodeBuild run, it keeps changing.
+  pre_build:
+    commands:
+      - mkdir -p tf-plugins /tmp/if
+      - cp -a . /tmp/if/
+      - cd /tmp/if
+      - export TF_PLUGIN_CACHE_DIR=/tmp/if/tf-plugins
+  build:
+    commands:
+      - terragrunt hclfmt --terragrunt-check --terragrunt-diff
+# The init command is used to update the $TF_PLUGIN_CACHE_DIR. Parallelism set to 1 to cope with the fact that
+# writing to this folder is not thread safe
+      - terragrunt run-all init -lock=false --terragrunt-parallelism=1
+# Locking and refreshing are disabled: only the CodePipeline should modify the state. In order to avoid conflicts
+# with CodePipeline itself or other concurrent PR checks, the state is not locked. Prepareing a plan doesn't
+# modify the state and we're not following up on the plan just generated, it's for test purposes only.
+      - terragrunt run-all plan -out plan.out -compact-warnings -lock=false -refresh=false
+  # This is needed to create the cache. Only files that are contained in $CODEBUILD_SRC_DIR can be cached.
+  post_build:
+    commands:
+      - cp -a . ${CODEBUILD_SRC_DIR}/
+cache:
+  paths:
+    - "tf-plugins/**/*"

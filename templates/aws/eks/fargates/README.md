@@ -40,10 +40,5 @@ No resources.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_fargate_profile_arn"></a> [fargate\_profile\_arn](#output\_fargate\_profile\_arn) | The Amazon Resource Name (ARN) of the Fargate Profile |
-| <a name="output_fargate_profile_id"></a> [fargate\_profile\_id](#output\_fargate\_profile\_id) | The ID of the Fargate Profile |
-| <a name="output_fargate_profile_name"></a> [fargate\_profile\_name](#output\_fargate\_profile\_name) | The name of the Fargate Profile |
-| <a name="output_fargate_profile_pod_execution_role_arn"></a> [fargate\_profile\_pod\_execution\_role\_arn](#output\_fargate\_profile\_pod\_execution\_role\_arn) | The Amazon Resource Name (ARN) of the pod execution role |
+No outputs.
 <!-- END_TF_DOCS -->

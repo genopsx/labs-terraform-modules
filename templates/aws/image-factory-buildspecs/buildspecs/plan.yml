@@ -1,0 +1,25 @@
+version: 0.2
+env:
+  shell: /bin/bash
+phases:
+  pre_build:
+    commands:
+      - mkdir -p tf-plugins /tmp/if
+      - cp -a . /tmp/if/
+      - cd /tmp/if
+      - export TF_PLUGIN_CACHE_DIR=/tmp/if/tf-plugins
+  build:
+    commands:
+# The init command is used to update the $TF_PLUGIN_CACHE_DIR. Parallelism set to 1 to cope with the fact that
+# writing to this folder is not thread safe
+      - terragrunt run-all init --terragrunt-parallelism=1
+      - terragrunt run-all plan -out plan.out -compact-warnings
+  post_build:
+    commands:
+      - cp -a . ${CODEBUILD_SRC_DIR}/
+artifacts:
+  files:
+    - "**/*"
+cache:
+  paths:
+    - "tf-plugins/**/*"

@@ -42,5 +42,6 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_account_id"></a> [account\_id](#output\_account\_id) | Selected AWS Account ID |
+| <a name="output_ebs_kms_key_arn"></a> [ebs\_kms\_key\_arn](#output\_ebs\_kms\_key\_arn) | The ARN of the key |
 | <a name="output_region"></a> [region](#output\_region) | Details about selected AWS region |
 <!-- END_TF_DOCS -->

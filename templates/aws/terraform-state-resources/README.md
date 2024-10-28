@@ -1,6 +1,6 @@
 # terraform-state-resources
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -49,4 +49,4 @@ No modules.
 | <a name="output_state_dynamodb_lock_arn"></a> [state\_dynamodb\_lock\_arn](#output\_state\_dynamodb\_lock\_arn) | The ARN of the Dynamo DB tables that locks the Terraform state |
 | <a name="output_state_kms_arn"></a> [state\_kms\_arn](#output\_state\_kms\_arn) | The ARN of the KMS keys that encrypts the Terraform state bucket |
 | <a name="output_terraform_state_resources_prefix"></a> [terraform\_state\_resources\_prefix](#output\_terraform\_state\_resources\_prefix) | The prefix common to all the names of the resources (S3 bucket, KMS key and DynamoDB table) dedicated to host the Terraform / Terragrunt states |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

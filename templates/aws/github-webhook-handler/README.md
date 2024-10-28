@@ -1,6 +1,6 @@
 # github-webhook-handler
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -58,4 +58,4 @@
 | <a name="output_eventbridge_bus_name"></a> [eventbridge\_bus\_name](#output\_eventbridge\_bus\_name) | The name of the EventBridge bus where the webhook handler sends the notifications |
 | <a name="output_github_secret_token"></a> [github\_secret\_token](#output\_github\_secret\_token) | The secret token to be passed to GitHub's webhook |
 | <a name="output_github_webhook_handler_url"></a> [github\_webhook\_handler\_url](#output\_github\_webhook\_handler\_url) | The URL to pass to GitHub |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

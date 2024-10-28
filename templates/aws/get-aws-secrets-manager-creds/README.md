@@ -1,6 +1,6 @@
 # get-aws-secrets-manager-creds
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -37,4 +37,4 @@ No modules.
 |------|-------------|
 | <a name="output_secret_arns"></a> [secret\_arns](#output\_secret\_arns) | n/a |
 | <a name="output_secret_values"></a> [secret\_values](#output\_secret\_values) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

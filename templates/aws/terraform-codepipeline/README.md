@@ -1,6 +1,6 @@
 # terraform-codepipeline
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -126,4 +126,4 @@
 | <a name="output_codebuild_cache_bucket_id"></a> [codebuild\_cache\_bucket\_id](#output\_codebuild\_cache\_bucket\_id) | The ID of the CodeBuild cache bucket |
 | <a name="output_codebuild_role_name"></a> [codebuild\_role\_name](#output\_codebuild\_role\_name) | The name of the CodeBuild role |
 | <a name="output_codepipeline_name"></a> [codepipeline\_name](#output\_codepipeline\_name) | The name of the deployment CodePipeline |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

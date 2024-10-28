@@ -22,9 +22,9 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_keda_irsa_role"></a> [keda\_irsa\_role](#module\_keda\_irsa\_role) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.34.0 |
-| <a name="module_py-sqs-policy"></a> [py-sqs-policy](#module\_py-sqs-policy) | terraform-aws-modules/iam/aws//modules/iam-policy | 2.12.2 |
+| <a name="module_py-sqs-policy"></a> [py-sqs-policy](#module\_py-sqs-policy) | terraform-aws-modules/iam/aws//modules/iam-policy | 5.47.1 |
 | <a name="module_py_irsa_role"></a> [py\_irsa\_role](#module\_py\_irsa\_role) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.34.0 |
-| <a name="module_sqs-policy"></a> [sqs-policy](#module\_sqs-policy) | terraform-aws-modules/iam/aws//modules/iam-policy | 2.12.2 |
+| <a name="module_sqs-policy"></a> [sqs-policy](#module\_sqs-policy) | terraform-aws-modules/iam/aws//modules/iam-policy | 5.47.1 |
 
 ## Resources
 

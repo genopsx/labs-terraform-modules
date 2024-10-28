@@ -1,0 +1,12 @@
+version: 0.2
+env:
+  shell: /bin/bash
+phases:
+  pre_build:
+    commands:
+      - mkdir /tmp/if
+      - cp -a . /tmp/if/
+      - cd /tmp/if
+  build:
+    commands:
+      - terragrunt run-all apply plan.out

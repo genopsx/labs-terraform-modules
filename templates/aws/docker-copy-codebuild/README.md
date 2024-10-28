@@ -1,6 +1,6 @@
 # docker-copy-codebuild
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -55,4 +55,4 @@ No modules.
 |------|-------------|
 | <a name="output_codebuild_iam_role_arn"></a> [codebuild\_iam\_role\_arn](#output\_codebuild\_iam\_role\_arn) | n/a |
 | <a name="output_codebuild_project_arn"></a> [codebuild\_project\_arn](#output\_codebuild\_project\_arn) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

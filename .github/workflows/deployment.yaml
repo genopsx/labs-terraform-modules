@@ -31,7 +31,7 @@ jobs:
         run: |
           git archive --format=zip ${{ github.ref_name }} > ${{ env.PRODUCT_ZIP_NAME }}
           aws --region ${{ env.PROVISIONER_REGION }} s3 cp ${{ env.PRODUCT_ZIP_NAME }} s3://${{ env.S3_BUCKET_NAME }}/${{ env.PRODUCT_S3_KEY }}
-        
+
   deploy_prd:
     runs-on: ubuntu-latest
     environment: prd

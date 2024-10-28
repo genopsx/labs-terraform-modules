@@ -44,6 +44,8 @@
 | <a name="input_kubernets_version"></a> [kubernets\_version](#input\_kubernets\_version) | The version of Kubernetes | `string` | `""` | no |
 | <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | The private subnet IDs to host the cluster in | `list(string)` | `[]` | no |
 | <a name="input_public_subnet_ids"></a> [public\_subnet\_ids](#input\_public\_subnet\_ids) | The public subnet IDs to host the cluster in | `list(string)` | `[]` | no |
+| <a name="input_security_alb_ingress_security_group_id"></a> [security\_alb\_ingress\_security\_group\_id](#input\_security\_alb\_ingress\_security\_group\_id) | The security group ID for the ALB ingress controller | `string` | `"value"` | no |
+| <a name="input_security_node_security_group_id"></a> [security\_node\_security\_group\_id](#input\_security\_node\_security\_group\_id) | The security group ID for the EKS nodes | `string` | `"value"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags to apply to the resources | `map(string)` | `{}` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC ID to host the cluster in | `string` | `"value"` | no |
 
