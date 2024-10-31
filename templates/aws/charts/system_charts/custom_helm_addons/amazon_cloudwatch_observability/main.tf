@@ -3,7 +3,7 @@ module "eks_blueprints_addons" {
   version           = "~> 1.0" #ensure to update this to the latest/desired version
   cluster_name      = var.cluster_name
   cluster_endpoint  = var.cluster_endpoint
-  oidc_provider_arn = var.oidc_provider_arn
+  oidc_provider_arn = var.cluster_oidc_provider_arn
   cluster_version   = var.cluster_version
   eks_addons_timeouts = {
     create = "5m"

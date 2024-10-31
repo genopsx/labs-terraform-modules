@@ -52,6 +52,17 @@ module "kong" {
 #   ...
 # }
 
+# CLUSTER HELM CUSTOM ADDONS
+module "eks_blueprints_addons" {
+  source                    = "./custom_helm_addons/amazon_cloudwatch_observability"
+  cluster_name              = var.cluster_name
+  cluster_version           = var.cluster_version
+  cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
+  cluster_endpoint          = var.cluster_endpoint
+  cluster_addons            = var.cluster_addons
+  tags                      = var.tags
+}
+
 
 module "aws_node_termination_handler" {
   count        = var.aws_node_termination_handler_enabled ? 1 : 0

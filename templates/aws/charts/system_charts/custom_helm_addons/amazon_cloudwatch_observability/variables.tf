@@ -12,7 +12,7 @@ variable "cluster_version" {
   description = "The kubernetes server version for the eks cluster"
 }
 
-variable "oidc_provider_arn" {
+variable "cluster_oidc_provider_arn" {
   type        = string
   description = "The arn of the oidc identity provider"
 }

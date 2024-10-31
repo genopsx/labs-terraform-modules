@@ -10,10 +10,31 @@ variable "cluster_name" {
   type        = string
 }
 
+variable "cluster_version" {
+  description = "The Kubernetes version to use for the EKS cluster"
+  type        = string
+}
+
+variable "cluster_addons" {
+  type = map(object({
+    most_recent              = bool
+    resolve_conflicts        = string
+    service_account_role_arn = optional(string)
+  }))
+  description = "The eks addons to be installed"
+}
+
+variable "tags" {
+  description = "Tags to be attached to resources"
+  type        = map(string)
+}
+
 variable "region" {
   description = "The region to host the cluster in"
   type        = string
 }
+
+
 
 variable "vpc_id" {
   description = "The VPC ID to host the cluster in"
