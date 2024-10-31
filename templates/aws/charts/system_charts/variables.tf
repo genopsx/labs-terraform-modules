@@ -15,15 +15,6 @@ variable "cluster_version" {
   type        = string
 }
 
-variable "cluster_addons" {
-  type = map(object({
-    most_recent              = bool
-    resolve_conflicts        = string
-    service_account_role_arn = optional(string)
-  }))
-  description = "The eks addons to be installed"
-}
-
 variable "tags" {
   description = "Tags to be attached to resources"
   type        = map(string)
