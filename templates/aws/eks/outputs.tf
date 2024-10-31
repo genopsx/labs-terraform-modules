@@ -1,40 +1,39 @@
-output "eks_cluster_name" {
+output "cluster_name" {
   description = "Name of EKS K8S cluster"
   value       = module.cluster.cluster_name
 }
 
-output "eks_cluster_arn" {
+output "cluster_arn" {
   description = "ARN of EKS K8S cluster"
   value       = module.cluster.cluster_arn
 }
 
-
-output "eks_cluster_id" {
+output "cluster_id" {
   description = "ID of EKS K8S cluster"
   value       = module.cluster.cluster_id
 }
 
-output "eks_endpoint" {
+output "cluster_endpoint" {
   description = "Endpoint of EKS K8S cluster"
   value       = module.cluster.cluster_endpoint
 }
 
-output "eks_certificate" {
+output "cluster_certificate_authority_data" {
   description = "Certificate of EKS K8S cluster (base64)"
   value       = module.cluster.cluster_certificate_authority_data
 }
 
-output "eks_iam_role_arn" {
+output "cluster_iam_role_arn" {
   description = "Cluster IAM role"
   value       = module.cluster.cluster_iam_role_arn
 }
 
-output "eks_oidc_issuer_url" {
+output "cluster_oidc_issuer_url" {
   description = "The URL on the EKS cluster for the OpenID Connect identity provider"
   value       = module.cluster.cluster_oidc_issuer_url
 }
 
-output "eks_oidc_provider_arn" {
+output "cluster_oidc_provider_arn" {
   description = "The ARN of the OpenID Connect identity provider"
   value       = module.cluster.oidc_provider_arn
 }
@@ -60,15 +59,12 @@ output "acm_certificate_arn" {
 }
 
 # tflint-ignore: terraform_unused_declarations
-output "eks_region" {
+output "cluster_region" {
   description = "Region where the cluster deployed"
   value       = data.aws_region.current.name
 }
 
-##################################################
-
-
-output "eks_iam_role_name" {
+output "clsuter_iam_role_name" {
   description = "Cluster IAM role name"
   value       = module.cluster.cluster_iam_role_name
 }
@@ -108,27 +104,23 @@ output "cluster_version" {
   value       = module.cluster.cluster_version
 }
 
-output "kms_key_arn" {
-  description = "KMS key ARN"
-  value       = module.cluster.kms_key_arn
-}
+# output "kms_key_arn" {
+#   description = "KMS key ARN"
+#   value       = module.cluster.kms_key_arn
+# }
 
-output "kms_key_id" {
-  description = "KMS key ID"
-  value       = module.cluster.kms_key_id
-}
+# output "kms_key_id" {
+#   description = "KMS key ID"
+#   value       = module.cluster.kms_key_id
+# }
 
-output "kms_key_policy" {
-  description = "KMS key policy"
-  value       = module.cluster.kms_key_policy
-}
 
 output "node_security_group_arn" {
   description = "Node security group ARN"
   value       = module.cluster.node_security_group_arn
 }
 
-output "eks_oidc_provider" {
+output "cluster_oidc_provider" {
   description = "OIDC provider"
   value       = module.cluster.oidc_provider
 }
@@ -143,7 +135,7 @@ output "cloudwatch_log_group_name" {
   value       = module.cluster.cloudwatch_log_group_name
 }
 
-output "eks_token" {
+output "cluster_token" {
   description = "Authorization token for EKS K8S cluster"
   value       = data.aws_eks_cluster_auth.eks.token
   sensitive   = true

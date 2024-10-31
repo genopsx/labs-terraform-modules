@@ -3,13 +3,13 @@ module "nodes" {
   #   source                            = "git::git@github.com:kwatatshey/prototyping-modules-repos.git//eks/base/nodes?ref=v1.0.0s"
   for_each                          = var.eks_managed_node_groups
   name                              = each.key
-  cluster_name                      = module.eks.cluster_name
-  cluster_version                   = module.eks.cluster_version
-  cluster_service_cidr              = module.eks.cluster_service_cidr
+  cluster_name                      = module.cluster.cluster_name
+  cluster_version                   = module.cluster.cluster_version
+  cluster_service_cidr              = module.cluster.cluster_service_cidr
   create_managed_node_groups        = var.create_managed_node_groups
   nodegroup_subnet_ids              = var.nodegroup_subnet_ids
   eks_managed_node_groups           = var.eks_managed_node_groups
-  cluster_primary_security_group_id = module.eks.cluster_primary_security_group_id
+  cluster_primary_security_group_id = module.cluster.cluster_primary_security_group_id
   vpc_security_group_ids = [
     module.security_alb_ingress.security_group_id,
     module.security_node.security_group_id
