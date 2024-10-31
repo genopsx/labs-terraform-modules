@@ -24,19 +24,19 @@ data "aws_iam_policy_document" "role_assume_role_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "${module.cluster.cluster_oidc_provider}:sub"
+      variable = "${module.cluster.oidc_provider}:sub"
       values   = ["system:serviceaccount:${each.value.namespace}:${each.value.service_account}"]
     }
 
     condition {
       test     = "StringEquals"
-      variable = "${module.cluster.cluster_oidc_provider}:aud"
+      variable = "${module.cluster.oidc_provider}:aud"
       values   = ["sts.amazonaws.com"]
     }
 
     principals {
       type        = "Federated"
-      identifiers = [module.cluster.cluster_oidc_provider_arn]
+      identifiers = [module.cluster.oidc_provider_arn]
     }
   }
 }
