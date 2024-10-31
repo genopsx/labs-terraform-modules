@@ -7,4 +7,7 @@ module "eks" {
   kubernets_version                      = var.kubernets_version
   security_alb_ingress_security_group_id = module.security_alb_ingress.security_group_id
   security_node_security_group_id        = module.security_node.security_group_id
+  r53_hosted_zone_name                   = var.r53_hosted_zone_name
+  r53_subzone_name                       = var.r53_subzone_name
+  tags                                   = var.tags
 }

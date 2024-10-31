@@ -112,3 +112,13 @@ output "cloudwatch_log_group_name" {
   description = "CloudWatch log group name"
   value       = module.cluster.cloudwatch_log_group_name
 }
+
+output "eks_token" {
+  description = "Authorization token for EKS K8S cluster"
+  value       = data.aws_eks_cluster_auth.eks.token
+  sensitive   = true
+}
+
+output "acm_certificate_arn" {
+  value = module.certificate.acm_certificate_arn
+}

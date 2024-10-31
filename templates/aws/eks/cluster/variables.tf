@@ -69,3 +69,16 @@ variable "security_node_security_group_id" {
   description = "The security group ID for the EKS nodes"
   default     = "value"
 }
+
+
+variable "r53_subzone_name" {
+  type        = string
+  default     = ""
+  description = "The subzone name"
+}
+
+variable "r53_hosted_zone_name" {
+  type        = string
+  default     = ""
+  description = "The hosted zone name"
+}
