@@ -28,5 +28,5 @@ module "nodes" {
   ebs_kms_key_arn                    = module.ebs_kms_key.ebs_kms_key_arn
   tag_specifications                 = ["instance", "volume", "network-interface"]
   tags                               = var.tags
-  depends_on                         = [module.eks]
+  depends_on                         = [module.cluster]
 }
