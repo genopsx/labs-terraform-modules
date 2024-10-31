@@ -34,11 +34,6 @@ output "eks_cluster_id" {
 # }
 
 
-output "eks_region" {
-  description = "Region where the cluster deployed"
-  value       = data.aws_region.current.name
-}
-
 output "eks_endpoint" {
   description = "Endpoint of EKS K8S cluster"
   value       = module.eks.cluster_endpoint
@@ -79,19 +74,19 @@ output "vpc_id" {
   value       = var.vpc_id
 }
 
-output "r53_zone_name" {
-  description = "Cluster route53 zone name"
-  value       = aws_route53_zone.cluster_zone.name
-}
+# output "r53_zone_name" {
+#   description = "Cluster route53 zone name"
+#   value       = aws_route53_zone.cluster_zone.name
+# }
 
-output "r53_zone_id" {
-  description = "Cluster route53 zone id"
-  value       = aws_route53_zone.cluster_zone.id
-}
+# output "r53_zone_id" {
+#   description = "Cluster route53 zone id"
+#   value       = aws_route53_zone.cluster_zone.id
+# }
 
-output "acm_certificate_arn" {
-  value = module.acm_r53.acm_certificate_arn
-}
+# output "acm_certificate_arn" {
+#   value = module.acm_r53.acm_certificate_arn
+# }
 
 # Nodegroup outputs
 # output "node_group_autoscaling_group_names" {
@@ -115,4 +110,10 @@ output "acm_certificate_arn" {
 output "ebs_kms_key_arn" {
   description = "The ARN of the key"
   value       = module.ebs_kms_key.ebs_kms_key_arn
+}
+
+# tflint-ignore: terraform_unused_declarations
+output "eks_region" {
+  description = "Region where the cluster deployed"
+  value       = data.aws_region.current.name
 }

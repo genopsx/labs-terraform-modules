@@ -122,3 +122,14 @@ output "eks_token" {
 output "acm_certificate_arn" {
   value = module.certificate.acm_certificate_arn
 }
+
+
+output "r53_zone_name" {
+  description = "Cluster route53 zone name"
+  value       = aws_route53_zone.cluster_zone.name
+}
+
+output "r53_zone_id" {
+  description = "Cluster route53 zone id"
+  value       = aws_route53_zone.cluster_zone.id
+}
