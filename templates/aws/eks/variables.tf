@@ -353,3 +353,30 @@ variable "node_add_policy_name" {
   description = "Name of the policy to attach to the EKS managed node group."
   default     = "value"
 }
+
+
+variable "developer_user_group" {
+  type        = string
+  description = "Name of the kube group for developers."
+  default     = "value"
+}
+
+variable "kubernetes_groups" {
+  type        = string
+  description = "Name of the Kubernetes group."
+  default     = "value"
+}
+
+
+variable "developer_roles" {
+  type        = list(string)
+  description = "List of Kubernetes developer roles."
+  default     = []
+}
+
+
+variable "developer_users" {
+  type        = list(string)
+  description = "List of Kubernetes developers."
+  default     = []
+}
