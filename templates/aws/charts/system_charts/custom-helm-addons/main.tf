@@ -1,18 +1,12 @@
 module "eks_blueprints_addons" {
   source            = "aws-ia/eks-blueprints-addons/aws"
-  version           = "~> 1.0" #ensure to update this to the latest/desired version
+  version           = "~> 1.0"
+  count             = var.enabled_custom_helm ? 1 : 0
   cluster_name      = var.cluster_name
   cluster_endpoint  = var.cluster_endpoint
   oidc_provider_arn = var.cluster_oidc_provider_arn
   cluster_version   = var.cluster_version
-  eks_addons_timeouts = {
-    create = "5m"
-    update = "5m"
-    delete = "5m"
-  }
-  eks_addons = var.cluster_addons
-
-  enable_velero = true
+  enable_velero     = true
   velero = {
     s3_backup_location = "${module.velero_backup_s3_bucket.s3_bucket_arn}/${var.cluster_name}/backups"
     # values = [
@@ -31,8 +25,6 @@ module "eks_blueprints_addons" {
       file("${path.module}/values/values.yaml")
     ]
   }
-
-  tags = var.tags
 }
 
 
@@ -40,6 +32,7 @@ module "eks_blueprints_addons" {
 module "velero_backup_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 3.0"
+  count   = var.enabled_custom_helm ? 1 : 0
 
   bucket_prefix = "velero-"
 

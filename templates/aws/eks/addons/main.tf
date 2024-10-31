@@ -1,77 +1,9 @@
-module "eks_blueprints_addons" {
-  source            = "aws-ia/eks-blueprints-addons/aws"
-  version           = "~> 1.0" #ensure to update this to the latest/desired version
-  cluster_name      = var.cluster_name
-  cluster_endpoint  = var.cluster_endpoint
-  oidc_provider_arn = var.oidc_provider_arn
-  cluster_version   = var.cluster_version
-  eks_addons_timeouts = {
-    create = "5m"
-    update = "5m"
-    delete = "5m"
-  }
-  eks_addons = var.cluster_addons
-
-  enable_velero = true
-  velero = {
-    s3_backup_location = "${module.velero_backup_s3_bucket.s3_bucket_arn}/${var.cluster_name}/backups"
-    # values = [
-    #   # https://github.com/vmware-tanzu/helm-charts/issues/550#issuecomment-1959933230
-    #   <<-EOT
-    #   image:
-    #     repository: dockerhub-remote.dock.merck.com/velero/velero
-    #     tag: v1.14.1
-    #   kubectl:
-    #     image:
-    #       repository: dockerhub-remote.dock.merck.com/bitnami/kubectl
-    #       tag: 1.31.2-debian-12-r0
-    # EOT
-    # ]
-    values = [
-      file("${path.module}/values/values.yaml")
-    ]
-  }
-
-  tags = var.tags
-}
-
-
-
-module "velero_backup_s3_bucket" {
-  source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "~> 3.0"
-
-  bucket_prefix = "velero-"
-
-  # Allow deletion of non-empty bucket
-  # NOTE: This is enabled for example usage only, you should not enable this for production workloads
-  force_destroy = true
-
-  attach_deny_insecure_transport_policy = true
-  attach_require_latest_tls_policy      = true
-
-  acl = "private"
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-
-  control_object_ownership = true
-  object_ownership         = "BucketOwnerPreferred"
-
-  versioning = {
-    status     = true
-    mfa_delete = false
-  }
-
-  server_side_encryption_configuration = {
-    rule = {
-      apply_server_side_encryption_by_default = {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
-
-  tags = var.tags
+resource "aws_eks_addon" "this" {
+  count                       = var.enable_eks_addons ? length(local.addons) : 0
+  cluster_name                = var.cluster_name
+  addon_name                  = local.addons[count.index].addon_name
+  addon_version               = local.addons[count.index].addon_version
+  service_account_role_arn    = local.addons[count.index].service_account_role_arn
+  resolve_conflicts_on_create = "OVERWRITE"
+  tags                        = var.tags
 }

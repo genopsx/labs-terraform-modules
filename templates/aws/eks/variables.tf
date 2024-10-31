@@ -367,13 +367,11 @@ variable "kubernetes_groups" {
   default     = "value"
 }
 
-
 variable "developer_roles" {
   type        = list(string)
   description = "List of Kubernetes developer roles."
   default     = []
 }
-
 
 variable "developer_users" {
   type        = list(string)
@@ -381,12 +379,17 @@ variable "developer_users" {
   default     = []
 }
 
+variable "addons" {
+  description = "List of EKS addons"
+  type = list(object({
+    addon_name               = string
+    addon_version            = optional(string, "")
+    service_account_role_arn = optional(string, "")
+  }))
+}
 
-# variable "cluster_addons" {
-#   type = map(object({
-#     most_recent              = bool
-#     resolve_conflicts        = string
-#     service_account_role_arn = optional(string)
-#   }))
-#   description = "The eks addons to be installed"
-# }
+variable "enable_eks_addons" {
+  description = "Flag to enable or disable EKS addons"
+  type        = bool
+  default     = true
+}

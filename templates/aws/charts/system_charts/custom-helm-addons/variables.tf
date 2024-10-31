@@ -1,8 +1,3 @@
-variable "tags" {
-  description = "Tags to be attached to resources"
-  type        = map(string)
-}
-
 variable "cluster_name" {
   type        = string
   description = "The name of the eks cluster"
@@ -22,11 +17,13 @@ variable "cluster_endpoint" {
   description = "The endpoint of the eks cluster"
 }
 
-variable "cluster_addons" {
-  type = map(object({
-    most_recent              = bool
-    resolve_conflicts        = string
-    service_account_role_arn = optional(string)
-  }))
-  description = "The eks addons to be installed"
+variable "enabled_custom_helm" {
+  description = "Flag to enable or disable the creation of custom Helm addons and associated resources"
+  type        = bool
+  default     = false # Set to true to create the resources
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be attached to resources"
 }

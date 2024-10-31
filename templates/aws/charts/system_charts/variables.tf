@@ -185,3 +185,11 @@ variable "keda_namespace" {
   description = "Namespace name to deploy helm release"
   default     = "keda"
 }
+
+
+# Helm
+variable "enabled_custom_helm" {
+  description = "Flag to enable or disable the creation of custom Helm addons and associated resources"
+  type        = bool
+  default     = false # Set to true to create the resources
+}
