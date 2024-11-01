@@ -17,7 +17,7 @@ variable "cert_manager_helm_chart_version" {
   description = "Cert Manager Helm chart version."
 }
 
-variable "github_token" {
+variable "GIT_TOKEN" {
   type        = string
   description = "GitHub PAT token"
   default     = ""

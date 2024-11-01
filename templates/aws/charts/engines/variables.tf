@@ -67,7 +67,7 @@ variable "github_runners_extra_values" {
 }
 
 # tflint-ignore: terraform_unused_declarations
-variable "github_token" {
+variable "GIT_TOKEN" {
   type    = string
   default = ""
 }
