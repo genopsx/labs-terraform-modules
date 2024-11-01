@@ -1,7 +1,6 @@
 # Module for ALB Ingress Security Group
 module "security_alb_ingress" {
-  source = "./extra_sg"
-  #   source                          = "git::git@github.com:kwatatshey/prototyping-modules-repos.git//security?ref=v1.0.0s"
+  source                          = "./extra_sg"
   additional_sg_name              = "alb-ingress"
   description                     = "Security group for ALB ingress"
   vpc_id                          = var.vpc_id

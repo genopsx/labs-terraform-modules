@@ -1,81 +1,3 @@
-# variable "vpc_id" {
-#   type = string
-# }
-
-# variable "public_subnet_ids" {
-#   type = list(string)
-# }
-
-# variable "private_subnet_ids" {
-#   type = list(string)
-# }
-
-# variable "cluster_name" {
-#   type    = string
-#   default = "temp"
-# }
-
-# variable "kubernets_version" {
-#   type = string
-# }
-
-# variable "tags" {
-#   type    = map(string)
-#   default = {}
-# }
-
-# variable "on_demand_instance_types" {
-#   type    = list(string)
-#   default = ["t3.small"]
-# }
-
-# variable "spot_instance_types" {
-#   type    = list(string)
-#   default = ["t3.small"]
-# }
-
-
-# variable "r53_subzone_name" {
-#   type    = string
-#   default = ""
-# }
-
-# variable "r53_hosted_zone_name" {
-#   type    = string
-#   default = ""
-# }
-
-# variable "worker_nodes_kms_key_aliases" {
-#   type    = list(string)
-#   default = []
-# }
-
-# variable "additional_policies" {
-#   type        = map(string)
-#   description = "Additional policies to be added to the IAM role."
-# }
-
-# variable "fargate_profile_namespace" {
-#   type        = string
-#   description = "Namespace to be used by the Fargate Profile."
-# }
-# variable "fargate_profile_name" {
-#   type        = string
-#   description = "Name of the Fargate Profile."
-# }
-
-# variable "create_fargate_profile" {
-#   type        = bool
-#   description = "Whether to create a Fargate Profile."
-# }
-
-
-############################################################################################
-
-
-############################################################################################
-#EKS
-
 variable "vpc_id" {
   type    = string
   default = "value"
@@ -117,17 +39,6 @@ variable "node_security_group_tags" {
   description = "The tags to apply to the node security group."
 }
 
-# variable "on_demand_instance_types" {
-#   type    = list(string)
-#   default = ["t3.small"]
-# }
-
-# variable "spot_instance_types" {
-#   type    = list(string)
-#   default = ["t3.small"]
-# }
-
-
 variable "r53_subzone_name" {
   type        = string
   default     = ""
@@ -145,21 +56,6 @@ variable "worker_nodes_kms_key_aliases" {
   default     = []
   description = "List of aliases for the KMS key"
 }
-
-# variable "additional_policies" {
-#   type        = map(string)
-#   description = "Additional policies to be added to the IAM role."
-# }
-
-# variable "fargate_profile_namespace" {
-#   type        = string
-#   description = "Namespace to be used by the Fargate Profile."
-# }
-# variable "fargate_profile_name" {
-#   type        = string
-#   description = "Name of the Fargate Profile."
-# }
-
 variable "create_fargate_profile" {
   type        = bool
   description = "Whether to create a Fargate Profile."
@@ -180,24 +76,6 @@ variable "fargate_profiles" {
   description = "Map of Fargate profiles to create."
   default     = {}
 }
-
-# eks eks ############################################################################################################
-
-
-# variable "resource_prefix" {
-#   type        = string
-#   description = "Prefix to be used on each infrastructure object Name created in AWS."
-# }
-
-# variable "environment" {
-#   type        = string
-#   description = "Environment name."
-# }
-
-# variable "app_name" {
-#   type        = string
-#   description = "Name of the application."
-# }
 
 # create some variables
 variable "nodegroup_subnet_ids" {
@@ -232,18 +110,6 @@ variable "enable_creation_role_with_oidc" {
   default     = false
 }
 
-
-############################################################################################
-
-
-
-# Node Group
-# variable "create_node_security_group" {
-#   type        = bool
-#   description = "Whether to create a security group for the node group."
-#   default = false
-# }
-
 variable "iam_node_group_role" {
   type        = string
   description = "The name of the IAM role to attach to the EKS managed node group."
@@ -256,42 +122,6 @@ variable "create_managed_node_groups" {
   description = "Whether to create a managed node group."
   default     = false
 }
-
-# variable "ami_type" {
-#   type        = string
-#   description = "The type of AMI to use for the EKS managed node group."
-# }
-
-# variable "min_size" {
-#   type        = number
-#   description = "Minimum number of nodes in the EKS managed node group."
-# }
-
-# variable "max_size" {
-#   type        = number
-#   description = "Maximum number of nodes in the EKS managed node group."
-# }
-# variable "desired_size" {
-#   type        = number
-#   description = "Desired number of nodes in the EKS managed node group."
-# }
-# variable "instance_types" {
-#   type        = list(string)
-#   description = "List of instance types to use for the EKS managed node group."
-# }
-
-# variable "capacity_type" {
-#   type        = string
-#   description = "Capacity type for the EKS managed node group."
-# }
-
-# variable "network_interfaces" {
-#   type = list(object({
-#     associate_public_ip_address = bool
-#     delete_on_termination       = bool
-#   }))
-#   description = "List of network interfaces to attach to the EKS managed node group."
-# }
 
 variable "eks_managed_node_groups" {
   description = "values for the EKS managed node groups."
@@ -324,17 +154,6 @@ variable "eks_managed_node_groups" {
     }
   }
 }
-
-# variable "subnet_ids" {
-#   type        = list(string)
-#   description = "List of subnet IDs to launch the EKS managed node group in."
-# }
-
-# variable "cluster_version" {
-#   type        = string
-#   description = "The Kubernetes server version for the EKS cluster."
-#   default     = "value"
-# }
 
 variable "autoscaling_average_cpu" {
   type        = number

@@ -104,17 +104,6 @@ output "cluster_version" {
   value       = module.cluster.cluster_version
 }
 
-# output "kms_key_arn" {
-#   description = "KMS key ARN"
-#   value       = module.cluster.kms_key_arn
-# }
-
-# output "kms_key_id" {
-#   description = "KMS key ID"
-#   value       = module.cluster.kms_key_id
-# }
-
-
 output "node_security_group_arn" {
   description = "Node security group ARN"
   value       = module.cluster.node_security_group_arn

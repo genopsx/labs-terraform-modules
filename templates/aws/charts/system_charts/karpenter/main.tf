@@ -53,8 +53,7 @@ resource "kubectl_manifest" "karpenter_node_class" {
 
 resource "kubectl_manifest" "karpenter_node_pool" {
   depends_on = [helm_release.karpenter]
-  # yaml_body  = file(local.node_pool_yaml_path)
-  yaml_body = local.node_pool_yaml
+  yaml_body  = local.node_pool_yaml
   lifecycle {
     precondition {
       condition     = fileexists(local.node_pool_yaml_path)

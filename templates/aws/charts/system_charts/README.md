@@ -22,6 +22,7 @@ No providers.
 | <a name="module_cert-manager"></a> [cert-manager](#module\_cert-manager) | ./certificate_manager | n/a |
 | <a name="module_cluster-autoscaler"></a> [cluster-autoscaler](#module\_cluster-autoscaler) | ./cluster_autoscaler | n/a |
 | <a name="module_ebs_csi_driver"></a> [ebs\_csi\_driver](#module\_ebs\_csi\_driver) | ./ebs_csi | n/a |
+| <a name="module_eks_blueprints_addons"></a> [eks\_blueprints\_addons](#module\_eks\_blueprints\_addons) | ./custom-helm-addons | n/a |
 | <a name="module_eks_external-dns"></a> [eks\_external-dns](#module\_eks\_external-dns) | ./eks_external_dns | n/a |
 | <a name="module_external_secrets"></a> [external\_secrets](#module\_external\_secrets) | ./external_secrets | n/a |
 | <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | ./karpenter | n/a |
@@ -49,10 +50,12 @@ No resources.
 | <a name="input_cluster_endpoint"></a> [cluster\_endpoint](#input\_cluster\_endpoint) | EKS cluster endpoint | `string` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The name of the cluster | `string` | n/a | yes |
 | <a name="input_cluster_oidc_provider_arn"></a> [cluster\_oidc\_provider\_arn](#input\_cluster\_oidc\_provider\_arn) | The OIDC provider ARN for the EKS cluster | `string` | `"arn:aws:iam::account-id:oidc-provider/oidc.eks.region.amazonaws.com/id"` | no |
+| <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | The Kubernetes version to use for the EKS cluster | `string` | n/a | yes |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain filter to install external-dns | `string` | n/a | yes |
 | <a name="input_ebs_csi_driver_namespace"></a> [ebs\_csi\_driver\_namespace](#input\_ebs\_csi\_driver\_namespace) | Namespace name to deploy helm release | `string` | `"kube-system"` | no |
 | <a name="input_ebs_csi_enabled"></a> [ebs\_csi\_enabled](#input\_ebs\_csi\_enabled) | EBS CSI Driver | `bool` | `false` | no |
 | <a name="input_eks_external_dns_enabled"></a> [eks\_external\_dns\_enabled](#input\_eks\_external\_dns\_enabled) | Whether to install external-dns for eks | `bool` | `false` | no |
+| <a name="input_enabled_custom_helm"></a> [enabled\_custom\_helm](#input\_enabled\_custom\_helm) | Flag to enable or disable the creation of custom Helm addons and associated resources | `bool` | `false` | no |
 | <a name="input_external_dns_namespace"></a> [external\_dns\_namespace](#input\_external\_dns\_namespace) | The namespace to install external-dns | `string` | `"external-dns"` | no |
 | <a name="input_external_secrets_enabled"></a> [external\_secrets\_enabled](#input\_external\_secrets\_enabled) | External Secrets | `bool` | `false` | no |
 | <a name="input_external_secrets_namespace"></a> [external\_secrets\_namespace](#input\_external\_secrets\_namespace) | Namespace name to deploy helm release | `string` | `"kube-system"` | no |
@@ -67,6 +70,7 @@ No resources.
 | <a name="input_metrics_server_enabled"></a> [metrics\_server\_enabled](#input\_metrics\_server\_enabled) | Metrics Server | `bool` | `false` | no |
 | <a name="input_metrics_server_namespace"></a> [metrics\_server\_namespace](#input\_metrics\_server\_namespace) | Namespace name to deploy helm release | `string` | `"kube-system"` | no |
 | <a name="input_region"></a> [region](#input\_region) | The region to host the cluster in | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be attached to resources | `map(string)` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC ID to host the cluster in | `string` | n/a | yes |
 
 ## Outputs
