@@ -58,14 +58,14 @@ resource "kubectl_manifest" "main_project" {
 
 # Connect ECR registry to ArgoCD
 module "ecr_registry" {
-  count               = var.ecr_reg_enabled ? 1 : 0
-  source              = "./ecr_registry"
-  namespace           = var.namespace
-  region              = var.region
-  serviceaccount      = var.serviceaccount
-  eks_oidc_issuer_url = var.eks_oidc_issuer_url
-  ecr_role_name       = local.ecr_role_name
-  account_id          = data.aws_caller_identity.current.account_id
+  count                   = var.ecr_reg_enabled ? 1 : 0
+  source                  = "./ecr_registry"
+  namespace               = var.namespace
+  region                  = var.region
+  serviceaccount          = var.serviceaccount
+  cluster_oidc_issuer_url = var.cluster_oidc_issuer_url
+  ecr_role_name           = local.ecr_role_name
+  account_id              = data.aws_caller_identity.current.account_id
 
   depends_on = [
     helm_release.argocd

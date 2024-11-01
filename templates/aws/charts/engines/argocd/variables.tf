@@ -61,9 +61,9 @@ variable "ecr_reg_enabled" {
   description = "Whether sync ArgoCD to ECR registry"
   default     = false
 }
-variable "eks_oidc_issuer_url" {
+variable "cluster_oidc_issuer_url" {
   type        = string
-  description = "eks_oidc_issuer_url"
+  description = "cluster_oidc_issuer_url"
 }
 
 # GitOps repository

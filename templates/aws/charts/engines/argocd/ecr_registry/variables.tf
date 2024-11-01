@@ -28,7 +28,7 @@ variable "ecr_role_name" {
   description = "ECR registry role name"
 }
 
-variable "eks_oidc_issuer_url" {
+variable "cluster_oidc_issuer_url" {
   type        = string
   description = "EKS oidc issuer url"
 }

@@ -29,7 +29,7 @@ module "get-oci-helm-charts" {
   version                       = "4.2.0"
   create_role                   = true
   role_name                     = var.ecr_role_name
-  provider_url                  = var.eks_oidc_issuer_url
+  provider_url                  = var.cluster_oidc_issuer_url
   role_policy_arns              = [aws_iam_policy.get-test-oci-helm-charts.arn]
   oidc_fully_qualified_subjects = ["system:serviceaccount:${var.namespace}:${var.serviceaccount}"]
 }
