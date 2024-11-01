@@ -8,7 +8,6 @@ module "eks_blueprints_addons" {
   cluster_version   = var.cluster_version
   enable_velero     = true
   velero = {
-    # s3_backup_location = "${module.velero_backup_s3_bucket.s3_bucket_arn}/${var.cluster_name}/backups"
     s3_backup_location = "${module.velero_backup_s3_bucket[0].s3_bucket_arn}/${var.cluster_name}/backups"
     # values = [
     #   # https://github.com/vmware-tanzu/helm-charts/issues/550#issuecomment-1959933230
