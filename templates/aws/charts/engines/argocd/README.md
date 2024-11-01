@@ -192,10 +192,10 @@ No outputs.
 | <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Name of the chart to install | `string` | `"argo-cd"` | no |
 | <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the chart to install | `string` | `"7.4.2"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | n/a | `string` | n/a | yes |
+| <a name="input_cluster_oidc_issuer_url"></a> [cluster\_oidc\_issuer\_url](#input\_cluster\_oidc\_issuer\_url) | cluster\_oidc\_issuer\_url | `string` | n/a | yes |
 | <a name="input_cluster_secret_store_ref_name"></a> [cluster\_secret\_store\_ref\_name](#input\_cluster\_secret\_store\_ref\_name) | ClusterSecretStore name | `string` | n/a | yes |
 | <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create the namespace if it does not exist | `bool` | `true` | no |
 | <a name="input_ecr_reg_enabled"></a> [ecr\_reg\_enabled](#input\_ecr\_reg\_enabled) | Whether sync ArgoCD to ECR registry | `bool` | `false` | no |
-| <a name="input_eks_oidc_issuer_url"></a> [eks\_oidc\_issuer\_url](#input\_eks\_oidc\_issuer\_url) | eks\_oidc\_issuer\_url | `string` | n/a | yes |
 | <a name="input_extension_url"></a> [extension\_url](#input\_extension\_url) | Argo-Rollouts extension package | `string` | `"https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.5/extension.tar"` | no |
 | <a name="input_github_admins_team"></a> [github\_admins\_team](#input\_github\_admins\_team) | Name of ArgoCD admins-team on GitHub | `string` | `"argocd-admins"` | no |
 | <a name="input_github_org"></a> [github\_org](#input\_github\_org) | GitOps repository organization | `string` | `""` | no |

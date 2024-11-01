@@ -39,9 +39,9 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | n/a | `string` | n/a | yes |
+| <a name="input_cluster_oidc_issuer_url"></a> [cluster\_oidc\_issuer\_url](#input\_cluster\_oidc\_issuer\_url) | EKS oidc issuer url | `string` | n/a | yes |
 | <a name="input_ecr_registry_name"></a> [ecr\_registry\_name](#input\_ecr\_registry\_name) | ECR registry name on ARGOCD | `string` | `"ecr"` | no |
 | <a name="input_ecr_role_name"></a> [ecr\_role\_name](#input\_ecr\_role\_name) | ECR registry role name | `string` | n/a | yes |
-| <a name="input_eks_oidc_issuer_url"></a> [eks\_oidc\_issuer\_url](#input\_eks\_oidc\_issuer\_url) | EKS oidc issuer url | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | ArgoCD namespace | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
 | <a name="input_serviceaccount"></a> [serviceaccount](#input\_serviceaccount) | Serviceaccount name to install the chart into | `string` | `"argocd"` | no |
