@@ -43,12 +43,12 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_GIT_TOKEN"></a> [GIT\_TOKEN](#input\_GIT\_TOKEN) | GitHub PAT token | `string` | `""` | no |
 | <a name="input_cert_manager_helm_chart_version"></a> [cert\_manager\_helm\_chart\_version](#input\_cert\_manager\_helm\_chart\_version) | Cert Manager Helm chart version. | `string` | `"1.11.0"` | no |
 | <a name="input_cluster_oidc_provider_arn"></a> [cluster\_oidc\_provider\_arn](#input\_cluster\_oidc\_provider\_arn) | EKS cluster OIDC provider ARN | `string` | n/a | yes |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Variable indicating whether Cert Manager deployment is enabled. | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name | `string` | `"dev"` | no |
 | <a name="input_github_helm_charts_s3_bucket"></a> [github\_helm\_charts\_s3\_bucket](#input\_github\_helm\_charts\_s3\_bucket) | S3 bucket name to keep Helm charts | `string` | `""` | no |
+| <a name="input_github_token"></a> [github\_token](#input\_github\_token) | GitHub PAT token | `string` | `""` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"actions-runner-system"` | no |
 | <a name="input_runnerGithubURL"></a> [runnerGithubURL](#input\_runnerGithubURL) | n/a | `string` | `""` | no |
 | <a name="input_runners_deploy_list"></a> [runners\_deploy\_list](#input\_runners\_deploy\_list) | tflint-ignore: terraform\_unused\_declarations | <pre>list(object({<br>    name          = optional(string)<br>    repository    = optional(string)<br>    limits_cpu    = optional(string)<br>    limits_memory = optional(string)<br>    replicas_min  = optional(number)<br>    replicas_max  = optional(number)<br>  }))</pre> | `[]` | no |
