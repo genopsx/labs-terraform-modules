@@ -83,7 +83,6 @@ module "argo_rollouts" {
 #   cluster_oidc_provider         = var.cluster_oidc_provider
 #   serviceaccount                = var.github_runner_serviceaccount
 #   github_token                  = var.github_token
-#   GIT_TOKEN                     = var.GIT_TOKEN
 #   token_ssm_parameter           = var.github_token_ssm_parameter
 #   runnerGithubURL               = var.github_runner_reg_url
 #   webhook_server_enabled        = var.github_webhook_server_enabled

@@ -1,6 +1,6 @@
 locals {
   github_helm_charts_s3_bucket = var.github_helm_charts_s3_bucket == "" ? "arn:aws:s3:::${var.github_helm_charts_s3_bucket}" : "arn:aws:s3:::${var.environment}-helm-charts"
-  runnerRegistrationToken      = var.enabled && var.GIT_TOKEN == "" ? data.aws_ssm_parameter.runnerRegistrationToken[0].value : var.GIT_TOKEN
+  runnerRegistrationToken      = var.enabled && var.github_token == "" ? data.aws_ssm_parameter.runnerRegistrationToken[0].value : var.github_token
   #  token_ssm_parameter          = var.token_ssm_parameter == "" ? "/${var.environment}/github/GitHubRegistrationToken" : var.token_ssm_parameter
   token_ssm_parameter                = var.ssm_prefix == "/github" ? "/${var.environment}${var.ssm_prefix}/GitHubRegistrationToken" : "${var.ssm_prefix}/GitHubRegistrationToken"
   webhook_secret_token_ssm_parameter = "${var.ssm_prefix}/GitHubWebhookToken"
