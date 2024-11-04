@@ -59,7 +59,7 @@ module "github_ci" {
   git_repo                  = "kwatatshey/labs-terraform-modules"
   buildspecs_definitions    = module.actions.buildspecs
   build_environment_variables = {
-    STATE_PREFIX                       = module.tf_state_eu_central_1.terraform_state_resources_prefix
+    STATE_PREFIX                       = "if2"
     TF_RECREATE_MISSING_LAMBDA_PACKAGE = "true"
   }
   terragrunt_environments = local.terragrunt_environments
