@@ -42,7 +42,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::${{ env.DEPLOY_ACCOUNT }}:role/${{ env.DEPLOYMENT_ROLE_NAME }}
-          aws-region: eu-west-1
+          aws-region: ${{ env.PROVISIONER_REGION }
 
       - name: Create and Upload Archive to S3
         run: |
