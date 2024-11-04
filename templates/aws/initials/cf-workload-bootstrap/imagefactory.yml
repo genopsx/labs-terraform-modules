@@ -1,0 +1,65 @@
+Parameters:
+  Environment:
+    Type: String
+    Description: The pipeline environment
+  ResourcePrefix:
+    Type: String
+    Description: The string to prepend to each resource's name
+  TerragruntTrustedArns:
+    Type: CommaDelimitedList
+    Description: The ARNs for Terragrunt's role trusted policy
+  GitHubTokensOIDCProviderCreate:
+    Description: Whether to create an OIDC provider for the GitHub tokens
+    Default: false
+    Type: String
+    AllowedValues:
+      - true
+      - false
+  OIDCProviderThumbprintList:
+    Type: CommaDelimitedList
+    Description: The list of the OIDC provider's certificate thumbprint(s)
+    Default: "1c58a3a8518e8759bf075b76b750d4f2df264fcd"
+Outputs:
+  TerragruntRoleId:
+    Description: The ID of the role used to run Terragrunt
+    Value: !Ref TerragruntRole
+Conditions:
+  CreateGitHubTokensOIDCProvider: !Equals
+    - !Ref GitHubTokensOIDCProviderCreate
+    - true
+Resources:
+  GithubOidc:
+    Type: AWS::IAM::OIDCProvider
+    Condition: CreateGitHubTokensOIDCProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList:
+        - sts.amazonaws.com
+      ThumbprintList: !Ref OIDCProviderThumbprintList
+  TerragruntRole:
+    Type: 'AWS::IAM::Role'
+    DeletionPolicy: Delete
+    Properties:
+      RoleName: !Sub '${ResourcePrefix}-terragrunt-image-factory-deployer'
+      Description: !Sub 'Role to execute Terragrunt from the ImageFactory2 CodePipeline'
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: !Ref TerragruntTrustedArns
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/PowerUserAccess
+        - arn:aws:iam::aws:policy/IAMFullAccess
+      Tags:
+        - Key: Owner
+          Value: Storm Mobility
+        - Key: Project
+          Value: ImageFactory2
+        - Key: Environment
+          Value:
+            Ref: Environment
+        - Key: Name
+          Value: !Sub '${ResourcePrefix}-terragrunt-image-factory-deployer'
