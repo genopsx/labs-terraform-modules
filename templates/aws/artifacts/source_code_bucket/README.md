@@ -1,6 +1,6 @@
 # source-code-bucket
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -57,4 +57,4 @@
 | <a name="output_code_store_bucket_arn"></a> [code\_store\_bucket\_arn](#output\_code\_store\_bucket\_arn) | n/a |
 | <a name="output_code_store_bucket_id"></a> [code\_store\_bucket\_id](#output\_code\_store\_bucket\_id) | n/a |
 | <a name="output_code_store_bucket_kms_key_arn"></a> [code\_store\_bucket\_kms\_key\_arn](#output\_code\_store\_bucket\_kms\_key\_arn) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

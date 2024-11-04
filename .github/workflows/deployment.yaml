@@ -1,6 +1,6 @@
 name: Push code into Provisioner S3 bucket
 
-on: 
+on:
   push:
     branches:
       - main

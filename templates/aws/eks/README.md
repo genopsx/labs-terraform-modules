@@ -79,7 +79,7 @@
 | <a name="input_r53_hosted_zone_name"></a> [r53\_hosted\_zone\_name](#input\_r53\_hosted\_zone\_name) | Route53 hosted zone name | `string` | `""` | no |
 | <a name="input_r53_subzone_name"></a> [r53\_subzone\_name](#input\_r53\_subzone\_name) | Route53 subzone name | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The tags to apply to the resources | `map(string)` | `{}` | no |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | `"value"` | no |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | `"The ID of the VPC."` | no |
 | <a name="input_worker_nodes_kms_key_aliases"></a> [worker\_nodes\_kms\_key\_aliases](#input\_worker\_nodes\_kms\_key\_aliases) | List of aliases for the KMS key | `list(string)` | `[]` | no |
 
 ## Outputs
