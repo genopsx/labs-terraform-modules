@@ -1,7 +1,0 @@
-version: 0.2
-env:
-  shell: /bin/bash
-phases:
-  build:
-    commands:
-      - terragrunt hclfmt --terragrunt-check --terragrunt-diff

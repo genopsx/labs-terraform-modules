@@ -1,1 +1,0 @@
-resource_prefix = "if2"
