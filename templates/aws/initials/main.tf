@@ -3,12 +3,12 @@ locals {
 }
 
 module "source_code" {
-  source          = "./source-code-bucket"
+  source          = "./iac/pipeline/source-code-bucket"
   resource_prefix = var.resource_prefix
 }
 
 module "actions" {
-  source = "./image-factory-buildspecs"
+  source = "./iac/pipeline/image-factory-buildspecs"
 }
 
 # module "network" {
@@ -33,7 +33,7 @@ module "actions" {
 # }
 
 module "terraform_codepipeline" {
-  source                         = "./terraform-codepipeline"
+  source                         = "./iac/pipeline/terraform-codepipeline"
   resource_prefix                = var.resource_prefix
   codebuild_vpc_id               = module.network.vpc_id
   source_code_github_repo        = "audi-acs/acs-image-factory-iac"
@@ -51,7 +51,7 @@ module "terraform_codepipeline" {
 }
 
 module "github_ci" {
-  source                    = "./github-codebuild-ci"
+  source                    = "./iac/pipeline/github-codebuild-ci"
   resource_prefix           = var.resource_prefix
   codebuild_vpc_id          = module.network.vpc_id
   codebuild_cache_bucket_id = module.terraform_codepipeline.codebuild_cache_bucket_id
@@ -67,7 +67,7 @@ module "github_ci" {
 }
 
 module "github_modules_to_s3" {
-  source                         = "./github-webhook-to-s3"
+  source                         = "./iac/pipeline/github-webhook-to-s3"
   resource_prefix                = "${var.resource_prefix}-modules"
   git_repo                       = "audi-acs/acs-image-factory-terraform-modules"
   codebuild_vpc_id               = module.network.vpc_id

@@ -33,7 +33,6 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_GIT_TOKEN"></a> [GIT\_TOKEN](#input\_GIT\_TOKEN) | tflint-ignore: terraform\_unused\_declarations | `string` | `""` | no |
 | <a name="input_acm_certificate_arn"></a> [acm\_certificate\_arn](#input\_acm\_certificate\_arn) | n/a | `string` | n/a | yes |
 | <a name="input_airflow_enabled"></a> [airflow\_enabled](#input\_airflow\_enabled) | # Apache Airflow | `bool` | `false` | no |
 | <a name="input_airflow_namespace"></a> [airflow\_namespace](#input\_airflow\_namespace) | n/a | `string` | `"airflow"` | no |
@@ -72,6 +71,7 @@ No resources.
 | <a name="input_github_runner_serviceaccount"></a> [github\_runner\_serviceaccount](#input\_github\_runner\_serviceaccount) | tflint-ignore: terraform\_unused\_declarations | `string` | `"actions-runner-system"` | no |
 | <a name="input_github_runners_deploy_list"></a> [github\_runners\_deploy\_list](#input\_github\_runners\_deploy\_list) | tflint-ignore: terraform\_unused\_declarations | <pre>list(object({<br>    name          = optional(string)<br>    repository    = optional(string)<br>    limits_cpu    = optional(string)<br>    limits_memory = optional(string)<br>    replicas_min  = optional(number)<br>    replicas_max  = optional(number)<br>  }))</pre> | `[]` | no |
 | <a name="input_github_runners_extra_values"></a> [github\_runners\_extra\_values](#input\_github\_runners\_extra\_values) | tflint-ignore: terraform\_unused\_declarations | `map(any)` | `{}` | no |
+| <a name="input_github_token"></a> [github\_token](#input\_github\_token) | tflint-ignore: terraform\_unused\_declarations | `string` | `""` | no |
 | <a name="input_github_token_ssm_parameter"></a> [github\_token\_ssm\_parameter](#input\_github\_token\_ssm\_parameter) | tflint-ignore: terraform\_unused\_declarations | `string` | `""` | no |
 | <a name="input_github_webhook_server_enabled"></a> [github\_webhook\_server\_enabled](#input\_github\_webhook\_server\_enabled) | tflint-ignore: terraform\_unused\_declarations | `bool` | `false` | no |
 | <a name="input_github_webhook_server_host"></a> [github\_webhook\_server\_host](#input\_github\_webhook\_server\_host) | tflint-ignore: terraform\_unused\_declarations | `string` | `""` | no |
