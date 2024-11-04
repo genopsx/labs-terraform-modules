@@ -35,8 +35,8 @@ module "actions" {
 module "terraform_codepipeline" {
   source                         = "./iac_pipeline/terraform-codepipeline"
   resource_prefix                = var.resource_prefix
-  codebuild_vpc_id               = module.network.vpc_id
-  source_code_github_repo        = "audi-acs/acs-image-factory-iac"
+  codebuild_vpc_id               = var.vpc_id
+  source_code_github_repo        = "kwatatshey/labs-terraform-modules"
   source_code_bucket_id          = module.source_code.code_store_bucket_id
   source_code_bucket_kms_key_arn = module.source_code.code_store_bucket_kms_key_arn
   buildspecs_definitions         = module.actions.buildspecs
@@ -45,18 +45,18 @@ module "terraform_codepipeline" {
   build_environment_variables = {
     TF_RECREATE_MISSING_LAMBDA_PACKAGE = "true"
   }
-  terraform_state_buckets_arns          = [module.tf_state_eu_central_1.state_bucket_arn, module.tf_state_us_east_1.state_bucket_arn]
-  terraform_state_buckets_kms_keys_arns = [module.tf_state_eu_central_1.state_kms_arn, module.tf_state_us_east_1.state_kms_arn]
-  terraform_state_dynamodb_arns         = [module.tf_state_eu_central_1.state_dynamodb_lock_arn, module.tf_state_us_east_1.state_dynamodb_lock_arn]
+  terraform_state_buckets_arns          = ["arn:aws:s3:::deployment-states-terragrunt-sbx-eu-west-1-955769636964"]
+  terraform_state_buckets_kms_keys_arns = ["arn:aws:kms:eu-west-1:955769636964:key/53e2108b-0481-4fcb-8b7e-9f1ed1d25b8f"]
+  terraform_state_dynamodb_arns         = ["deployment-locks-terragrunt-sbx-eu-west-1-955769636964"]
 }
 
 module "github_ci" {
   source                    = "./iac_pipeline/github-codebuild-ci"
   resource_prefix           = var.resource_prefix
-  codebuild_vpc_id          = module.network.vpc_id
+  codebuild_vpc_id          = var.vpc_id
   codebuild_cache_bucket_id = module.terraform_codepipeline.codebuild_cache_bucket_id
   codebuild_role_name       = module.terraform_codepipeline.codebuild_role_name
-  git_repo                  = "audi-acs/acs-image-factory-iac"
+  git_repo                  = "kwatatshey/labs-terraform-modules"
   buildspecs_definitions    = module.actions.buildspecs
   build_environment_variables = {
     STATE_PREFIX                       = module.tf_state_eu_central_1.terraform_state_resources_prefix
@@ -69,8 +69,8 @@ module "github_ci" {
 module "github_modules_to_s3" {
   source                         = "./iac_pipeline/github-webhook-to-s3"
   resource_prefix                = "${var.resource_prefix}-modules"
-  git_repo                       = "audi-acs/acs-image-factory-terraform-modules"
-  codebuild_vpc_id               = module.network.vpc_id
+  git_repo                       = "kwatatshey/labs-terraform-modules"
+  codebuild_vpc_id               = var.vpc_id
   source_code_bucket_arn         = module.source_code.code_store_bucket_arn
   source_code_bucket_kms_key_arn = module.source_code.code_store_bucket_kms_key_arn
 }

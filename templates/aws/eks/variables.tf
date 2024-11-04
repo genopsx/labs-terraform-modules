@@ -1,6 +1,6 @@
 variable "vpc_id" {
   type    = string
-  default = "value"
+  default = "The ID of the VPC."
 }
 
 variable "public_subnet_ids" {

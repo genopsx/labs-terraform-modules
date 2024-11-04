@@ -1,18 +1,18 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.14.0"
-    }
-  }
-  required_version = ">= 1.5"
-}
+# terraform {
+#   required_providers {
+#     aws = {
+#       source  = "hashicorp/aws"
+#       version = "~> 5.14.0"
+#     }
+#   }
+#   required_version = ">= 1.5"
+# }
 
 # Configure the default AWS Provider
 provider "aws" {
-  region = "eu-central-1"
+  region = "eu-west-1"
   assume_role {
-    role_arn = var.provider_role_arn
+    role_arn = "arn:aws:iam::955769636964:role/deployment-main-terragrunt-sbx-eu-west-1-955769636964"
   }
   default_tags {
     tags = {
@@ -23,18 +23,18 @@ provider "aws" {
   }
 }
 
-# Configure the tooling account provider for the us-east-1 region
-provider "aws" {
-  region = "us-east-1"
-  alias  = "us-east-1"
-  assume_role {
-    role_arn = var.provider_role_arn
-  }
-  default_tags {
-    tags = {
-      "Owner"       = "Storm Mobility"
-      "Project"     = "ImageFactory2"
-      "Environment" = "Production"
-    }
-  }
-}
+# # Configure the tooling account provider for the us-east-1 region
+# provider "aws" {
+#   region = "us-east-1"
+#   alias  = "us-east-1"
+#   assume_role {
+#     role_arn = var.provider_role_arn
+#   }
+#   default_tags {
+#     tags = {
+#       "Owner"       = "Storm Mobility"
+#       "Project"     = "ImageFactory2"
+#       "Environment" = "Production"
+#     }
+#   }
+# }

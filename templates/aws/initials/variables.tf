@@ -14,3 +14,8 @@ variable "terragrunt_environments_file_name" {
   type        = string
   default     = "terragrunt_environments.yml"
 }
+
+variable "vpc_id" {
+  type    = string
+  default = "The ID of the VPC."
+}

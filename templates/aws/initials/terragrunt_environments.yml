@@ -1,9 +1,9 @@
 ---
 dev:
-  workload_role_arn: "arn:aws:iam::969285305301:role/if2-dev-terragrunt-image-factory-deployer"
+  workload_role_arn: "arn:aws:iam::955769636964:role/deployment-main-terragrunt-sbx-eu-west-1-955769636964"
   apply_changes: "auto"
   base_folder: "audi-dev-imagefactory2-dev-project-account"
-prd:
-  workload_role_arn: "arn:aws:iam::879919243408:role/if2-prd-terragrunt-image-factory-deployer"
-  apply_changes: "manual"
-  base_folder: "audi-prd-imagefactory2-prod-project-account"
+# prd:
+#   workload_role_arn: "arn:aws:iam::879919243408:role/if2-prd-terragrunt-image-factory-deployer"
+#   apply_changes: "manual"
+#   base_folder: "audi-prd-imagefactory2-prod-project-account"
