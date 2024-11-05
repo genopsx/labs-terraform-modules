@@ -1,4 +1,4 @@
-name: Push code into Provisioner S3 bucket
+name: Push code into S3 bucket
 
 on:
   push:
