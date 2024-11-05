@@ -25,8 +25,6 @@ variable "region" {
   type        = string
 }
 
-
-
 variable "vpc_id" {
   description = "The VPC ID to host the cluster in"
   type        = string
@@ -67,6 +65,25 @@ variable "karpenter_namespace" {
   type    = string
   default = "kube-system"
 }
+
+# Kyverno
+variable "kyverno_chart_name" {
+  type        = string
+  description = "Name of chart"
+}
+variable "kyverno_chart_version" {
+  type        = string
+  description = "Version of kyverno chart"
+}
+variable "kyverno_namespace" {
+  type        = string
+  description = "Namespace to install the chart into"
+}
+variable "kyverno_enabled" {
+  type        = bool
+  description = "Whether to install kyverno"
+}
+
 
 # AWS LB Controller
 variable "alb_controller_enabled" {
@@ -176,7 +193,6 @@ variable "keda_namespace" {
   description = "Namespace name to deploy helm release"
   default     = "keda"
 }
-
 
 # Helm
 variable "enabled_custom_helm" {

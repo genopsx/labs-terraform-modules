@@ -13,7 +13,7 @@ variable "namespace" {
 variable "chart_version" {
   type        = string
   description = "Helm chart to release"
-  default     = "0.37.0"
+  default     = "1.0.7"
 }
 
 # tflint-ignore: terraform_unused_declarations

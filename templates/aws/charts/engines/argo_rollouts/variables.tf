@@ -7,7 +7,7 @@ variable "chart_name" {
 variable "chart_version" {
   type        = string
   description = "Helm chart to release"
-  default     = "2.35.1"
+  default     = "2.37.7"
 }
 
 variable "repository" {

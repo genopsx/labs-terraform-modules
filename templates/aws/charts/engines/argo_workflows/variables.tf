@@ -29,13 +29,13 @@ variable "argo_workflows_chart_name" {
 
 variable "argo_events_chart_version" {
   type        = string
-  default     = "2.4.4"
+  default     = "2.4.8"
   description = "Version of argo-events chart"
 }
 
 variable "argo_workflows_chart_version" {
   type        = string
-  default     = "0.41.0"
+  default     = "0.42.7"
   description = "Version of argo-workflows chart"
 }
 

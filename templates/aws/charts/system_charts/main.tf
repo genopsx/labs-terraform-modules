@@ -19,6 +19,22 @@ module "karpenter" {
   cluster_endpoint          = var.cluster_endpoint
 }
 
+module "kyverno" {
+  count                 = var.kyverno_enabled ? 1 : 0
+  source                = "./kyverno"
+  kyverno_chart_name    = var.kyverno_chart_name
+  kyverno_chart_version = var.kyverno_chart_version
+  kyverno_namespace     = var.kyverno_namespace
+  depends_on            = [module.karpenter]
+}
+
+# module "gatekeeper" {
+#   count        = var.gatekeeper_enabled ? 1 : 0
+#   source       = "./gatekeeper"
+#   namespace    = var.gatekeeper_namespace
+#   cluster_name = var.cluster_name
+# }
+
 # INGRESS CONTROLLERS
 module "alb-controller" {
   count                     = var.alb_controller_enabled && !var.kong_enabled ? 1 : 0

@@ -13,7 +13,7 @@ variable "name" {
 variable "kong_chart_version" {
   description = "The version of the chart"
   type        = string
-  default     = "2.26.3"
+  default     = "2.42.0"
 }
 
 variable "extra_values" {

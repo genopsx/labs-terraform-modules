@@ -7,6 +7,7 @@ module "eks_blueprints_addons" {
   oidc_provider_arn = var.cluster_oidc_provider_arn
   cluster_version   = var.cluster_version
   enable_velero     = true
+  enable_gatekeeper = true
   velero = {
     s3_backup_location = "${module.velero_backup_s3_bucket[0].s3_bucket_arn}/${var.cluster_name}/backups"
     # values = [

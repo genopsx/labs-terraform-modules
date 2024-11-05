@@ -13,7 +13,7 @@ variable "namespace" {
 variable "chart_version" {
   type        = string
   description = "Helm chart to release"
-  default     = "2.9.11"
+  default     = "2.10.2"
 }
 
 variable "enabled" {

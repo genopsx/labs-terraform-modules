@@ -12,7 +12,7 @@ variable "namespace" {
 
 variable "cert_manager_helm_chart_version" {
   type        = string
-  default     = "v1.11.0"
+  default     = "v1.16.1"
   description = "Cert Manager Helm chart version."
 }
 

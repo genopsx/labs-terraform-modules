@@ -12,7 +12,7 @@ variable "namespace" {
 variable "kubeshark_helm_chart_version" {
   description = "The version of the kubeshark helm chart"
   type        = string
-  default     = "52.1.77"
+  default     = "52.3.38"
 }
 
 variable "domain_name" {

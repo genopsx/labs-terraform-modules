@@ -15,7 +15,7 @@ variable "repository" {
 }
 
 variable "chart_version" {
-  default     = "2.14.3"
+  default     = "2.15.2"
   description = "The Keda helm chart version"
   type        = string
 }

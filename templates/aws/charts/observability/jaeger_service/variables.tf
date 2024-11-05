@@ -12,7 +12,7 @@ variable "namespace" {
 variable "jaeger_helm_chart_version" {
   description = "The version of the jaeger helm chart"
   type        = string
-  default     = "2.0.1"
+  default     = "3.2.0"
 }
 
 # tflint-ignore: terraform_unused_declarations

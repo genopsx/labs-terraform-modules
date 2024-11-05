@@ -17,7 +17,7 @@ variable "chart_name" {
 variable "chart_version" {
   type        = string
   description = "Version of the chart to install"
-  default     = "7.4.2"
+  default     = "7.7.0"
 }
 variable "repository" {
   type        = string

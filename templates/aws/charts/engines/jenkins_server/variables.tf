@@ -13,7 +13,7 @@ variable "namespace" {
 variable "chart_version" {
   type        = string
   description = "Helm chart to release"
-  default     = "5.5.5"
+  default     = "5.7.12"
 }
 
 variable "serviceaccount" {
