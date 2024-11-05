@@ -4,5 +4,6 @@ module "eks_addons" {
   cluster_name      = var.cluster_name
   addons            = var.addons
   tags              = var.tags
+  depends_on        = [module.nodes]
 }
 
