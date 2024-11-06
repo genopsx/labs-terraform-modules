@@ -19,14 +19,14 @@ module "karpenter" {
   cluster_endpoint          = var.cluster_endpoint
 }
 
-module "kyverno" {
-  source             = "./kyverno"
-  depends_on         = [module.karpenter]
-  count              = var.kyverno_enabled ? 1 : 0
-  kyverno_chart_name = var.kyverno_chart_name
-  # kyverno_chart_version = var.kyverno_chart_version
-  kyverno_namespace    = var.kyverno_namespace
-  kyverno_release_name = var.kyverno_release_name
+module "kyverno-policy-engine" {
+  source                = "./kyverno"
+  depends_on            = [module.karpenter]
+  count                 = var.kyverno_enabled ? 1 : 0
+  kyverno_chart_name    = var.kyverno_chart_name
+  kyverno_chart_version = var.kyverno_chart_version
+  kyverno_namespace     = var.kyverno_namespace
+  kyverno_release_name  = var.kyverno_release_name
   # Kyverno Policies
   kyverno_policies_release_name = "kyverno-policies-release"
   kyverno_policies_chart_name   = "kyverno-policies"
