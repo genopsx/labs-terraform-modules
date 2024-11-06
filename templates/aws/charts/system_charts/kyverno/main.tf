@@ -1,9 +1,9 @@
 # https://github.com/kyverno/kyverno
 resource "helm_release" "kyverno" {
-  name             = var.kyverno_release_name
-  repository       = "https://kyverno.github.io/kyverno/"
-  chart            = var.kyverno_chart_name
-  version          = var.kyverno_chart_version
+  name       = var.kyverno_release_name
+  repository = "https://kyverno.github.io/kyverno/"
+  chart      = var.kyverno_chart_name
+  #   version          = var.kyverno_chart_version
   create_namespace = true
   namespace        = var.kyverno_namespace
 
