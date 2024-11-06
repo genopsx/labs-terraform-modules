@@ -105,6 +105,42 @@ variable "kyverno_policies_chart_name" {
 }
 
 
+variable "policy_reporter_settings" {
+  type        = map(any)
+  description = "Settings for policy reporter"
+}
+
+variable "policy_reporter_namespace" {
+  type        = string
+  description = "Namespace to install the chart into"
+}
+
+variable "policy_reporter_helm_chart_name" {
+  type        = string
+  description = "Name of the chart to install"
+}
+
+variable "policy_reporter_helm_chart_release_name" {
+  type        = string
+  description = "Name of the release"
+}
+
+variable "policy_reporter_helm_chart_repo" {
+  type        = string
+  description = "Repository to install the chart from"
+}
+
+variable "policy_reporter_helm_chart_version" {
+  type        = string
+  description = "Version of the chart to install"
+}
+
+variable "ui_enabled" {
+  type        = bool
+  description = "Enable the UI"
+  default     = false
+}
+
 # AWS LB Controller
 variable "alb_controller_enabled" {
   type    = bool

@@ -27,9 +27,19 @@ module "kyverno-policy-engine" {
   kyverno_chart_version = var.kyverno_chart_version
   kyverno_namespace     = var.kyverno_namespace
   kyverno_release_name  = var.kyverno_release_name
+
   # Kyverno Policies
   kyverno_policies_release_name = "kyverno-policies-release"
   kyverno_policies_chart_name   = "kyverno-policies"
+
+  # Kyverno UI
+  policy_reporter_settings                = var.policy_reporter_settings
+  policy_reporter_namespace               = var.policy_reporter_namespace
+  policy_reporter_helm_chart_name         = var.policy_reporter_helm_chart_name
+  policy_reporter_helm_chart_release_name = var.policy_reporter_helm_chart_release_name
+  policy_reporter_helm_chart_repo         = var.policy_reporter_helm_chart_repo
+  policy_reporter_helm_chart_version      = var.policy_reporter_helm_chart_version
+  ui_enabled                              = var.ui_enabled
 }
 
 # module "gatekeeper" {
