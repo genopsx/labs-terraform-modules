@@ -67,21 +67,40 @@ variable "karpenter_namespace" {
 }
 
 # Kyverno
+
+variable "kyverno_enabled" {
+  type        = bool
+  description = "Whether to install kyverno"
+  default     = false
+}
 variable "kyverno_chart_name" {
   type        = string
   description = "Name of chart"
 }
+
 variable "kyverno_chart_version" {
   type        = string
   description = "Version of kyverno chart"
 }
+
 variable "kyverno_namespace" {
   type        = string
   description = "Namespace to install the chart into"
 }
-variable "kyverno_enabled" {
-  type        = bool
-  description = "Whether to install kyverno"
+
+variable "kyverno_release_name" {
+  type        = string
+  description = "Name of release for kyverno"
+}
+
+variable "kyverno_policies_release_name" {
+  type        = string
+  description = "Name of release for policy"
+}
+
+variable "kyverno_policies_chart_name" {
+  type        = string
+  description = "Name of chart for policy"
 }
 
 
