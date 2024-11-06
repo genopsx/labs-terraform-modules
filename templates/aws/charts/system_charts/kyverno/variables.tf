@@ -1,3 +1,4 @@
+# Kyverno policies
 variable "kyverno_chart_name" {
   type        = string
   description = "Name of chart"
@@ -18,6 +19,7 @@ variable "kyverno_release_name" {
   description = "Name of release for kyverno"
 }
 
+# Kyverno policies
 variable "kyverno_policies_release_name" {
   type        = string
   description = "Name of release for policy"

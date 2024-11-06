@@ -47,7 +47,6 @@ resource "helm_release" "kyverno_policies" {
 }
 
 
-
 resource "kubectl_manifest" "kyverno_cluster_policy" {
   depends_on = [helm_release.kyverno_policies]
   yaml_body  = local.kyverno_cluster_policy_yaml
