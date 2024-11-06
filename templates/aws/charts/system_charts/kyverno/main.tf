@@ -36,20 +36,20 @@ resource "helm_release" "kyverno" {
   // namespace = "kyverno"
 }
 
-# resource "helm_release" "kyverno_policies" {
-#   depends_on = [helm_release.kyverno]
-#   name       = "kyverno-policies"
-#   repository = "https://kyverno.github.io/kyverno/"
-#   chart      = "kyverno-policies"
-#   namespace  = "kyverno" # Make sure to deploy in the same namespace as Kyverno
+resource "helm_release" "kyverno_policies" {
+  depends_on = [helm_release.kyverno]
+  name       = "kyverno-policies"
+  repository = "https://kyverno.github.io/kyverno/"
+  chart      = "kyverno-policies"
+  namespace  = "kyverno" # Make sure to deploy in the same namespace as Kyverno
 
-#   # Add any additional attributes or values here if needed
-# }
+  # Add any additional attributes or values here if needed
+}
 
 
 
 resource "kubectl_manifest" "kyverno_cluster_policy" {
-  depends_on = [helm_release.kyverno]
+  depends_on = [helm_release.kyverno_policies]
   yaml_body  = local.kyverno_cluster_policy_yaml
 
   lifecycle {
