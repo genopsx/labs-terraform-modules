@@ -1,8 +1,4 @@
 # Common
-variable "cluster_version" {
-  type        = string
-  description = "Version of the cluster"
-}
 variable "cluster_oidc_provider_arn" {
   description = "The OIDC provider ARN for the EKS cluster"
   type        = string
