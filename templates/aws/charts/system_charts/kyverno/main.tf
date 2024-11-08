@@ -84,7 +84,7 @@ resource "helm_release" "kyverno_ui" {
   #   name  = "kyvernoPlugin.enabled"
   #   value = true
   # }
-
+  values = [local.base_values]
   # values = [
   #   yamlencode(var.policy_reporter_settings)
   # ]
