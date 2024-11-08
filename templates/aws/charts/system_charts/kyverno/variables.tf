@@ -54,16 +54,6 @@ variable "policy_reporter_helm_chart_name" {
   description = "Name of the chart to install"
 }
 
-variable "policy_reporter_helm_chart_release_name" {
-  type        = string
-  description = "Name of the release"
-}
-
-variable "policy_reporter_helm_chart_repo" {
-  type        = string
-  description = "Repository to install the chart from"
-}
-
 variable "policy_reporter_helm_chart_version" {
   type        = string
   description = "Version of the chart to install"
@@ -73,4 +63,18 @@ variable "ui_enabled" {
   type        = bool
   description = "Enable the UI"
   default     = false
+}
+
+variable "domain_name" {
+  type        = string
+  description = "Roure53 hosted zone name"
+}
+variable "certificate_arn" {
+  type        = string
+  description = "ACM certificate ARN"
+}
+
+variable "policy_reporter_release_name" {
+  type        = string
+  description = "Name of the release"
 }

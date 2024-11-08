@@ -124,14 +124,9 @@ variable "policy_reporter_helm_chart_name" {
   description = "Name of the chart to install"
 }
 
-variable "policy_reporter_helm_chart_release_name" {
+variable "policy_reporter_release_name" {
   type        = string
   description = "Name of the release"
-}
-
-variable "policy_reporter_helm_chart_repo" {
-  type        = string
-  description = "Repository to install the chart from"
 }
 
 variable "policy_reporter_helm_chart_version" {
