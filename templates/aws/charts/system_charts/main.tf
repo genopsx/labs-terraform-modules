@@ -20,19 +20,19 @@ module "karpenter" {
 }
 
 module "kyverno-policy-engine" {
-  source             = "./kyvernoo"
-  depends_on         = [module.karpenter]
-  count              = var.kyverno_enabled ? 1 : 0
-  cluster_version    = var.cluster_version
-  kyverno_chart_name = var.kyverno_chart_name
-  # kyverno_chart_version = var.kyverno_chart_version
-  kyverno_namespace    = var.kyverno_namespace
-  kyverno_release_name = var.kyverno_release_name
+  source                = "./kyvernoo"
+  depends_on            = [module.karpenter]
+  count                 = var.kyverno_enabled ? 1 : 0
+  cluster_version       = var.cluster_version
+  kyverno_chart_name    = var.kyverno_chart_name
+  kyverno_chart_version = var.kyverno_chart_version
+  kyverno_namespace     = var.kyverno_namespace
+  kyverno_release_name  = var.kyverno_release_name
 
   # Kyverno Policies
-  kyverno_policies_release_name = var.kyverno_policies_release_name
-  kyverno_policies_chart_name   = var.kyverno_policies_chart_name
-  # kyverno_policies_chart_version = var.kyverno_policies_chart_version
+  kyverno_policies_release_name  = var.kyverno_policies_release_name
+  kyverno_policies_chart_name    = var.kyverno_policies_chart_name
+  kyverno_policies_chart_version = var.kyverno_policies_chart_version
 
   # Kyverno UI
   policy_reporter_settings                = var.policy_reporter_settings

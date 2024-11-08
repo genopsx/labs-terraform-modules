@@ -8,10 +8,10 @@ variable "kyverno_chart_name" {
   description = "Name of chart"
 }
 
-# variable "kyverno_chart_version" {
-#   type        = string
-#   description = "Version of kyverno chart"
-# }
+variable "kyverno_chart_version" {
+  type        = string
+  description = "Version of kyverno chart"
+}
 
 variable "kyverno_namespace" {
   type        = string
@@ -34,10 +34,10 @@ variable "kyverno_policies_chart_name" {
   description = "Name of chart for policy"
 }
 
-# variable "kyverno_policies_chart_version" {
-#   type        = string
-#   description = "Version of the chart for policy"
-# }
+variable "kyverno_policies_chart_version" {
+  type        = string
+  description = "Version of the chart for policy"
+}
 
 variable "policy_reporter_settings" {
   type        = map(any)
