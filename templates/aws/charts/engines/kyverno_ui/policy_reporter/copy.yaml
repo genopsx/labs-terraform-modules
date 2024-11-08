@@ -1,3 +1,6 @@
+# -- Override the chart name used for all resources
+nameOverride: ""
+
 # -- Overwrite the fullname of all resources
 fullnameOverride: ${policy_reporter_release_name}
 
@@ -118,7 +121,7 @@ ingress:
   # -- Labels for the Ingress
   labels: {}
   # -- Annotations for the Ingress
-  annotations: {}
+  annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     alb.ingress.kubernetes.io/group.name: "default-group"
