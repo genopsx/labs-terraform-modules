@@ -1,11 +1,7 @@
 # https://github.com/kyverno/kyverno
-resource "helm_repository" "kyverno" {
-  name = "kyverno"
-  url  = "https://kyverno.github.io/kyverno/"
-}
 resource "helm_release" "kyverno" {
   name       = var.kyverno_release_name
-  repository = helm_repository.kyverno.url
+  repository = "https://kyverno.github.io/kyverno/"
   chart      = var.kyverno_chart_name
   #   version          = var.kyverno_chart_version
   create_namespace = true
@@ -43,7 +39,7 @@ resource "helm_release" "kyverno" {
 resource "helm_release" "kyverno_policies" {
   depends_on = [helm_release.kyverno]
   name       = var.kyverno_policies_release_name
-  repository = helm_repository.kyverno.url
+  repository = "https://kyverno.github.io/kyverno/"
   chart      = "kyverno-policies"
   #   version    = var.kyverno_policies_chart_version
   namespace = var.kyverno_namespace # Make sure to deploy in the same namespace as Kyverno
