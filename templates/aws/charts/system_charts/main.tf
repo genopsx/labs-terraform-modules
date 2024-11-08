@@ -29,8 +29,9 @@ module "kyverno-policy-engine" {
   kyverno_release_name  = var.kyverno_release_name
 
   # Kyverno Policies
-  kyverno_policies_release_name = "kyverno-policies-release"
-  kyverno_policies_chart_name   = "kyverno-policies"
+  kyverno_policies_release_name  = var.kyverno_policies_release_name
+  kyverno_policies_chart_name    = var.kyverno_policies_chart_name
+  kyverno_policies_chart_version = var.kyverno_policies_chart_version
 
   # Kyverno UI
   policy_reporter_settings                = var.policy_reporter_settings
