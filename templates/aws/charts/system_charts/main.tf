@@ -23,6 +23,7 @@ module "kyverno-policy-engine" {
   source             = "./kyverno"
   depends_on         = [module.karpenter]
   count              = var.kyverno_enabled ? 1 : 0
+  cluster_version    = var.cluster_version
   kyverno_chart_name = var.kyverno_chart_name
   # kyverno_chart_version = var.kyverno_chart_version
   kyverno_namespace    = var.kyverno_namespace
