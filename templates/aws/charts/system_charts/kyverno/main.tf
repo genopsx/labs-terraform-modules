@@ -61,13 +61,14 @@ resource "kubectl_manifest" "kyverno_cluster_policy" {
 
 
 resource "helm_release" "kyverno_ui" {
-  depends_on = [helm_release.kyverno]
-  count      = var.ui_enabled ? 1 : 0
-  name       = var.policy_reporter_helm_chart_name
-  chart      = var.policy_reporter_helm_chart_release_name
-  repository = var.policy_reporter_helm_chart_repo
-  version    = var.policy_reporter_helm_chart_version
-  namespace  = var.policy_reporter_namespace
+  depends_on       = [helm_release.kyverno]
+  count            = var.ui_enabled ? 1 : 0
+  name             = var.policy_reporter_helm_chart_name
+  chart            = var.policy_reporter_helm_chart_release_name
+  repository       = var.policy_reporter_helm_chart_repo
+  version          = var.policy_reporter_helm_chart_version
+  create_namespace = true
+  namespace        = var.policy_reporter_namespace
 
   set {
     name  = "ui.enabled"

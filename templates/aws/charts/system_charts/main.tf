@@ -20,7 +20,7 @@ module "karpenter" {
 }
 
 module "kyverno-policy-engine" {
-  source                = "./kyvernoo"
+  source                = "./kyverno"
   depends_on            = [module.karpenter]
   count                 = var.kyverno_enabled ? 1 : 0
   cluster_version       = var.cluster_version
