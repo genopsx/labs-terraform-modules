@@ -137,6 +137,7 @@ ingress:
    - host: ${policy_reporter_release_name}.${domain}
      paths:
        - path: "/*"
+         pathType: Prefix
   #  - host: chart-example.local
   #    paths: []
   # -- Ingress tls list
