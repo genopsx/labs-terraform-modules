@@ -1,9 +1,9 @@
 # https://github.com/kyverno/kyverno
 resource "helm_release" "kyverno" {
-  name             = var.kyverno_release_name
-  repository       = "https://kyverno.github.io/kyverno/"
-  chart            = var.kyverno_chart_name
-  version          = var.kyverno_chart_version
+  name       = var.kyverno_release_name
+  repository = "https://kyverno.github.io/kyverno/"
+  chart      = var.kyverno_chart_name
+  #   version          = var.kyverno_chart_version
   create_namespace = true
   namespace        = var.kyverno_namespace
 
@@ -41,8 +41,8 @@ resource "helm_release" "kyverno_policies" {
   name       = var.kyverno_policies_release_name
   repository = "https://kyverno.github.io/kyverno/"
   chart      = "kyverno-policies"
-  version    = var.kyverno_policies_chart_version
-  namespace  = var.kyverno_namespace # Make sure to deploy in the same namespace as Kyverno
+  #   version    = var.kyverno_policies_chart_version
+  namespace = var.kyverno_namespace # Make sure to deploy in the same namespace as Kyverno
   # Add any additional attributes or values here if needed
 }
 
