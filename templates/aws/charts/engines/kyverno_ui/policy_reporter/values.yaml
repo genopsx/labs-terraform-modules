@@ -58,7 +58,7 @@ ingress:
   hosts:
    - host: ${policy_reporter_release_name}.${domain}
      paths:
-       - path: "/*"
+       - path: "/"
          pathType: Prefix
   #  - host: chart-example.local
   #    paths: []
