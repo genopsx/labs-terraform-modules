@@ -1,3 +1,6 @@
+# -- Override the chart name used for all resources
+nameOverride: ""
+
 # -- Overwrite the fullname of all resources
 fullnameOverride: ""
 
