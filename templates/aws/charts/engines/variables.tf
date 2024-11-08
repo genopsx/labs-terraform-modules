@@ -283,3 +283,36 @@ variable "argo_rollouts_traffic_light_demo_enabled" {
   description = "Create traffic_light rollouts demo"
   default     = false
 }
+
+# Kyverno UI
+
+# variable "policy_reporter_settings" {
+#   type        = map(any)
+#   description = "Settings for policy reporter"
+# }
+
+variable "policy_reporter_namespace" {
+  type        = string
+  description = "Namespace to install the chart into"
+}
+
+variable "policy_reporter_helm_chart_name" {
+  type        = string
+  description = "Name of the chart to install"
+}
+
+variable "policy_reporter_release_name" {
+  type        = string
+  description = "Name of the release"
+}
+
+variable "policy_reporter_helm_chart_version" {
+  type        = string
+  description = "Version of the chart to install"
+}
+
+variable "ui_enabled" {
+  type        = bool
+  description = "Enable the UI"
+  default     = false
+}
