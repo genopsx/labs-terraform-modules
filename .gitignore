@@ -6,7 +6,7 @@ terraform-log*
 getter*/
 kubeconfig*
 **/kubeconfig*
-*.png
+# *.png
 .*hcl
 
 *.tfstate
