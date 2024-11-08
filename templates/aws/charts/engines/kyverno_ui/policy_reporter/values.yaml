@@ -1,5 +1,5 @@
 # -- Overwrite the fullname of all resources
-fullnameOverride: ${policy_reporter_release_name}
+fullnameOverride: ""
 
 # -- Overwrite the namespace of all resources
 namespaceOverride: ""
