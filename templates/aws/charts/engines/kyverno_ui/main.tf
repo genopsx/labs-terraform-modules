@@ -1,7 +1,7 @@
 resource "helm_release" "kyverno_ui" {
   count            = var.ui_enabled ? 1 : 0
-  name             = var.policy_reporter_helm_chart_name
-  chart            = var.policy_reporter_release_name
+  name             = var.policy_reporter_release_name
+  chart            = var.policy_reporter_helm_chart_name
   repository       = "https://kyverno.github.io/policy-reporter"
   version          = var.policy_reporter_helm_chart_version
   create_namespace = true
