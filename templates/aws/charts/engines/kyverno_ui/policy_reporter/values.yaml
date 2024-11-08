@@ -498,7 +498,7 @@ plugin:
       tag: "0.4.0"
 
     # -- Deployment replica count
-    replicaCount: 1
+    replicaCount: 2
 
     logging:
       # -- Enables external API request logging
