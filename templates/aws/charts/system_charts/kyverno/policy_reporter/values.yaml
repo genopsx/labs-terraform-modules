@@ -2,7 +2,7 @@
 nameOverride: ""
 
 # -- Overwrite the fullname of all resources
-fullnameOverride: "${policy_repoter_release_name}"
+fullnameOverride: "${policy_reporter_release_name}"
 
 # -- Overwrite the namespace of all resources
 namespaceOverride: ""
