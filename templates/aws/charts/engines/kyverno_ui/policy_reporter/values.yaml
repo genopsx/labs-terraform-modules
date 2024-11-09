@@ -57,6 +57,8 @@ ingress:
    - host: ${policy_reporter_release_name}.${domain}
      paths:
      - path: /
+       pathType: Prefix
+
 ui:
   # -- (bool) Enable Policy Reporter UI
   enabled: true
