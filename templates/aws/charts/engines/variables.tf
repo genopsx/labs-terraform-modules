@@ -286,10 +286,10 @@ variable "argo_rollouts_traffic_light_demo_enabled" {
 
 # Kyverno UI
 
-# variable "policy_reporter_settings" {
-#   type        = map(any)
-#   description = "Settings for policy reporter"
-# }
+variable "policy_reporter_settings" {
+  type        = map(any)
+  description = "Settings for policy reporter"
+}
 
 variable "policy_reporter_namespace" {
   type        = string

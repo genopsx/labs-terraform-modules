@@ -7,22 +7,22 @@ resource "helm_release" "kyverno_ui" {
   create_namespace = true
   namespace        = var.policy_reporter_namespace
 
-  # set {
-  #   name  = "ui.enabled"
-  #   value = true
-  # }
+  set {
+    name  = "ui.enabled"
+    value = true
+  }
 
-  # set {
-  #   name  = "ui.plugins.kyverno"
-  #   value = true
-  # }
+  set {
+    name  = "ui.plugins.kyverno"
+    value = true
+  }
 
-  # set {
-  #   name  = "kyvernoPlugin.enabled"
-  #   value = true
-  # }
-  values = [local.base_values]
-  # values = [
-  #   yamlencode(var.policy_reporter_settings)
-  # ]
+  set {
+    name  = "kyvernoPlugin.enabled"
+    value = true
+  }
+  # values = [local.base_values]
+  values = [
+    yamlencode(var.policy_reporter_settings)
+  ]
 }

@@ -1,13 +1,13 @@
 module "kyverno-policy-engine" {
-  source     = "./kyverno_ui"
-  ui_enabled = var.ui_enabled
-  # policy_reporter_settings           = var.policy_reporter_settings
+  source                             = "./kyverno_ui"
+  ui_enabled                         = var.ui_enabled
+  policy_reporter_settings           = var.policy_reporter_settings
   policy_reporter_namespace          = var.policy_reporter_namespace
   policy_reporter_helm_chart_name    = var.policy_reporter_helm_chart_name
   policy_reporter_release_name       = var.policy_reporter_release_name
   policy_reporter_helm_chart_version = var.policy_reporter_helm_chart_version
-  domain_name                        = var.domain_name
-  certificate_arn                    = var.acm_certificate_arn
+  # domain_name                        = var.domain_name
+  # certificate_arn                    = var.acm_certificate_arn
 }
 
 module "jenkins" {

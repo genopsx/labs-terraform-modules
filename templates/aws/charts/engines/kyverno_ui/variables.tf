@@ -1,7 +1,7 @@
-# variable "policy_reporter_settings" {
-#   type        = map(any)
-#   description = "Settings for policy reporter"
-# }
+variable "policy_reporter_settings" {
+  type        = map(any)
+  description = "Settings for policy reporter"
+}
 
 variable "policy_reporter_namespace" {
   type        = string
@@ -24,14 +24,14 @@ variable "ui_enabled" {
   default     = false
 }
 
-variable "domain_name" {
-  type        = string
-  description = "Roure53 hosted zone name"
-}
-variable "certificate_arn" {
-  type        = string
-  description = "ACM certificate ARN"
-}
+# variable "domain_name" {
+#   type        = string
+#   description = "Roure53 hosted zone name"
+# }
+# variable "certificate_arn" {
+#   type        = string
+#   description = "ACM certificate ARN"
+# }
 
 variable "policy_reporter_release_name" {
   type        = string
