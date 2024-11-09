@@ -72,6 +72,10 @@ ui:
     # -- (string) Image tag
     tag: "2.0.0-rc.3"
 
+  args:
+    - -${policy_reporter_release_name}=${policy_reporter_release_name}.${domain}
+
+
   # -- Deployment replica count
   replicaCount: 2
 
