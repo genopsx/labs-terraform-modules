@@ -75,9 +75,6 @@ ui:
   # -- Deployment replica count
   replicaCount: 2
 
-  # -- Temporary Directory to persist session data for authentication
-  tempDir: "/tmp"
-
 plugin:
   kyverno:
     # -- (bool) Enable Kyverno Plugin
