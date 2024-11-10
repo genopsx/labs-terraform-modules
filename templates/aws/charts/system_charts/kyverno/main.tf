@@ -27,14 +27,10 @@ resource "helm_release" "kyverno" {
     name  = "reportsController.replicas"
     value = "2"
   }
-
-
-  #   values = yamldecode(file("${path.module}/values/kyverno-policy.yaml"))
-
-
   // Omitting namespace to install Kyverno cluster-wide
   // namespace = "kyverno"
 }
+
 
 resource "helm_release" "kyverno_policies" {
   depends_on = [helm_release.kyverno]
@@ -45,7 +41,6 @@ resource "helm_release" "kyverno_policies" {
   namespace  = var.kyverno_namespace # Make sure to deploy in the same namespace as Kyverno
   # Add any additional attributes or values here if needed
 }
-
 
 resource "kubectl_manifest" "kyverno_cluster_policy" {
   depends_on = [helm_release.kyverno_policies]
@@ -59,33 +54,27 @@ resource "kubectl_manifest" "kyverno_cluster_policy" {
   }
 }
 
+# By default, Kyverno is configured with minimal permissions and does not have access to security sensitive resources like Secrets. 
+# You can provide additional permissions using cluster role aggregation. 
+# The following role permits the Kyverno background-controller to create (clone) secrets.
+# https://kyverno.io/docs/introduction/quick-start/
+resource "kubectl_manifest" "secrets_clone_config" {
+  depends_on = [helm_release.kyverno_policies]
+  for_each   = { for file in local.kyverno_secret_clone_config_yamls_path : file => file }
+  yaml_body  = templatefile("${path.module}/additional_configs/secret_clone/${each.key}", local.vars)
+}
 
-# resource "helm_release" "kyverno_ui" {
-#   depends_on       = [helm_release.kyverno]
-#   count            = var.ui_enabled ? 1 : 0
-#   name             = var.policy_reporter_helm_chart_name
-#   chart            = var.policy_reporter_release_name
-#   repository       = "https://kyverno.github.io/policy-reporter"
-#   version          = var.policy_reporter_helm_chart_version
-#   create_namespace = true
-#   namespace        = var.policy_reporter_namespace
+# Next, create the following Kyverno policy. 
+# The sync-secrets policy will match on any newly-created Namespace 
+# and will clone the Secret we just created earlier into that new Namespace.
+resource "kubectl_manifest" "secrets_clone_policy" {
+  depends_on = [kubectl_manifest.secrets_clone_config]
+  yaml_body  = local.kyverno_secret_clone_policy_yaml
 
-#   # set {
-#   #   name  = "ui.enabled"
-#   #   value = true
-#   # }
-
-#   # set {
-#   #   name  = "ui.plugins.kyverno"
-#   #   value = true
-#   # }
-
-#   # set {
-#   #   name  = "kyvernoPlugin.enabled"
-#   #   value = true
-#   # }
-#   values = [local.base_values]
-#   # values = [
-#   #   yamlencode(var.policy_reporter_settings)
-#   # ]
-# }
+  lifecycle {
+    precondition {
+      condition     = fileexists(local.kyverno_secret_clone_policy_yaml_path)
+      error_message = " --> Error: Failed to find '${local.kyverno_secret_clone_policy_yaml_path}'. Exit terraform process."
+    }
+  }
+}

@@ -33,24 +33,7 @@ module "kyverno-policy-engine" {
   kyverno_policies_release_name  = var.kyverno_policies_release_name
   kyverno_policies_chart_name    = var.kyverno_policies_chart_name
   kyverno_policies_chart_version = var.kyverno_policies_chart_version
-
-  # # Kyverno UI
-  # policy_reporter_settings           = var.policy_reporter_settings
-  # policy_reporter_namespace          = var.policy_reporter_namespace
-  # policy_reporter_helm_chart_name    = var.policy_reporter_helm_chart_name
-  # policy_reporter_release_name       = var.policy_reporter_release_name
-  # policy_reporter_helm_chart_version = var.policy_reporter_helm_chart_version
-  # ui_enabled                         = var.ui_enabled
-  # domain_name                        = var.domain_name
-  # certificate_arn                    = var.acm_certificate_arn
 }
-
-# module "gatekeeper" {
-#   count        = var.gatekeeper_enabled ? 1 : 0
-#   source       = "./gatekeeper"
-#   namespace    = var.gatekeeper_namespace
-#   cluster_name = var.cluster_name
-# }
 
 # INGRESS CONTROLLERS
 module "alb-controller" {
