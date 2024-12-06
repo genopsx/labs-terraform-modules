@@ -4,6 +4,16 @@ variable "name" {
   default     = "airflow"
 }
 
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID"
+}
+
+variable "subnets" {
+  type        = list(string)
+  description = "List of subnet IDs"
+}
+
 variable "namespace" {
   type        = string
   description = "Namespace name to deploy helm release"
