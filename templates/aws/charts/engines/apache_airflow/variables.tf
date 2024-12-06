@@ -9,11 +9,15 @@ variable "vpc_id" {
   description = "VPC ID"
 }
 
-variable "subnets" {
+variable "private_subnets" {
   type        = list(string)
   description = "List of subnet IDs"
 }
 
+variable "database_subnets" {
+  type        = list(string)
+  description = "List of subnet IDs"
+}
 variable "namespace" {
   type        = string
   description = "Namespace name to deploy helm release"

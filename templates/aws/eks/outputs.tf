@@ -109,6 +109,16 @@ output "node_security_group_arn" {
   value       = module.cluster.node_security_group_arn
 }
 
+output "node_security_group_id" {
+  description = "Node security group ID"
+  value       = module.cluster.node_security_group_id
+}
+
+output "combined_primary_and_nodes_security_groups" {
+  description = "Combined security groups"
+  value       = concat(module.cluster.cluster_primary_security_group_id, module.cluster.node_security_group_arn)
+}
+
 output "cluster_oidc_provider" {
   description = "OIDC provider"
   value       = module.cluster.oidc_provider

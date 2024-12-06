@@ -49,7 +49,7 @@ module "redis-support" {
   redis_sg_name           = "${var.project_prefix}-airflowfdna-redis-sg"
   redis_subnet_group_name = "${var.project_prefix}-airflowfdna-redis-subnetgroup"
   redis_vpc_id            = var.vpc_id
-  redis_subnets           = var.subnets
+  redis_subnets           = var.database_subnets
 }
 
 # Deploy subnet group and parameter group for RDS
@@ -57,7 +57,7 @@ module "rds-support" {
   source = "./modules/rds-support"
 
   rds_subnet_group_name      = "${var.project_prefix}-airflowfdna-metadata-subnetgroup"
-  rds_subnets                = var.subnets
+  rds_subnets                = var.database_subnets
   rds_parameter_group_name   = "${var.project_prefix}-eks-pg${var.rds_parameter_group_family}"
   rds_parameter_group_family = var.rds_parameter_group_family
   rds_parameters             = var.rds_parameters
@@ -70,8 +70,8 @@ module "efs" {
 
   efs_name                  = "${var.project_prefix}-airflowfdna-efs-${var.environment}"
   efs_throughput_mode       = var.efs_throughput_mode
-  efs_mount_targets_subnets = var.subnets
-  efs_mount_targets_sg      = var.cluster_security_groups_names
+  efs_mount_targets_subnets = var.private_subnets
+  efs_mount_targets_sg      = var.cluster_security_groups_ids
   efs_ap_name               = "${var.project_prefix}-airflowfdna-efs-prometheus-ap"
 }
 
@@ -122,7 +122,7 @@ variable "environment" {
 #   description = "List of subnet IDs that the EKS cluster will be deployed in"
 # }
 
-variable "cluster_security_groups_names" {
+variable "cluster_security_groups_ids" {
   type        = list(string)
   description = "Security groups that will attached to the cluster"
 }
