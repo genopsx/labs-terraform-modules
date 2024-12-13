@@ -1,6 +1,5 @@
 module "fargate" {
   source                              = "./fargates"
-  version                             = "20.31.3"
   for_each                            = var.fargate_profiles
   create_fargate_profile              = var.create_fargate_profile
   cluster_name                        = module.cluster.cluster_name
