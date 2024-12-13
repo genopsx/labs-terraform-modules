@@ -6,7 +6,7 @@ locals {
   })
 
   # Kyverno Secret Clone Policy
-  kyverno_secret_clone_policy_yaml_path = "${path.module}/policies/sync-secrets.yaml"
+  kyverno_secret_clone_policy_yaml_path = "${path.module}/policies/sync_secrets.yaml"
   kyverno_secret_clone_policy_yaml      = templatefile(local.kyverno_secret_clone_policy_yaml_path, {})
 
   # Kyverno Additional Configurations
