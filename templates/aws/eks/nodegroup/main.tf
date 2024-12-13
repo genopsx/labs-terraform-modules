@@ -1,6 +1,6 @@
 module "eks_managed_node_groups" {
   source               = "terraform-aws-modules/eks/aws//modules/eks-managed-node-group"
-  version              = "20.8.5"
+  version              = "20.31.3"
   create               = var.create_managed_node_groups
   subnet_ids           = var.nodegroup_subnet_ids
   name                 = var.name
