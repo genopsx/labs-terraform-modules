@@ -1,7 +1,7 @@
 locals {
   # Kyverno Cluster Policy
-  kyverno_cluster_policy_yaml_path = "${path.module}/policies/kyverno_cluster_wide_psa.yaml"
-  kyverno_cluster_policy_yaml = templatefile(local.kyverno_cluster_policy_yaml_path, {
+  kyverno_cluster_policy_yaml_path      = "${path.module}/policies/kyverno_cluster_wide_psa.yaml"
+  kyverno_cluster_policy_yaml           = templatefile(local.kyverno_cluster_policy_yaml_path, {
     cluster_version = var.cluster_version
   })
 
