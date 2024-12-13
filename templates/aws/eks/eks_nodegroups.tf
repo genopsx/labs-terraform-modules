@@ -1,5 +1,6 @@
 module "nodes" {
   source                            = "./nodegroup"
+  version                           = "20.31.3"
   for_each                          = var.eks_managed_node_groups
   name                              = each.key
   cluster_name                      = module.cluster.cluster_name
