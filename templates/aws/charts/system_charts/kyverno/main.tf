@@ -61,7 +61,7 @@ resource "kubectl_manifest" "kyverno_cluster_policy" {
 resource "kubectl_manifest" "secrets_clone_config" {
   depends_on = [helm_release.kyverno_policies]
   for_each   = { for file in local.kyverno_secret_clone_config_yamls_path : file => file }
-  yaml_body  = templatefile("${path.module}/additional_configs/secret_clone/${each.key}", local.vars)
+  yaml_body  = templatefile("${path.module}/additional_configs/secrets_clone/${each.key}", local.vars)
 }
 
 # Next, create the following Kyverno policy. 
