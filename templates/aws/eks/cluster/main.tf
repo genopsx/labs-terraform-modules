@@ -4,7 +4,7 @@
 #tfsec:ignore:aws-ec2-no-public-ingress-sgr
 module "cluster" {
   source                                   = "terraform-aws-modules/eks/aws"
-  version                                  = "20.31.3"
+  version                                  = "20.8.5"
   cluster_name                             = var.cluster_name
   cluster_version                          = var.kubernets_version
   cluster_endpoint_private_access          = false
