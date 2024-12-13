@@ -2,7 +2,7 @@ variable "cluster_version" {
   type        = string
   description = "Version of the cluster"
 }
-# Kyverno policies
+# Kyverno
 variable "kyverno_chart_name" {
   type        = string
   description = "Name of chart"
