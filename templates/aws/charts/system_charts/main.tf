@@ -19,7 +19,7 @@ module "karpenter" {
   cluster_endpoint          = var.cluster_endpoint
 }
 
-module "kyverno-policy-engine" {
+module "kyvernos" {
   source                = "./kyverno"
   depends_on            = [module.karpenter]
   count                 = var.kyverno_enabled ? 1 : 0
