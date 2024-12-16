@@ -5,21 +5,26 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 5.70"
     }
-    helm = {
-      source  = "hashicorp/helm"
-      version = ">= 2.10.0"
+    tls = {
+      source  = "hashicorp/tls"
+      version = ">= 3.0"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = ">= 0.9"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 2.27.0"
+      version = ">= 2.10"
     }
     kubectl = {
       source  = "alekc/kubectl"
       version = "~> 2.0"
     }
-    null = {
-      source  = "hashicorp/null"
-      version = ">= 3.0.0"
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.4.1"
     }
   }
 }
+
