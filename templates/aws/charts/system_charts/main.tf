@@ -28,6 +28,11 @@ module "kyvernos" {
   kyverno_chart_version = var.kyverno_chart_version
   kyverno_namespace     = var.kyverno_namespace
   kyverno_release_name  = var.kyverno_release_name
+
+  # Kyverno Policies
+  kyverno_policies_release_name  = var.kyverno_policies_release_name
+  kyverno_policies_chart_name    = var.kyverno_policies_chart_name
+  kyverno_policies_chart_version = var.kyverno_policies_chart_version
 }
 
 # INGRESS CONTROLLERS
