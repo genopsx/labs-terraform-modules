@@ -67,7 +67,6 @@ variable "karpenter_namespace" {
 }
 
 # Kyverno
-
 variable "kyverno_enabled" {
   type        = bool
   description = "Whether to install kyverno"
