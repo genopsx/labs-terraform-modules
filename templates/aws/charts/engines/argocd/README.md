@@ -190,7 +190,7 @@ No outputs.
 | <a name="input_awssm_slack_secret_name"></a> [awssm\_slack\_secret\_name](#input\_awssm\_slack\_secret\_name) | Name of AWSSM secret where slack token is stored | `string` | `"argocd-slack-app-token"` | no |
 | <a name="input_awssm_sso_secret_name"></a> [awssm\_sso\_secret\_name](#input\_awssm\_sso\_secret\_name) | Name of AWSSM secret | `string` | n/a | yes |
 | <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Name of the chart to install | `string` | `"argo-cd"` | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the chart to install | `string` | `"7.4.2"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the chart to install | `string` | `"7.7.0"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | n/a | `string` | n/a | yes |
 | <a name="input_cluster_oidc_issuer_url"></a> [cluster\_oidc\_issuer\_url](#input\_cluster\_oidc\_issuer\_url) | cluster\_oidc\_issuer\_url | `string` | n/a | yes |
 | <a name="input_cluster_secret_store_ref_name"></a> [cluster\_secret\_store\_ref\_name](#input\_cluster\_secret\_store\_ref\_name) | ClusterSecretStore name | `string` | n/a | yes |

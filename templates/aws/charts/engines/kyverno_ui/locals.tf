@@ -1,5 +1,5 @@
 # locals {
-#   # Kyverno UI 
+#   # Kyverno UI
 #   base_values = templatefile("${path.module}/policy_reporter/values.yaml", {
 #     cert_arn                     = var.certificate_arn
 #     domain                       = var.domain_name

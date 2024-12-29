@@ -33,8 +33,3 @@ variable "subnet_ids" {
   description = "List of subnet IDs that pods in this Fargate profile will be deployed in"
 }
 
-variable "coredns_replicas" {
-  type        = number
-  description = "Number of coredns pod replicas"
-  default     = 2
-}

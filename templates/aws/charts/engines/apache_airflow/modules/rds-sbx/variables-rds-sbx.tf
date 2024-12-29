@@ -68,7 +68,3 @@ variable "airflow_password" {
   sensitive = true
 }
 
-variable "airflow_read_password" {
-  type      = string
-  sensitive = true
-}

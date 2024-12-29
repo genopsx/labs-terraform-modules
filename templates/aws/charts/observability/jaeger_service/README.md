@@ -31,7 +31,7 @@ No modules.
 | <a name="input_acm_certificate_arn"></a> [acm\_certificate\_arn](#input\_acm\_certificate\_arn) | The acm certificate arn of the jaeger | `string` | n/a | yes |
 | <a name="input_demo_app_enabled"></a> [demo\_app\_enabled](#input\_demo\_app\_enabled) | Deploy Jaeger demo application to test the service | `bool` | `false` | no |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name of the jaeger | `string` | n/a | yes |
-| <a name="input_jaeger_helm_chart_version"></a> [jaeger\_helm\_chart\_version](#input\_jaeger\_helm\_chart\_version) | The version of the jaeger helm chart | `string` | `"2.0.1"` | no |
+| <a name="input_jaeger_helm_chart_version"></a> [jaeger\_helm\_chart\_version](#input\_jaeger\_helm\_chart\_version) | The version of the jaeger helm chart | `string` | `"3.2.0"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the jaeger | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace to deploy the jaeger | `string` | `"jaeger"` | no |
 | <a name="input_region"></a> [region](#input\_region) | The region to deploy the jaeger | `string` | n/a | yes |

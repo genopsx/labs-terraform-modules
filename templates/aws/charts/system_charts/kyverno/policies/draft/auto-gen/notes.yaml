@@ -100,7 +100,7 @@ When disabling auto-generation rules for select Pod controllers, or when auto-ge
   operator: AnyNotIn
   value: "{{ request.object.metadata.ownerReferences[].kind }}"
 yaml
-Exclusion by Metadata 
+Exclusion by Metadata
 In some cases, it may be desirable to use an exclude block applied to Pods that uses either labels or annotations. For example, the following match and exclude statement may be written, the purpose of which would be to match any Pods except those that have the annotation policy.test/require-requests-limits=skip.
 
 rules:

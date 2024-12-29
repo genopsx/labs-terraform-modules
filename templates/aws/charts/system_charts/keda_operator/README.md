@@ -100,7 +100,7 @@ Execute `terraform apply` to create the resources on AWS as defined in the modul
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | n/a | `string` | `"keda"` | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | The Keda helm chart version | `string` | `"2.14.3"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | The Keda helm chart version | `string` | `"2.15.2"` | no |
 | <a name="input_cluster_oidc_provider_arn"></a> [cluster\_oidc\_provider\_arn](#input\_cluster\_oidc\_provider\_arn) | The Cluster oidc provider | `string` | n/a | yes |
 | <a name="input_keda_poc_enabled"></a> [keda\_poc\_enabled](#input\_keda\_poc\_enabled) | To enable the keda poc or just install the keda operator | `bool` | `false` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"keda"` | no |

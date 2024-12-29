@@ -29,7 +29,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_extra_values"></a> [extra\_values](#input\_extra\_values) | Extra values to pass to the chart | `map(string)` | `{}` | no |
-| <a name="input_kong_chart_version"></a> [kong\_chart\_version](#input\_kong\_chart\_version) | The version of the chart | `string` | `"2.26.3"` | no |
+| <a name="input_kong_chart_version"></a> [kong\_chart\_version](#input\_kong\_chart\_version) | The version of the chart | `string` | `"2.42.0"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the chart | `string` | `"kong"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace to install the chart | `string` | `"kong"` | no |
 

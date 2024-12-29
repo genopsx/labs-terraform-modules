@@ -24,7 +24,3 @@ variable "efs_mount_targets_sg" {
   description = "List of security groups for EFS drive mount targets"
 }
 
-variable "efs_ap_name" {
-  type        = string
-  description = "Name of access point"
-}

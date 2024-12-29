@@ -276,7 +276,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Name of release | `string` | `"argo-rollouts"` | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Helm chart to release | `string` | `"2.35.1"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Helm chart to release | `string` | `"2.37.7"` | no |
 | <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create the namespace if it does not exist | `bool` | `true` | no |
 | <a name="input_customized_demo_enabled"></a> [customized\_demo\_enabled](#input\_customized\_demo\_enabled) | Create your own customize rollouts demo | `bool` | `false` | no |
 | <a name="input_dashboard_enabled"></a> [dashboard\_enabled](#input\_dashboard\_enabled) | Enable argo-rollouts web dashboard | `bool` | `true` | no |

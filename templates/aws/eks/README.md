@@ -23,7 +23,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_certificate"></a> [certificate](#module\_certificate) | terraform-aws-modules/acm/aws | 4.3.1 |
-| <a name="module_cluster"></a> [cluster](#module\_cluster) | terraform-aws-modules/eks/aws | 20.8.5 |
+| <a name="module_cluster"></a> [cluster](#module\_cluster) | terraform-aws-modules/eks/aws | 20.31.3 |
 | <a name="module_ebs_kms_key"></a> [ebs\_kms\_key](#module\_ebs\_kms\_key) | ./nodegroup/kms | n/a |
 | <a name="module_eks_addons"></a> [eks\_addons](#module\_eks\_addons) | ./addons | n/a |
 | <a name="module_fargate"></a> [fargate](#module\_fargate) | ./fargates | n/a |
@@ -108,7 +108,9 @@
 | <a name="output_cluster_status"></a> [cluster\_status](#output\_cluster\_status) | Cluster status |
 | <a name="output_cluster_token"></a> [cluster\_token](#output\_cluster\_token) | Authorization token for EKS K8S cluster |
 | <a name="output_cluster_version"></a> [cluster\_version](#output\_cluster\_version) | Cluster version |
+| <a name="output_combined_primary_and_nodes_security_group_ids"></a> [combined\_primary\_and\_nodes\_security\_group\_ids](#output\_combined\_primary\_and\_nodes\_security\_group\_ids) | Combined security groups |
 | <a name="output_node_security_group_arn"></a> [node\_security\_group\_arn](#output\_node\_security\_group\_arn) | Node security group ARN |
+| <a name="output_node_security_group_id"></a> [node\_security\_group\_id](#output\_node\_security\_group\_id) | Node security group ID |
 | <a name="output_r53_zone_id"></a> [r53\_zone\_id](#output\_r53\_zone\_id) | Cluster route53 zone id |
 | <a name="output_r53_zone_name"></a> [r53\_zone\_name](#output\_r53\_zone\_name) | Cluster route53 zone name |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC ID, where the cluster was deployed |

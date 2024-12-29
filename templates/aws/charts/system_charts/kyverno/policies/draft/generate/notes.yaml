@@ -1,8 +1,8 @@
-# Generate Resources 
-# Kyverno has the ability to generate (i.e., create) a new Kubernetes resource based upon a definition stored in a policy. 
-# Like both validate and mutate rules, Kyverno generate rules use similar concepts and structures to express policy. 
-# The generation ability is both powerful and flexible with one of its most useful aspects being, in addition to the initial generation, it has the ability to continually synchronize the resources it has generated. 
-# Generate rules can be a powerful automation tool and can solve many common challenges faced by Kubernetes operators. 
+# Generate Resources
+# Kyverno has the ability to generate (i.e., create) a new Kubernetes resource based upon a definition stored in a policy.
+# Like both validate and mutate rules, Kyverno generate rules use similar concepts and structures to express policy.
+# The generation ability is both powerful and flexible with one of its most useful aspects being, in addition to the initial generation, it has the ability to continually synchronize the resources it has generated.
+# Generate rules can be a powerful automation tool and can solve many common challenges faced by Kubernetes operators.
 # Let’s look at one such use case in this guide.
 
 # We will use a Kyverno generate policy to generate an image pull secret in a new Namespace.
@@ -85,7 +85,7 @@ spec:
 
 # kubectl -n mytestns get secret
 # bash
-# You should see that Kyverno has generated the regcred Secret using the source Secret from the default Namespace as the template. 
+# You should see that Kyverno has generated the regcred Secret using the source Secret from the default Namespace as the template.
 # If you wish, you may also modify the source Secret and watch as Kyverno synchronizes those changes down to wherever it has generated it.
 
 # With a basic understanding of generate policies, clean up by deleting the policy you created above.

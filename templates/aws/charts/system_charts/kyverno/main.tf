@@ -54,8 +54,8 @@ resource "kubectl_manifest" "kyverno_cluster_policy" {
   }
 }
 
-# By default, Kyverno is configured with minimal permissions and does not have access to security sensitive resources like Secrets. 
-# You can provide additional permissions using cluster role aggregation. 
+# By default, Kyverno is configured with minimal permissions and does not have access to security sensitive resources like Secrets.
+# You can provide additional permissions using cluster role aggregation.
 # The following role permits the Kyverno background-controller to create (clone) secrets.
 # https://kyverno.io/docs/introduction/quick-start/
 resource "kubectl_manifest" "secrets_clone_config" {
@@ -64,8 +64,8 @@ resource "kubectl_manifest" "secrets_clone_config" {
   yaml_body  = templatefile("${path.module}/additional_configs/secrets_clone/${each.key}", local.vars)
 }
 
-# Next, create the following Kyverno policy. 
-# The sync-secrets policy will match on any newly-created Namespace 
+# Next, create the following Kyverno policy.
+# The sync-secrets policy will match on any newly-created Namespace
 # and will clone the Secret we just created earlier into that new Namespace.
 resource "kubectl_manifest" "secrets_clone_policy" {
   depends_on = [kubectl_manifest.secrets_clone_config]

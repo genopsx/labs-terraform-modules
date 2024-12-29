@@ -91,7 +91,7 @@ module "kong" {
 
 # CUSTOM HELM ADDONS
 module "eks_blueprints_addons" {
-  source                    = "./custom-helm-addons"
+  source                    = "./custom_helm_addons"
   cluster_name              = var.cluster_name
   cluster_version           = var.cluster_version
   cluster_oidc_provider_arn = var.cluster_oidc_provider_arn

@@ -23,7 +23,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_additional_policy"></a> [additional\_policy](#module\_additional\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | 5.39.0 |
-| <a name="module_eks_managed_node_groups"></a> [eks\_managed\_node\_groups](#module\_eks\_managed\_node\_groups) | terraform-aws-modules/eks/aws//modules/eks-managed-node-group | 20.8.5 |
+| <a name="module_eks_managed_node_groups"></a> [eks\_managed\_node\_groups](#module\_eks\_managed\_node\_groups) | terraform-aws-modules/eks/aws//modules/eks-managed-node-group | 20.31.3 |
 
 ## Resources
 

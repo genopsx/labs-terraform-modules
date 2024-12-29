@@ -1,9 +1,9 @@
 # Mutation is the ability to change or “mutate” a resource in some way prior to it being admitted into the cluster.
-# A mutate rule is similar to a validate rule in that it selects some type of resource (like Pods or ConfigMaps) 
+# A mutate rule is similar to a validate rule in that it selects some type of resource (like Pods or ConfigMaps)
 # and defines what the desired state should look like.
-# Add this Kyverno mutate policy to your cluster. 
-# This policy will add the label team to any new Pod and give it the value of bravo but only if a Pod does not already have this label assigned. 
-# Kyverno has the ability to perform basic “if-then” logical decisions in a very easy way making policies trivial to write and read. 
+# Add this Kyverno mutate policy to your cluster.
+# This policy will add the label team to any new Pod and give it the value of bravo but only if a Pod does not already have this label assigned.
+# Kyverno has the ability to perform basic “if-then” logical decisions in a very easy way making policies trivial to write and read.
 # The +(team) notation uses a Kyverno anchor to define the behavior Kyverno should take if the label key is not found.
 
 apiVersion: kyverno.io/v1

@@ -5,8 +5,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.4.1 |
 | <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0 |
 
 ## Providers
@@ -29,6 +29,8 @@ No providers.
 | <a name="module_keda"></a> [keda](#module\_keda) | ./keda_operator | n/a |
 | <a name="module_kong"></a> [kong](#module\_kong) | ./kong_ingress_controller | n/a |
 | <a name="module_metrics_server"></a> [metrics\_server](#module\_metrics\_server) | ./metrics_server | n/a |
+| <a name="module_nvidia_device_plugin"></a> [nvidia\_device\_plugin](#module\_nvidia\_device\_plugin) | ./nvidia_device_plugin | n/a |
+| <a name="module_yunikorn"></a> [yunikorn](#module\_yunikorn) | ./yunikorn | n/a |
 
 ## Resources
 
@@ -69,9 +71,17 @@ No resources.
 | <a name="input_kong_namespace"></a> [kong\_namespace](#input\_kong\_namespace) | The namespace to install kong | `string` | `"kong"` | no |
 | <a name="input_metrics_server_enabled"></a> [metrics\_server\_enabled](#input\_metrics\_server\_enabled) | Metrics Server | `bool` | `false` | no |
 | <a name="input_metrics_server_namespace"></a> [metrics\_server\_namespace](#input\_metrics\_server\_namespace) | Namespace name to deploy helm release | `string` | `"kube-system"` | no |
+| <a name="input_nvdp_chart_name"></a> [nvdp\_chart\_name](#input\_nvdp\_chart\_name) | Name of chart for nvidia-device-plugin | `string` | n/a | yes |
+| <a name="input_nvdp_chart_version"></a> [nvdp\_chart\_version](#input\_nvdp\_chart\_version) | Version of the chart for nvidia-device-plugin | `string` | n/a | yes |
+| <a name="input_nvdp_release_name"></a> [nvdp\_release\_name](#input\_nvdp\_release\_name) | Name of release for nvidia-device-plugin | `string` | n/a | yes |
+| <a name="input_nvidia_device_plugin_enabled"></a> [nvidia\_device\_plugin\_enabled](#input\_nvidia\_device\_plugin\_enabled) | NVIDIA Device Plugin | `bool` | `false` | no |
 | <a name="input_region"></a> [region](#input\_region) | The region to host the cluster in | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be attached to resources | `map(string)` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC ID to host the cluster in | `string` | n/a | yes |
+| <a name="input_yunikorn_chart_name"></a> [yunikorn\_chart\_name](#input\_yunikorn\_chart\_name) | Name of chart for yunikorn | `string` | n/a | yes |
+| <a name="input_yunikorn_chart_version"></a> [yunikorn\_chart\_version](#input\_yunikorn\_chart\_version) | Version of the chart for yunikorn | `string` | n/a | yes |
+| <a name="input_yunikorn_enabled"></a> [yunikorn\_enabled](#input\_yunikorn\_enabled) | Yunikorn | `bool` | `false` | no |
+| <a name="input_yunikorn_release_name"></a> [yunikorn\_release\_name](#input\_yunikorn\_release\_name) | Name of release for yunikorn | `string` | n/a | yes |
 
 ## Outputs
 

@@ -7,7 +7,7 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | ~> 5.0 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.4.1 |
 | <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.27.0 |
 
@@ -24,6 +24,7 @@ No providers.
 | <a name="module_argo_workflows"></a> [argo\_workflows](#module\_argo\_workflows) | ./argo_workflows | n/a |
 | <a name="module_argocd"></a> [argocd](#module\_argocd) | ./argocd | n/a |
 | <a name="module_jenkins"></a> [jenkins](#module\_jenkins) | ./jenkins_server | n/a |
+| <a name="module_kyverno-policy-engine"></a> [kyverno-policy-engine](#module\_kyverno-policy-engine) | ./kyverno_ui | n/a |
 
 ## Resources
 
@@ -83,9 +84,15 @@ No resources.
 | <a name="input_jenkins_namespace"></a> [jenkins\_namespace](#input\_jenkins\_namespace) | n/a | `string` | `"jenkins"` | no |
 | <a name="input_jenkins_serviceaccount"></a> [jenkins\_serviceaccount](#input\_jenkins\_serviceaccount) | n/a | `string` | `"jenkins"` | no |
 | <a name="input_negative_feedback"></a> [negative\_feedback](#input\_negative\_feedback) | Whether to get negattive notifications from ArgoCD | `bool` | `true` | no |
+| <a name="input_policy_reporter_helm_chart_name"></a> [policy\_reporter\_helm\_chart\_name](#input\_policy\_reporter\_helm\_chart\_name) | Name of the chart to install | `string` | n/a | yes |
+| <a name="input_policy_reporter_helm_chart_version"></a> [policy\_reporter\_helm\_chart\_version](#input\_policy\_reporter\_helm\_chart\_version) | Version of the chart to install | `string` | n/a | yes |
+| <a name="input_policy_reporter_namespace"></a> [policy\_reporter\_namespace](#input\_policy\_reporter\_namespace) | Namespace to install the chart into | `string` | n/a | yes |
+| <a name="input_policy_reporter_release_name"></a> [policy\_reporter\_release\_name](#input\_policy\_reporter\_release\_name) | Name of the release | `string` | n/a | yes |
+| <a name="input_policy_reporter_settings"></a> [policy\_reporter\_settings](#input\_policy\_reporter\_settings) | Settings for policy reporter | `map(any)` | n/a | yes |
 | <a name="input_possitive_feedback"></a> [possitive\_feedback](#input\_possitive\_feedback) | Whether to get possitive notifications from ArgoCD | `bool` | `false` | no |
 | <a name="input_region"></a> [region](#input\_region) | General | `string` | n/a | yes |
 | <a name="input_slack_poc_enabled"></a> [slack\_poc\_enabled](#input\_slack\_poc\_enabled) | Whether to test your slack channel with ArgoCD notification | `bool` | `false` | no |
+| <a name="input_ui_enabled"></a> [ui\_enabled](#input\_ui\_enabled) | Enable the UI | `bool` | `false` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | tflint-ignore: terraform\_unused\_declarations | `string` | n/a | yes |
 
 ## Outputs

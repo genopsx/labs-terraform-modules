@@ -105,9 +105,9 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_argo_events_chart_name"></a> [argo\_events\_chart\_name](#input\_argo\_events\_chart\_name) | Name of chart | `string` | `"argo-events"` | no |
-| <a name="input_argo_events_chart_version"></a> [argo\_events\_chart\_version](#input\_argo\_events\_chart\_version) | Version of argo-events chart | `string` | `"2.4.4"` | no |
+| <a name="input_argo_events_chart_version"></a> [argo\_events\_chart\_version](#input\_argo\_events\_chart\_version) | Version of argo-events chart | `string` | `"2.4.8"` | no |
 | <a name="input_argo_workflows_chart_name"></a> [argo\_workflows\_chart\_name](#input\_argo\_workflows\_chart\_name) | Name of chart | `string` | `"argo-workflows"` | no |
-| <a name="input_argo_workflows_chart_version"></a> [argo\_workflows\_chart\_version](#input\_argo\_workflows\_chart\_version) | Version of argo-workflows chart | `string` | `"0.41.0"` | no |
+| <a name="input_argo_workflows_chart_version"></a> [argo\_workflows\_chart\_version](#input\_argo\_workflows\_chart\_version) | Version of argo-workflows chart | `string` | `"0.42.7"` | no |
 | <a name="input_argocd_github_sso_secret"></a> [argocd\_github\_sso\_secret](#input\_argocd\_github\_sso\_secret) | Name of secret contains GitHub app credentials | `string` | n/a | yes |
 | <a name="input_argocd_hostname"></a> [argocd\_hostname](#input\_argocd\_hostname) | Argocd host name | `string` | n/a | yes |
 | <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create the namespace if it does not exist | `bool` | `true` | no |
