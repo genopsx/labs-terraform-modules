@@ -22,7 +22,7 @@ No providers.
 | <a name="module_cert-manager"></a> [cert-manager](#module\_cert-manager) | ./certificate_manager | n/a |
 | <a name="module_cluster-autoscaler"></a> [cluster-autoscaler](#module\_cluster-autoscaler) | ./cluster_autoscaler | n/a |
 | <a name="module_ebs_csi_driver"></a> [ebs\_csi\_driver](#module\_ebs\_csi\_driver) | ./ebs_csi | n/a |
-| <a name="module_eks_blueprints_addons"></a> [eks\_blueprints\_addons](#module\_eks\_blueprints\_addons) | ./custom-helm-addons | n/a |
+| <a name="module_eks_blueprints_addons"></a> [eks\_blueprints\_addons](#module\_eks\_blueprints\_addons) | ./custom_helm_addons | n/a |
 | <a name="module_eks_external-dns"></a> [eks\_external-dns](#module\_eks\_external-dns) | ./eks_external_dns | n/a |
 | <a name="module_external_secrets"></a> [external\_secrets](#module\_external\_secrets) | ./external_secrets | n/a |
 | <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | ./karpenter | n/a |
