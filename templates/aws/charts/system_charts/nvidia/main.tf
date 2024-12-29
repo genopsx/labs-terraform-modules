@@ -12,7 +12,7 @@ resource "helm_release" "gpu_operator" {
   chart            = "gpu-operator"
   namespace        = "nvidia"
   create_namespace = true
-  repository       = "https://helm.ngc.nvidia.com/nvidia/gpu-operator"
+  repository       = "https://nvidia.github.io/gpu-operator"
   version          = "v24.9.1"
 }
 
@@ -21,7 +21,7 @@ resource "helm_release" "network_operator" {
   chart            = "network-operator"
   namespace        = "nvidia"
   create_namespace = true
-  repository       = "https://helm.ngc.nvidia.com/nvidia/network-operator"
+  repository       = "https://helm.ngc.nvidia.com/nvidia"
   version          = "24.10.0"
 }
 
@@ -31,6 +31,6 @@ resource "helm_release" "nim_operator" {
   chart            = "k8s-nim-operator"
   namespace        = "nvidia"
   create_namespace = true
-  repository       = "https://helm.ngc.nvidia.com/nvidia/k8s-nim-operator"
+  repository       = "https://helm.ngc.nvidia.com/nvidia"
   version          = "1.0.0"
 }

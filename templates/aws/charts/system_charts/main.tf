@@ -46,10 +46,10 @@ module "karpenter" {
 #   yunikorn_chart_version = var.yunikorn_chart_version
 # }
 
-# NVIDIA DEVICE PLUGIN
-module "nvidia_device_plugin" {
-  count              = var.nvidia_device_plugin_enabled ? 1 : 0
-  source             = "./nvidia_device_plugin"
+# NVIDIA
+module "nvidia" {
+  count              = var.nvidia_enabled ? 1 : 0
+  source             = "./nvidia"
   nvdp_release_name  = var.nvdp_release_name
   nvdp_chart_name    = var.nvdp_chart_name
   nvdp_chart_version = var.nvdp_chart_version

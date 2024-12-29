@@ -126,8 +126,8 @@ variable "karpenter_namespace" {
 #   description = "Version of the chart for yunikorn"
 # }
 
-# NVIDIA Device Plugin
-variable "nvidia_device_plugin_enabled" {
+# NVIDIA 
+variable "nvidia_enabled" {
   type    = bool
   default = false
 }
