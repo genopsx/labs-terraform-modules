@@ -23,14 +23,14 @@
 
 # Deploy S3 bucket for Airflow logs
 module "s3" {
-  source = "./modules/s3"
+  source = "../modules/s3"
 
   bucket_name = "${var.project_prefix}-airflowfdna-task-logs-${var.region}-${var.environment}"
 }
 
 # Deploy subnet group and security group for Elasticache Redis
 module "redis-support" {
-  source = "./modules/redis-support"
+  source = "../modules/redis-support"
 
   redis_sg_name           = "${var.project_prefix}-airflowfdna-redis-sg"
   redis_subnet_group_name = "${var.project_prefix}-airflowfdna-redis-subnetgroup"
@@ -40,7 +40,7 @@ module "redis-support" {
 
 # Deploy subnet group and parameter group for RDS
 module "rds-support" {
-  source = "./modules/rds-support"
+  source = "../modules/rds-support"
 
   rds_subnet_group_name      = "${var.project_prefix}-airflowfdna-metadata-subnetgroup"
   rds_subnets                = var.routable_subnets
@@ -52,11 +52,11 @@ module "rds-support" {
 
 # Deploy EFS drive with mount targets and access point for prometheus
 module "efs" {
-  source = "./modules/efs"
+  source = "../modules/efs"
 
   efs_name                  = "${var.project_prefix}-airflowfdna-efs-${var.environment}"
   efs_throughput_mode       = var.efs_throughput_mode
   efs_mount_targets_subnets = var.routable_subnets
   efs_mount_targets_sg      = var.cluster_security_groups_names
-  efs_ap_name               = "${var.project_prefix}-airflowfdna-efs-prometheus-ap"
+  # efs_ap_name               = "${var.project_prefix}-airflowfdna-efs-prometheus-ap"
 }

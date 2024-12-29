@@ -1,35 +1,35 @@
-# Required AWS provider version
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.16.2"
-    }
-  }
-  # Setup S3 and DynamoDB backend. Both S3 bucket and DynamoDB are created as a prerequisite during AWS account setup. Backend key must be unique in given AWS account.
-  backend "s3" {
-  }
-}
+# # Required AWS provider version
+# terraform {
+#   required_providers {
+#     aws = {
+#       source  = "hashicorp/aws"
+#       version = "~> 5.16.2"
+#     }
+#   }
+#   # Setup S3 and DynamoDB backend. Both S3 bucket and DynamoDB are created as a prerequisite during AWS account setup. Backend key must be unique in given AWS account.
+#   backend "s3" {
+#   }
+# }
 
 # Setup AWS provider with default tags as requested by Merck policy. Resources will be deployed to this region.
-provider "aws" {
-  region = var.region
-  default_tags {
-    tags = {
-      Environment        = var.common_tags.Environment
-      Application        = var.common_tags.Application
-      Costcenter         = var.common_tags.Costcenter
-      Division           = var.common_tags.Division
-      DataClassification = var.common_tags.DataClassification
-      Consumer           = var.common_tags.Consumer
-      Service            = var.common_tags.Service
-      Project            = var.common_tags.Project
-    }
-  }
-  assume_role {
-    role_arn = "arn:aws:iam::331013986936:role/airflow-eks-deployment-role"
-  }
-}
+# provider "aws" {
+#   region = var.region
+#   default_tags {
+#     tags = {
+#       Environment        = var.common_tags.Environment
+#       Application        = var.common_tags.Application
+#       Costcenter         = var.common_tags.Costcenter
+#       Division           = var.common_tags.Division
+#       DataClassification = var.common_tags.DataClassification
+#       Consumer           = var.common_tags.Consumer
+#       Service            = var.common_tags.Service
+#       Project            = var.common_tags.Project
+#     }
+#   }
+#   assume_role {
+#     role_arn = "arn:aws:iam::331013986936:role/airflow-eks-deployment-role"
+#   }
+# }
 
 # AWS provider with different region that will be used for cross-region replication
 provider "aws" {
@@ -47,18 +47,18 @@ provider "aws" {
       Project            = var.common_tags.Project
     }
   }
-  assume_role {
-    role_arn = "arn:aws:iam::331013986936:role/airflow-eks-deployment-role"
-  }
+  # assume_role {
+  #   role_arn = "arn:aws:iam::331013986936:role/airflow-eks-deployment-role"
+  # }
 }
 
 # AWS provider with static us-east-1 region. In us-east-1 region there will be AWS secretsmanager secret that will have sensitive values that are common across instances.
 provider "aws" {
   region = "us-east-1"
   alias  = "secrets"
-  assume_role {
-    role_arn = "arn:aws:iam::331013986936:role/airflow-eks-deployment-role"
-  }
+  # assume_role {
+  #   role_arn = "arn:aws:iam::331013986936:role/airflow-eks-deployment-role"
+  # }
 }
 
 # Generate fernet key for Airflow
@@ -106,7 +106,7 @@ locals {
 
 # Create fargate profile in existing EKS cluster for namespace where Airflow instance will run.
 module "eks-fargate-proj" {
-  source = "../../../../../modules/eks-fargate-proj"
+  source = "../../modules/eks-fargate-proj"
 
   cluster_name      = "aparflow-airflow-eks-cluster"
   profile_name      = "${var.project_prefix}-airflowfdna-eks-fargate-${var.project_id}"
@@ -118,7 +118,7 @@ module "eks-fargate-proj" {
 
 # Create EFS Access point in region EFS drive where DAGs for given Airflow instance will be stored.
 module "efs-proj" {
-  source = "../../../../../modules/efs-proj"
+  source = "../../modules/efs-proj"
 
   efs_name    = "aparflow-airflowfdna-efs-dev"
   efs_path    = "/${var.project_id}_dags"
@@ -128,7 +128,7 @@ module "efs-proj" {
 
 # Create Postgres RDS for Airflow metadata database
 module "rds" {
-  source = "../../../../../modules/rds"
+  source = "../../modules/rds"
 
   identifier                = "${var.project_prefix}-airflowfdna-metadata-${var.project_id}-${var.environment}"
   allocated_storage         = var.rds_allocated_storage
@@ -157,7 +157,7 @@ module "rds" {
 
 # Create elasticache Redis. Is used as message broker for Celery.
 module "redis" {
-  source = "../../../../../modules/redis"
+  source = "../../modules/redis"
 
   auth_token           = local.credentials.redis_auth
   replication_group_id = "${var.project_prefix}-redis-${var.project_id}-${var.environment}"
@@ -176,7 +176,7 @@ module "redis" {
 
 # Create secret in AWS secrets manager with sensitive values that are needed by Airflow instance.
 module "secretsmanager" {
-  source = "../../../../../modules/secretsmanager"
+  source = "../../modules/secretsmanager"
 
   project_prefix               = var.project_prefix
   project_id                   = var.project_id

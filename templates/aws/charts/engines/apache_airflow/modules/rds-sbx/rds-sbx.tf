@@ -6,6 +6,11 @@ terraform {
       version               = ">= 4.0.0"
       configuration_aliases = [aws.main, aws.replica]
     }
+
+    null = {
+      source  = "hashicorp/null"
+      version = ">= 3.0.0"
+    }
   }
 }
 

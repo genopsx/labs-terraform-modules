@@ -1,7 +1,3 @@
-variable "common_tags" {
-  description = "Common tags to be assigned across infrastructure pieces"
-  type        = map(string)
-}
 
 variable "project_prefix" {
   type        = string
@@ -11,11 +7,6 @@ variable "project_prefix" {
 variable "region" {
   type        = string
   description = "AWS region"
-}
-
-variable "aws_account_number" {
-  type        = string
-  description = "AWS account number. 12 digits."
 }
 
 variable "environment" {
@@ -28,21 +19,6 @@ variable "target_vpc_id" {
   description = "ID of target VPC"
 }
 
-variable "vpc_cni_addon_version" {
-  type        = string
-  description = "vpc cni addon eks version"
-}
-
-variable "coredns_addon_version" {
-  type        = string
-  description = "coredns addon eks version"
-}
-
-variable "kube_proxy_addon_version" {
-  type        = string
-  description = "kube proxy addon eks version"
-}
-
 variable "routable_subnets" {
   type        = list(any)
   description = "List of subnet IDs that the EKS cluster will be deployed in"
@@ -51,26 +27,6 @@ variable "routable_subnets" {
 variable "cluster_security_groups_names" {
   type        = list(string)
   description = "Security groups that will attached to the cluster"
-}
-
-variable "enabled_cluster_log_types" {
-  type        = list(string)
-  description = "A list of the desired control plane logging to enable. For more information, see https://docs.aws.amazon.com/en_us/eks/latest/userguide/control-plane-logs.html. Possible values [`api`, `audit`, `authenticator`, `controllerManager`, `scheduler`]"
-}
-
-variable "kubernetes_version" {
-  type        = string
-  description = "Version of kubernetes"
-}
-
-variable "non_routable_subnets" {
-  type        = list(any)
-  description = "List of subnet IDs that the k8s pods will be deployed in. Merck non routables"
-}
-
-variable "route53_hosted_zone_name" {
-  type        = string
-  description = "Hosted zone name for this cluster e.g. usdev.airflow.merck.com"
 }
 
 variable "efs_throughput_mode" {
@@ -88,7 +44,3 @@ variable "rds_parameters" {
   type        = list(map(string))
 }
 
-variable "coredns_replicas" {
-  type        = number
-  description = "Number of coredns pod replicas"
-}
