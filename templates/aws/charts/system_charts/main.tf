@@ -38,13 +38,13 @@ module "karpenter" {
 
 
 # YUNIKORN
-module "yunikorn" {
-  count                  = var.yunikorn_enabled ? 1 : 0
-  source                 = "./yunikorn"
-  yunikorn_release_name  = var.yunikorn_release_name
-  yunikorn_chart_name    = var.yunikorn_chart_name
-  yunikorn_chart_version = var.yunikorn_chart_version
-}
+# module "yunikorn" {
+#   count                  = var.yunikorn_enabled ? 1 : 0
+#   source                 = "./yunikorn"
+#   yunikorn_release_name  = var.yunikorn_release_name
+#   yunikorn_chart_name    = var.yunikorn_chart_name
+#   yunikorn_chart_version = var.yunikorn_chart_version
+# }
 
 # NVIDIA DEVICE PLUGIN
 module "nvidia_device_plugin" {

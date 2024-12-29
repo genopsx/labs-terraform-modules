@@ -108,23 +108,23 @@ variable "karpenter_namespace" {
 #   description = "Version of the chart for policy"
 # }
 
-# Yunikorn
-variable "yunikorn_enabled" {
-  type    = bool
-  default = false
-}
-variable "yunikorn_release_name" {
-  type        = string
-  description = "Name of release for yunikorn"
-}
-variable "yunikorn_chart_name" {
-  type        = string
-  description = "Name of chart for yunikorn"
-}
-variable "yunikorn_chart_version" {
-  type        = string
-  description = "Version of the chart for yunikorn"
-}
+# # Yunikorn
+# variable "yunikorn_enabled" {
+#   type    = bool
+#   default = false
+# }
+# variable "yunikorn_release_name" {
+#   type        = string
+#   description = "Name of release for yunikorn"
+# }
+# variable "yunikorn_chart_name" {
+#   type        = string
+#   description = "Name of chart for yunikorn"
+# }
+# variable "yunikorn_chart_version" {
+#   type        = string
+#   description = "Version of the chart for yunikorn"
+# }
 
 # NVIDIA Device Plugin
 variable "nvidia_device_plugin_enabled" {
