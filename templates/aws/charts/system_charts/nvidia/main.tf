@@ -21,16 +21,16 @@ resource "helm_release" "network_operator" {
   chart            = "network-operator"
   namespace        = "nvidia"
   create_namespace = true
-  repository       = "https://helm.ngc.nvidia.com/nvidia"
+  repository       = "https://nvidia.github.io/network-operator"
   version          = "24.10.0"
 }
 
 
-# resource "helm_release" "nim_operator" {
-#   name             = "nim-operator"
-#   chart            = "k8s-nim-operator"
-#   namespace        = "nvidia"
-#   create_namespace = true
-#   repository       = "https://helm.ngc.nvidia.com/nvidia"
-#   version          = "1.0.0"
-# }
+resource "helm_release" "nim_operator" {
+  name             = "nim-operator"
+  chart            = "k8s-nim-operator"
+  namespace        = "nvidia"
+  create_namespace = true
+  repository       = "https://helm.ngc.nvidia.com/nvidia"
+  version          = "1.0.0"
+}
