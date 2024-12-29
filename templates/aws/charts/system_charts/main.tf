@@ -9,6 +9,7 @@ module "cluster-autoscaler" {
   cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
 }
 
+# KARPENTER
 module "karpenter" {
   count                     = var.karpenter_enabled && !var.cluster_autoscaler_enabled ? 1 : 0
   source                    = "./karpenter"
@@ -19,20 +20,39 @@ module "karpenter" {
   cluster_endpoint          = var.cluster_endpoint
 }
 
-module "kyvernos" {
-  source                = "./kyverno"
-  depends_on            = [module.karpenter]
-  count                 = var.kyverno_enabled ? 1 : 0
-  cluster_version       = var.cluster_version
-  kyverno_chart_name    = var.kyverno_chart_name
-  kyverno_chart_version = var.kyverno_chart_version
-  kyverno_namespace     = var.kyverno_namespace
-  kyverno_release_name  = var.kyverno_release_name
+# module "kyvernos" {
+#   count                 = var.kyverno_enabled ? 1 : 0
+#   source                = "./kyverno"
+#   depends_on            = [module.karpenter]
+#   cluster_version       = var.cluster_version
+#   kyverno_chart_name    = var.kyverno_chart_name
+#   kyverno_chart_version = var.kyverno_chart_version
+#   kyverno_namespace     = var.kyverno_namespace
+#   kyverno_release_name  = var.kyverno_release_name
 
-  # Kyverno Policies
-  kyverno_policies_release_name  = var.kyverno_policies_release_name
-  kyverno_policies_chart_name    = var.kyverno_policies_chart_name
-  kyverno_policies_chart_version = var.kyverno_policies_chart_version
+#   # Kyverno Policies
+#   kyverno_policies_release_name  = var.kyverno_policies_release_name
+#   kyverno_policies_chart_name    = var.kyverno_policies_chart_name
+#   kyverno_policies_chart_version = var.kyverno_policies_chart_version
+# }
+
+
+# YUNIKORN
+module "yunikorn" {
+  count                  = var.yunikorn_enabled ? 1 : 0
+  source                 = "./yunikorn"
+  yunikorn_release_name  = var.yunikorn_release_name
+  yunikorn_chart_name    = var.yunikorn_chart_name
+  yunikorn_chart_version = var.yunikorn_chart_version
+}
+
+# NVIDIA DEVICE PLUGIN
+module "nvidia_device_plugin" {
+  count              = var.nvidia_device_plugin_enabled ? 1 : 0
+  source             = "./nvidia_device_plugin"
+  nvdp_release_name  = var.nvdp_release_name
+  nvdp_chart_name    = var.nvdp_chart_name
+  nvdp_chart_version = var.nvdp_chart_version
 }
 
 # INGRESS CONTROLLERS
@@ -47,6 +67,7 @@ module "alb-controller" {
   vpc_id                    = var.vpc_id
 }
 
+# KONG
 module "kong" {
   count     = var.kong_enabled && !var.alb_controller_enabled ? 1 : 0
   source    = "./kong_ingress_controller"
@@ -68,7 +89,7 @@ module "kong" {
 #   ...
 # }
 
-# Cluster Custom Helm Addons(operator)
+# CUSTOM HELM ADDONS
 module "eks_blueprints_addons" {
   source                    = "./custom-helm-addons"
   cluster_name              = var.cluster_name
@@ -79,6 +100,7 @@ module "eks_blueprints_addons" {
   tags                      = var.tags
 }
 
+# NODE TERMINATION HANDLER
 module "aws_node_termination_handler" {
   count        = var.aws_node_termination_handler_enabled ? 1 : 0
   source       = "./aws_node_termination_handler"
@@ -93,6 +115,7 @@ module "metrics_server" {
   cluster_name = var.cluster_name
 }
 
+# EBS CSI DRIVER
 module "ebs_csi_driver" {
   count                     = var.ebs_csi_enabled ? 1 : 0
   source                    = "./ebs_csi"
@@ -101,6 +124,8 @@ module "ebs_csi_driver" {
   cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
 }
 
+
+# EXTERNAL DNS
 module "eks_external-dns" {
   count                     = var.eks_external_dns_enabled ? 1 : 0
   source                    = "./eks_external_dns"
@@ -112,6 +137,7 @@ module "eks_external-dns" {
   create_role_enabled       = true
 }
 
+# CERTIFICATE MANAGER
 module "cert-manager" {
   count        = var.cert_manager_enabled ? 1 : 0
   source       = "./certificate_manager"

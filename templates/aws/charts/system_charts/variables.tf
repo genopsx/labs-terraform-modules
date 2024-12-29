@@ -66,46 +66,83 @@ variable "karpenter_namespace" {
   default = "kube-system"
 }
 
-# Kyverno
-variable "kyverno_enabled" {
-  type        = bool
-  description = "Whether to install kyverno"
-  default     = false
+# # Kyverno
+# variable "kyverno_enabled" {
+#   type        = bool
+#   description = "Whether to install kyverno"
+#   default     = false
+# }
+# variable "kyverno_chart_name" {
+#   type        = string
+#   description = "Name of chart"
+# }
+
+# variable "kyverno_chart_version" {
+#   type        = string
+#   description = "Version of kyverno chart"
+# }
+
+# variable "kyverno_namespace" {
+#   type        = string
+#   description = "Namespace to install the chart into"
+# }
+
+# variable "kyverno_release_name" {
+#   type        = string
+#   description = "Name of release for kyverno"
+# }
+
+# # Kyverno policies
+# variable "kyverno_policies_release_name" {
+#   type        = string
+#   description = "Name of release for policy"
+# }
+
+# variable "kyverno_policies_chart_name" {
+#   type        = string
+#   description = "Name of chart for policy"
+# }
+
+# variable "kyverno_policies_chart_version" {
+#   type        = string
+#   description = "Version of the chart for policy"
+# }
+
+# Yunikorn
+variable "yunikorn_enabled" {
+  type    = bool
+  default = false
 }
-variable "kyverno_chart_name" {
+variable "yunikorn_release_name" {
   type        = string
-  description = "Name of chart"
+  description = "Name of release for yunikorn"
+}
+variable "yunikorn_chart_name" {
+  type        = string
+  description = "Name of chart for yunikorn"
+}
+variable "yunikorn_chart_version" {
+  type        = string
+  description = "Version of the chart for yunikorn"
 }
 
-variable "kyverno_chart_version" {
+# NVIDIA Device Plugin
+variable "nvidia_device_plugin_enabled" {
+  type    = bool
+  default = false
+}
+variable "nvdp_release_name" {
   type        = string
-  description = "Version of kyverno chart"
+  description = "Name of release for nvidia-device-plugin"
+}
+variable "nvdp_chart_name" {
+  type        = string
+  description = "Name of chart for nvidia-device-plugin"
 }
 
-variable "kyverno_namespace" {
+variable "nvdp_chart_version" {
   type        = string
-  description = "Namespace to install the chart into"
-}
-
-variable "kyverno_release_name" {
-  type        = string
-  description = "Name of release for kyverno"
-}
-
-# Kyverno policies
-variable "kyverno_policies_release_name" {
-  type        = string
-  description = "Name of release for policy"
-}
-
-variable "kyverno_policies_chart_name" {
-  type        = string
-  description = "Name of chart for policy"
-}
-
-variable "kyverno_policies_chart_version" {
-  type        = string
-  description = "Version of the chart for policy"
+  description = "Version of the chart for nvidia-device-plugin"
 }
 
 # AWS LB Controller
@@ -118,7 +155,7 @@ variable "alb_controller_namespace" {
   default = "kube-system"
 }
 
-## Kong
+# Kong
 variable "kong_enabled" {
   description = "Whether to install kong"
   type        = bool
