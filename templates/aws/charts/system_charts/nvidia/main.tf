@@ -16,14 +16,14 @@ resource "helm_release" "gpu_operator" {
   version          = "v24.9.1"
 }
 
-resource "helm_release" "network_operator" {
-  name             = "network-operator"
-  chart            = "network-operator"
-  namespace        = "nvidia"
-  create_namespace = true
-  repository       = "https://nvidia.github.io/network-operator"
-  version          = "24.10.0"
-}
+# resource "helm_release" "network_operator" {
+#   name             = "network-operator"
+#   chart            = "network-operator"
+#   namespace        = "nvidia"
+#   create_namespace = true
+#   repository       = "https://helm.ngc.nvidia.com/nvidia"
+#   version          = "24.10.0"
+# }
 
 
 resource "helm_release" "nim_operator" {
