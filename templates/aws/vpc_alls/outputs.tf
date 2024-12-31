@@ -10,6 +10,10 @@ output "vpc_cidr_block" {
   value = module.vpc.vpc_cidr_block
 }
 
+output "azs" {
+  value = module.vpc.azs
+}
+
 output "public_subnets" {
   value = module.vpc.public_subnets
 }
