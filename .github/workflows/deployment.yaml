@@ -2,8 +2,7 @@ name: Push code into S3 bucket
 
 on:
   push:
-    branches:
-      - main
+    branches-ignore: []  # Remove branches-ignore to trigger for any branch
     tags:
       - 'v*'
 
@@ -28,10 +27,11 @@ jobs:
       - name: Set archive file name and S3 upload path
         run: |
           if [[ "${{ github.ref_type }}" == "branch" ]]; then
-            export ARCHIVE_FILE_NAME="${{ github.event.repository.name }}-main.zip"
-            export S3_UPLOAD_PATH="branches/${{ github.event.repository.name }}/main.zip"
+            BRANCH_NAME=${{ github.ref_name }}
+            export ARCHIVE_FILE_NAME="${{ github.event.repository.name }}-${BRANCH_NAME}.zip"
+            export S3_UPLOAD_PATH="branches/${{ github.event.repository.name }}/${BRANCH_NAME}.zip"
           elif [[ "${{ github.ref_type }}" == "tag" ]]; then
-            export TAG_NAME="${{ github.ref_name }}"
+            TAG_NAME=${{ github.ref_name }}
             export ARCHIVE_FILE_NAME="${{ github.event.repository.name }}-${TAG_NAME}.zip"
             export S3_UPLOAD_PATH="tags/${{ github.event.repository.name }}/${TAG_NAME}.zip"
           fi
@@ -46,5 +46,5 @@ jobs:
 
       - name: Create and Upload Archive to S3
         run: |
-          git archive --format=zip --output=${{ env.ARCHIVE_FILE_NAME }} ${{ github.ref }}
+          git archive --format=zip --output=${{ env.ARCHIVE_FILE_NAME }} HEAD
           aws s3 cp ${{ env.ARCHIVE_FILE_NAME }} s3://${{ env.S3_BUCKET_NAME }}/${{ env.S3_UPLOAD_PATH }} --region ${{ env.PROVISIONER_REGION }}
