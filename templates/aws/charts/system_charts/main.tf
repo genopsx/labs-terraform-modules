@@ -57,7 +57,7 @@ module "nvidia" {
 
 # CILIUM
 module "cilium" {
-  count                = var.cilium_enabled ? 1 : 0
+  # count                = var.cilium_enabled ? 1 : 0
   source               = "./cilium"
   azs                  = var.azs
   vpc_cidr_block       = var.vpc_cidr_block

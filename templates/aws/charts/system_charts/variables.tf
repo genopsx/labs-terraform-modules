@@ -156,10 +156,10 @@ variable "vpc_cidr_block" {
   default = ""
 }
 
-variable "cilium_enabled" {
-  type    = bool
-  default = false
-}
+# variable "cilium_enabled" {
+#   type    = bool
+#   default = false
+# }
 
 variable "install_cilium" {
   type    = bool
