@@ -58,15 +58,10 @@ module "nvidia" {
 # CILIUM
 module "cilium" {
   # count                = var.cilium_enabled ? 1 : 0
-  source               = "./cilium"
-  azs                  = var.azs
-  vpc_cidr_block       = var.vpc_cidr_block
-  cilium               = var.cilium
-  cluster_name         = var.cluster_name
-  cluster_version      = var.cluster_version
-  install_cilium       = var.install_cilium
-  cluster_service_cidr = var.cluster_service_cidr
-  vpc_name             = var.vpc_name
+  source         = "./cilium"
+  cluster_name   = var.cluster_name
+  install_cilium = var.install_cilium
+  cilium_version = var.cilium_version
 }
 
 # INGRESS CONTROLLERS

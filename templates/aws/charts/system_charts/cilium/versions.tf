@@ -11,7 +11,3 @@ terraform {
   }
   required_version = "> 1.4"
 }
-
-# provider "cilium" {
-#   config_path = terraform_data.kubeconfig.input
-# }
