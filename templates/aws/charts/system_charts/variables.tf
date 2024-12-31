@@ -208,11 +208,6 @@ variable "install_cilium" {
   default = false
 }
 
-variable "cluster_name" {
-  type    = string
-  default = ""
-}
-
 # AWS LB Controller
 variable "alb_controller_enabled" {
   type    = bool
