@@ -4,7 +4,7 @@ resource "helm_release" "nvidia_device_plugin" {
   namespace        = "nvidia"
   create_namespace = true
   repository       = "https://nvidia.github.io/k8s-device-plugin"
-  version          = var.nvdp_chart_version # e.g., "0.13.0"
+  version          = var.nvdp_chart_version
 }
 
 resource "helm_release" "gpu_operator" {
