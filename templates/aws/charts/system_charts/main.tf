@@ -55,14 +55,6 @@ module "nvidia" {
   nvdp_chart_version = var.nvdp_chart_version
 }
 
-# CILIUM
-module "cilium" {
-  # count                = var.cilium_enabled ? 1 : 0
-  source         = "./cilium"
-  cluster_name   = var.cluster_name
-  install_cilium = var.install_cilium
-  cilium_version = var.cilium_version
-}
 
 # INGRESS CONTROLLERS
 module "alb-controller" {
