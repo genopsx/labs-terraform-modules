@@ -166,15 +166,6 @@ variable "install_cilium" {
   default = false
 }
 
-variable "cluster_name" {
-  type    = string
-  default = ""
-}
-
-variable "cluster_version" {
-  type    = string
-  default = ""
-}
 variable "cluster_service_cidr" {
   type    = string
   default = ""
