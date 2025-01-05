@@ -7,4 +7,3 @@ resource "helm_release" "rancher" {
   version          = var.rancher_chart_version
   values           = [local.base_values]
 }
-
