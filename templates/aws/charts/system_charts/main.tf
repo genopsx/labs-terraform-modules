@@ -165,3 +165,16 @@ module "keda" {
   keda_poc_enabled          = var.keda_poc_enabled
   region                    = var.region
 }
+
+# RANCHER
+module "rancher" {
+  count                 = var.rancher_enabled ? 1 : 0
+  source                = "./rancher"
+  domain_name           = var.domain_name
+  certificate_arn       = var.acm_certificate_arn
+  rancher_release_name  = var.rancher_release_name
+  rancher_chart_name    = var.rancher_chart_name
+  rancher_namespace     = var.rancher_namespace
+  rancher_chart_version = var.rancher_chart_version
+}
+

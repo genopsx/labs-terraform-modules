@@ -253,9 +253,36 @@ variable "keda_namespace" {
   default     = "keda"
 }
 
-# Helm
+# Helm Addons
 variable "enabled_custom_helm" {
   description = "Flag to enable or disable the creation of custom Helm addons and associated resources"
   type        = bool
   default     = false # Set to true to create the resources
+}
+
+
+# Rancher
+variable "rancher_enabled" {
+  type    = bool
+  default = false
+}
+variable "rancher_release_name" {
+  type        = string
+  description = "Name of the helm release"
+  default     = "rancher"
+}
+variable "rancher_chart_name" {
+  type        = string
+  description = "Helm chart to release"
+  default     = "rancher"
+}
+variable "rancher_namespace" {
+  type        = string
+  description = "Namespace name to deploy helm release"
+  default     = "cattle-system"
+}
+variable "rancher_chart_version" {
+  type        = string
+  description = "Helm chart to release"
+  default     = "1.15.0"
 }
