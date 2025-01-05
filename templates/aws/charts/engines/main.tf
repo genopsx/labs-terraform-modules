@@ -30,6 +30,15 @@ module "airflow" {
   certificate_arn = var.acm_certificate_arn
 }
 
+# module "airflow-merck" {
+#   count           = var.airflow_enabled ? 1 : 0
+#   source          = "./apache_airflow_nerck"
+#   namespace       = var.airflow_namespace
+#   serviceaccount  = var.airflow_serviceaccount
+#   domain_name     = var.domain_name
+#   certificate_arn = var.acm_certificate_arn
+# }
+
 module "argocd" {
   count                          = var.argocd_enabled ? 1 : 0
   source                         = "./argocd"
