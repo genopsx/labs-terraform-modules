@@ -72,7 +72,7 @@ module "efs" {
   efs_throughput_mode       = var.efs_throughput_mode
   efs_mount_targets_subnets = var.private_subnets
   efs_mount_targets_sg      = var.cluster_security_groups_ids
-  efs_ap_name               = "${var.project_prefix}-airflowfdna-efs-prometheus-ap"
+  # efs_ap_name               = "${var.project_prefix}-airflowfdna-efs-prometheus-ap"
 }
 
 ############################################################################################################
