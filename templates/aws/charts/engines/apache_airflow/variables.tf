@@ -3,7 +3,6 @@ variable "name" {
   description = "Name of release"
   default     = "airflow"
 }
-
 variable "namespace" {
   type        = string
   description = "Namespace name to deploy helm release"
