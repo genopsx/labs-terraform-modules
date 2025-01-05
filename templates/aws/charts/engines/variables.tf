@@ -285,7 +285,11 @@ variable "argo_rollouts_traffic_light_demo_enabled" {
 }
 
 # Kyverno UI
-
+variable "kyverno_enabled" {
+  type        = bool
+  description = "Whethe to install Kyverno"
+  default     = false
+}
 variable "policy_reporter_settings" {
   type        = map(any)
   description = "Settings for policy reporter"

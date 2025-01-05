@@ -1,5 +1,6 @@
 module "kyverno-policy-engine" {
   source                             = "./kyverno_ui"
+  count                              = var.kyverno_enabled ? 1 : 0
   ui_enabled                         = var.ui_enabled
   policy_reporter_settings           = var.policy_reporter_settings
   policy_reporter_namespace          = var.policy_reporter_namespace
