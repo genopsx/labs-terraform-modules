@@ -44,4 +44,9 @@ variable "alertmanager_sub_release_name" {
   default     = "alertmanager"
 }
 
+variable "grafana_auths_secret_mgr_arn" {
+  type        = string
+  description = "ARN of the secret with Grafana auths"
+}
+
 

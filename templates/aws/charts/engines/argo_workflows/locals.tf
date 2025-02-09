@@ -4,6 +4,7 @@ locals {
     sso_enabled              = var.sso_enabled
     argocd_github_sso_secret = var.argocd_github_sso_secret
     hostname                 = var.hostname
+    release_name             = var.release_name
     argocd_hostname          = var.argocd_hostname
   })
 }

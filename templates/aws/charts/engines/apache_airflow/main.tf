@@ -1,8 +1,9 @@
 resource "helm_release" "airflow" {
-  name             = var.name
-  chart            = "airflow"
-  repository       = "https://airflow.apache.org"
-  create_namespace = var.namespace == "default" ? false : "us-east-1"
+  name       = var.name
+  chart      = "airflow"
+  repository = "https://airflow.apache.org"
+  # create_namespace = var.namespace == "default" ? false : "us-east-1"
+  create_namespace = var.namespace == "default" ? false : true
   version          = var.chart_version
   namespace        = var.namespace
   values           = [local.base_values]

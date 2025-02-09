@@ -59,8 +59,10 @@ alertmanager:
     - --web.external-url=https://${alertmanager_sub_release_name}.${domain}/
 
 grafana:
-  adminUser: admin
-  adminPassword: prom-operator
+  # adminUser: admin
+  # adminPassword: prom-operator
+  adminUser: ${grafana_admin_user}
+  adminPassword: ${grafana_admin_password}
   ingress:
     enabled: true
     ingressClassName: alb

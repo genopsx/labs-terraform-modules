@@ -15,3 +15,8 @@ terraform {
     }
   }
 }
+# In order to deploy resources in grafana, you need to provide the url and token
+# provider "grafana" {
+#   url  = local.grafana_auths["grafana_url"]
+#   auth = local.grafana_auths["grafana_token"]
+# }

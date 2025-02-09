@@ -1,3 +1,8 @@
+variable "release_name" {
+  type        = string
+  description = "Name of the helm release"
+  default     = "argo-workflows"
+}
 variable "namespace" {
   type        = string
   description = "Argo-Workflows namespace"

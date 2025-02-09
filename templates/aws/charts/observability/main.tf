@@ -19,6 +19,18 @@ module "loki-stack" {
   jaeger_enabled                       = var.jaeger_enabled
 }
 
+module "kube-prometheus-stack" {
+  source                              = "./kube_prometheus_stack"
+  count                               = var.kube_prometheus_stack_enabled ? 1 : 0
+  kube_prometheus_stack_namespace     = var.kube_prometheus_stack_namespace
+  kube_prometheus_stack_chart_version = var.kube_prometheus_stack_chart_version
+  prometheus_sub_release_name         = var.prometheus_sub_release_name
+  grafana_sub_release_name            = var.grafana_sub_release_name
+  alertmanager_sub_release_name       = var.alertmanager_sub_release_name
+  domain_name                         = var.domain_name
+  certificate_arn                     = var.acm_certificate_arn
+}
+
 module "kubeshark" {
   count               = var.kubeshark_enabled ? 1 : 0
   source              = "./kubeshark_service"

@@ -69,7 +69,7 @@ server:
     enabled: true
     ingressClassName: alb
     annotations:
-      alb.ingress.kubernetes.io/group.name: "argo"
+      alb.ingress.kubernetes.io/group.name: ${release_name}
       alb.ingress.kubernetes.io/backend-protocol: HTTP
       alb.ingress.kubernetes.io/healthcheck-interval-seconds: "30"
       alb.ingress.kubernetes.io/healthcheck-path: /
