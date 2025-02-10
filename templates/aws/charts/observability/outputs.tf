@@ -10,6 +10,10 @@ output "jaeger_url" {
   value = var.jaeger_enabled ? module.jaeger[0].jaeger_url : null
 }
 
+output "jaeger_demo_url" {
+  value = var.jaeger_demo_app_enabled ? module.jaeger[0].jaeger_demo_url : null
+}
+
 output "grafana_url" {
   value = var.kube_prometheus_stack_enabled ? module.kube-prometheus-stack[0].grafana_url : null
 }

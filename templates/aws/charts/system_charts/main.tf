@@ -178,3 +178,95 @@ module "rancher" {
   rancher_chart_version = var.rancher_chart_version
 }
 
+# VPA (Vertical Pod Autoscaler)
+module "vpa" {
+  count         = var.vpa_enabled ? 1 : 0
+  source        = "./fairwindsops/vpa"
+  release_name  = var.vpa_release_name
+  chart_version = var.vpa_chart_version
+  namespace     = var.vpa_namespace
+}
+
+# GOLDILOCKS
+module "goldilocks" {
+  count           = var.goldilocks_enabled ? 1 : 0
+  source          = "./fairwindsops/goldilocks"
+  release_name    = var.goldilocks_release_name
+  chart_version   = var.goldilocks_chart_version
+  namespace       = var.goldilocks_namespace
+  domain_name     = var.domain_name
+  certificate_arn = var.acm_certificate_arn
+  depends_on      = [module.vpa]
+}
+
+# POLARIS
+module "polaris" {
+  count           = var.polaris_enabled ? 1 : 0
+  source          = "./fairwindsops/polaris"
+  release_name    = var.polaris_release_name
+  chart_version   = var.polaris_chart_version
+  namespace       = var.polaris_namespace
+  domain_name     = var.domain_name
+  certificate_arn = var.acm_certificate_arn
+  depends_on      = [module.vpa]
+}
+
+# GEMINI
+module "gemini" {
+  count         = var.gemini_enabled ? 1 : 0
+  source        = "./fairwindsops/gemini"
+  release_name  = var.gemini_release_name
+  chart_version = var.gemini_chart_version
+  namespace     = var.gemini_namespace
+  depends_on    = [module.vpa]
+}
+
+# HELM RELEASE PRUNER 
+module "helm_release_pruner" {
+  count         = var.helm_release_pruner_enabled ? 1 : 0
+  source        = "./fairwindsops/helm_release_pruner"
+  namespace     = var.helm_release_pruner_namespace
+  release_name  = var.helm_release_pruner_release_name
+  chart_version = var.helm_release_pruner_chart_version
+  depends_on    = [module.vpa]
+}
+
+# RBAC MANAGER
+module "rbac_manager" {
+  count         = var.rbac_manager_enabled ? 1 : 0
+  source        = "./fairwindsops/rbac_manager"
+  namespace     = var.rbac_manager_namespace
+  release_name  = var.rbac_manager_release_name
+  chart_version = var.rbac_manager_chart_version
+  depends_on    = [module.vpa]
+}
+
+# INSIGHTS ADMISION 
+module "insights_admission" {
+  count         = var.insights_admission_enabled ? 1 : 0
+  source        = "./fairwindsops/insights_admission"
+  namespace     = var.insights_admission_namespace
+  release_name  = var.insights_admission_release_name
+  chart_version = var.insights_admission_chart_version
+  depends_on    = [module.vpa]
+}
+
+# ECR CLEANUP 
+module "ecr_cleanup" {
+  count         = var.ecr_cleanup_enabled ? 1 : 0
+  source        = "./fairwindsops/ecr_cleanup"
+  namespace     = var.ecr_cleanup_namespace
+  release_name  = var.ecr_cleanup_release_name
+  chart_version = var.ecr_cleanup_chart_version
+  depends_on    = [module.vpa]
+}
+
+# AWS IAM AUTHENTICATOR
+module "aws_iam_authenticator" {
+  count         = var.aws_iam_authenticator_enabled ? 1 : 0
+  source        = "./fairwindsops/aws_iam_authenticator"
+  namespace     = var.aws_iam_authenticator_namespace
+  release_name  = var.aws_iam_authenticator_release_name
+  chart_version = var.aws_iam_authenticator_chart_version
+  depends_on    = [module.vpa]
+}

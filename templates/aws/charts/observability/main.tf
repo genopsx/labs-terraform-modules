@@ -29,6 +29,7 @@ module "kube-prometheus-stack" {
   alertmanager_sub_release_name       = var.alertmanager_sub_release_name
   domain_name                         = var.domain_name
   certificate_arn                     = var.acm_certificate_arn
+  grafana_auths_secret_mgr_arn        = var.grafana_auths_secret_mgr_arn
 }
 
 module "kubeshark" {
