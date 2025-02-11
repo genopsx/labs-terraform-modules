@@ -117,7 +117,8 @@ dashboard:
       - host: ${release_name}.${domain}
         paths: 
           - path: /
-            type: Prefix
+            pathType: "ImplementationSpecific" #that accepts ingress without paths
+
     # dashboard.ingress.tls -- Ingress TLS configuration
     tls: []
     # dashboard.ingress.defaultBackendEnabled -- DefaultBackend is required by GKE container native load balancer, set to true for this use case
