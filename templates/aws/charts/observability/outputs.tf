@@ -1,5 +1,5 @@
-output "grafana_url" {
-  value = var.loki_stack_enabled ? module.loki-stack.grafana_url : null
+output "grafana_loki_url" {
+  value = var.loki_stack_enabled ? module.loki_stack.grafana_url : null
 }
 
 output "kubeshark_url" {
@@ -15,13 +15,13 @@ output "jaeger_demo_url" {
 }
 
 output "grafana_url" {
-  value = var.kube_prometheus_stack_enabled ? module.kube-prometheus-stack[0].grafana_url : null
+  value = var.kube_prometheus_stack_enabled ? module.kube_prometheus_stack[0].grafana_url : null
 }
 
 output "prometheus_url" {
-  value = var.kube_prometheus_stack_enabled ? module.kube-prometheus-stack[0].prometheus_url : null
+  value = var.kube_prometheus_stack_enabled ? module.kube_prometheus_stack[0].prometheus_url : null
 }
 
 output "alertmanager_url" {
-  value = var.kube_prometheus_stack_enabled ? module.kube-prometheus-stack[0].alertmanager_url : null
+  value = var.kube_prometheus_stack_enabled ? module.kube_prometheus_stack[0].alertmanager_url : null
 }

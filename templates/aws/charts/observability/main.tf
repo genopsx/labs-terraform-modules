@@ -1,4 +1,4 @@
-module "loki-stack" {
+module "loki_stack" {
   source                               = "./loki_stack"
   enabled                              = var.loki_stack_enabled
   namespace                            = var.loki_stack_namespace
@@ -19,7 +19,7 @@ module "loki-stack" {
   jaeger_enabled                       = var.jaeger_enabled
 }
 
-module "kube-prometheus-stack" {
+module "kube_prometheus_stack" {
   source                              = "./kube_prometheus_stack"
   count                               = var.kube_prometheus_stack_enabled ? 1 : 0
   kube_prometheus_stack_namespace     = var.kube_prometheus_stack_namespace

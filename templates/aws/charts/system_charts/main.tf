@@ -1,5 +1,5 @@
 # CLUSTER AUTO-SCALERS
-module "cluster-autoscaler" {
+module "cluster_autoscaler" {
   count                     = var.cluster_autoscaler_enabled && !var.karpenter_enabled ? 1 : 0
   source                    = "./cluster_autoscaler"
   enabled                   = var.cluster_autoscaler_enabled
@@ -57,7 +57,7 @@ module "nvidia" {
 
 
 # INGRESS CONTROLLERS
-module "alb-controller" {
+module "alb_controller" {
   count                     = var.alb_controller_enabled && !var.kong_enabled ? 1 : 0
   source                    = "./alb_controller"
   namespace                 = var.alb_controller_namespace
@@ -80,10 +80,6 @@ module "kong" {
 # count                     = var.alb_controller_enabled && !var.kong_enabled ? 1 : 0
 # Meaning Only one of them can be enabled at a time or isolte condition as follows:
 
-# module "alb-controller" {
-#   count = var.alb_controller_enabled ? 1 : 0
-#   ...
-# }
 
 # module "kong" {
 #   count = var.kong_enabled ? 1 : 0
@@ -127,7 +123,7 @@ module "ebs_csi_driver" {
 
 
 # EXTERNAL DNS
-module "eks_external-dns" {
+module "eks_external_dns" {
   count                     = var.eks_external_dns_enabled ? 1 : 0
   source                    = "./eks_external_dns"
   cluster_name              = var.cluster_name
@@ -139,7 +135,7 @@ module "eks_external-dns" {
 }
 
 # CERTIFICATE MANAGER
-module "cert-manager" {
+module "cert_manager" {
   count        = var.cert_manager_enabled ? 1 : 0
   source       = "./certificate_manager"
   cluster_name = var.cluster_name
