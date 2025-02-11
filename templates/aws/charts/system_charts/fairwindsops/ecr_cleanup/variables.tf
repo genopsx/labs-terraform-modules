@@ -27,3 +27,8 @@ variable "ecr-cleanup-namespaces" {
   description = "do not remove images used by pods in this comma-separated list of namespaces. (default \"default\")"
   type        = string
 }
+
+variable "cluster_oidc_provider_arn" {
+  type        = string
+  description = "The ARN of the OIDC provider for the EKS cluster"
+}

@@ -13,13 +13,12 @@ resource "helm_release" "ecr_cleanup" {
 module "ecr_cleanup_irsa_role" {
   source           = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   version          = "5.52.2"
-  create_role      = var.create_role_enabled
+  create_role      = true
   role_name_prefix = "ecr-cleanup"
 
-  role_policy_arns = [
-    aws_iam_policy.ecr_cleanup_policy.arn
-  ]
-
+  role_policy_arns = {
+    policy = aws_iam_policy.ecr_cleanup_policy.arn
+  }
   oidc_providers = {
     ex = {
       provider_arn               = var.cluster_oidc_provider_arn
