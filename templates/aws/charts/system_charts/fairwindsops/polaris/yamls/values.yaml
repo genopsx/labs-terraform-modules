@@ -117,7 +117,7 @@ dashboard:
       - host: ${release_name}.${domain}
         paths: 
           - path: /
-            pathType: "ImplementationSpecific" #that accepts ingress without paths
+            pathType: Prefix 
 
     # dashboard.ingress.tls -- Ingress TLS configuration
     tls: []
