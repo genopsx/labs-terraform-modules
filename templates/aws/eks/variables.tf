@@ -84,31 +84,31 @@ variable "nodegroup_subnet_ids" {
   default     = []
 }
 
-variable "oic_role_configurations" {
-  description = "values for the OIDC role configurations."
-  type = map(object({
-    role_name           = string
-    assume_role_actions = list(string)
-    namespace           = string
-    service_account     = string
-    policy_file         = string
-  }))
-  default = {
-    "name" = {
-      role_name           = "value"
-      assume_role_actions = ["value"]
-      namespace           = "value"
-      service_account     = "value"
-      policy_file         = "value"
-    }
-  }
-}
+# variable "oic_role_configurations" {
+#   description = "values for the OIDC role configurations."
+#   type = map(object({
+#     role_name           = string
+#     assume_role_actions = list(string)
+#     namespace           = string
+#     service_account     = string
+#     policy_file         = string
+#   }))
+#   default = {
+#     "name" = {
+#       role_name           = "value"
+#       assume_role_actions = ["value"]
+#       namespace           = "value"
+#       service_account     = "value"
+#       policy_file         = "value"
+#     }
+#   }
+# }
 
-variable "enable_creation_role_with_oidc" {
-  type        = bool
-  description = "Enable creation of IAM roles with OIDC."
-  default     = false
-}
+# variable "enable_creation_role_with_oidc" {
+#   type        = bool
+#   description = "Enable creation of IAM roles with OIDC."
+#   default     = false
+# }
 
 variable "iam_node_group_role" {
   type        = string

@@ -3,7 +3,7 @@ output "cluster_secret_store_ref_name" {
 }
 
 output "polaris_url" {
-  value = var.polaris_enabled ? module.polaris[0].palaris_url : null
+  value = var.polaris_enabled ? module.polaris[0].polaris_url : null
 }
 
 output "goldilocks_url" {
