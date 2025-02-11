@@ -114,8 +114,6 @@ dashboard:
       alb.ingress.kubernetes.io/certificate-arn: ${cert_arn}
       external-dns.alpha.kubernetes.io/hostname: ${release_name}.${domain}
     hosts:
-      - host: ${release_name}.${domain}
-    hosts:
       - "${release_name}.${domain}"
       # - "polaris.eks-dev-eu-west-1-cluster-01-infra-01.genopsx.com"
         # paths: 
