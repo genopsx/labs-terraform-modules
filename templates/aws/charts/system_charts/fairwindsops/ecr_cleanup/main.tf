@@ -55,5 +55,5 @@ resource "aws_iam_policy" "ecr_cleanup_policy" {
 # If using an external role, attach the policy manually (example for existing IAM role):
 resource "aws_iam_role_policy_attachment" "ecr_cleanup_policy_attachment" {
   policy_arn = aws_iam_policy.ecr_cleanup_policy.arn
-  role       = module.ecr_cleanup_irsa_role.role_name
+  role       = module.ecr_cleanup_irsa_role.iam_role_name
 }
