@@ -34,7 +34,7 @@ resource "aws_iam_policy" "ecr_cleanup_policy" {
   description = "Policy for ECR cleanup actions"
 
   policy = jsonencode({
-    Version = "2008-10-17"
+    Version = "2012-10-17"
     Statement = [
       {
         Sid    = "ECRCleanupPolicy"
