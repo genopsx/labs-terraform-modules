@@ -249,13 +249,17 @@ module "insights_admission" {
 
 # ECR CLEANUP 
 module "ecr_cleanup" {
-  count         = var.ecr_cleanup_enabled ? 1 : 0
-  source        = "./fairwindsops/ecr_cleanup"
-  namespace     = var.ecr_cleanup_namespace
-  release_name  = var.ecr_cleanup_release_name
-  chart_version = var.ecr_cleanup_chart_version
-  depends_on    = [module.vpa]
+  count                  = var.ecr_cleanup_enabled ? 1 : 0
+  source                 = "./fairwindsops/ecr_cleanup"
+  namespace              = var.ecr_cleanup_namespace
+  release_name           = var.ecr_cleanup_release_name
+  chart_version          = var.ecr_cleanup_chart_version
+  ecr-cleanup-repos      = var.ecr-cleanup-repos
+  ecr-cleanup-region     = var.ecr-cleanup-region
+  ecr-cleanup-namespaces = var.ecr-cleanup-namespaces
+  depends_on             = [module.vpa]
 }
+
 
 # AWS IAM AUTHENTICATOR
 module "aws_iam_authenticator" {

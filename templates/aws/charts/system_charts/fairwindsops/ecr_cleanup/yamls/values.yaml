@@ -1,0 +1,48 @@
+# Default values for ecr-cleanup.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+controller:
+  interval: "60"             # Minutes between runs
+  dryRun: "true"             # Set to true for test
+  maxImages: 900             # Max number of images in repo
+  registryID: ""             # The account-id to use if is different than the credentials
+  repos: "${repos}"            # Comma-separated list of repos
+  namespaces: "${namespaces}"      # Comma-separated list of namespaces
+  region: "${region}"        # AWS Region
+  verbosity: "1"             # Logging verbosity
+# keep_filters: ""           # Comma-separated list of image filters to whitelist
+replicaCount: 1
+
+image:
+  repository: danielfm/kube-ecr-cleanup-controller
+  tag: 0.1.7
+  pullPolicy: Always
+
+rbac:
+  create: true
+
+nameOverride: ""
+fullnameOverride: ""
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+podAnnotations: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+serviceAccount:
+  create: true                # Enable creation of service account
+  name: "ecr-cleanup"         # Use this service account name for your pod
+  annotations:                # Optional annotations for the service account
+    eks.amazonaws.com/role-arn: "${ecr-cleanup-role-arn}"  # Assign IAM role
