@@ -4,7 +4,7 @@ resource "helm_release" "insights_admission" {
   version          = var.chart_version
   name             = var.release_name
   repository       = "https://charts.fairwinds.com/stable"
-  chart            = "insights_admission"
+  chart            = "insights-admission"
   wait             = true # Wait for the deployment to be ready before marking the resource as complete
 }
 
