@@ -115,9 +115,12 @@ dashboard:
       external-dns.alpha.kubernetes.io/hostname: ${release_name}.${domain}
     hosts:
       - host: ${release_name}.${domain}
-        paths: 
-          - path: /
-            pathType: Prefix 
+    hosts:
+      - "${release_name}.${domain}"
+      # - "polaris.eks-dev-eu-west-1-cluster-01-infra-01.genopsx.com"
+        # paths: 
+        #   - path: /
+        #     pathType: Prefix 
 
     # dashboard.ingress.tls -- Ingress TLS configuration
     tls: []
