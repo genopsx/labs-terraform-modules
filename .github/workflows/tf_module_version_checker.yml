@@ -110,74 +110,59 @@ jobs:
         run: |
           echo "Searching for Terraform modules..."
           mkdir -p results
-          RESULT_FILE="results/final.json"
       
-          echo "[" > "$RESULT_FILE"
+          # Find all .tf files in the repository
+          find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while read -r file; do
+            # Extract the module block (source and version)
+            grep -Pzo '(?s)module\s+"[^"]+"\s*{[^}]*}' "$file" | while read -r module_block; do
+              MODULE_SOURCE=$(echo "$module_block" | grep -oP 'source\s*=\s*"\K[^"]+')
+              
+              # Filter modules where source starts with "terraform-aws-modules"
+              if [[ ! "$MODULE_SOURCE" =~ ^terraform-aws-modules ]]; then
+                continue
+              fi
       
-          FIRST_ENTRY=true
-          find "$GITHUB_WORKSPACE/$SOURCE_TERRAFORM_MODULES_PATH" -type f -name "*.tf" | while read -r file; do
-            MODULE_SOURCE=$(grep -oP 'source\s*=\s*"\K[^"]+' "$file" | head -n1)
-            MODULE_VERSION=$(grep -oP 'version\s*=\s*"\K[^"]+' "$file" | head -n1)
+              MODULE_VERSION=$(echo "$module_block" | grep -oP 'version\s*=\s*"\K[^"]+')
       
-            if [[ -z "$MODULE_SOURCE" || -z "$MODULE_VERSION" ]]; then
-              continue
-            fi
+              if [[ -z "$MODULE_SOURCE" || -z "$MODULE_VERSION" ]]; then
+                continue
+              fi
       
-            REGISTRY_URL="https://registry.terraform.io/v1/modules/$MODULE_SOURCE/versions"
-            MODULE_VERSIONS=$(curl -s "$REGISTRY_URL")
+              # Get the module registry URL
+              MODULE_REGISTRY_URL="https://registry.terraform.io/modules/${MODULE_SOURCE}"
       
-            # Check if the response is valid JSON
-            if [[ -z "$MODULE_VERSIONS" || "$MODULE_VERSIONS" == "null" ]]; then
-              echo "Warning: Unable to fetch versions for module $MODULE_SOURCE or empty response"
-              continue
-            fi
+              # Build the status
+              STATUS="🔴 ❌ Not Supported"
+              REGISTRY_URL="https://registry.terraform.io/v1/modules/$MODULE_SOURCE/versions"
+              MODULE_VERSIONS=$(curl -s "$REGISTRY_URL" | jq -r '.modules[0].versions[].version' | sort -V)
+              LATEST_VERSION=$(echo "$MODULE_VERSIONS" | tail -n 1)
       
-            # Parse the versions from the response
-            MODULE_VERSIONS=$(echo "$MODULE_VERSIONS" | jq -r '.modules[0].versions[].version' | sort -V)
+              CONSTRAINT_SYMBOL=$(echo "$MODULE_VERSION" | grep -o '^[~>=<]*')
+              VERSION_NUMBER=$(echo "$MODULE_VERSION" | sed 's/^[~>=<]*//')
       
-            if [[ -z "$MODULE_VERSIONS" ]]; then
-              echo "Warning: No versions found for module $MODULE_SOURCE"
-              continue
-            fi
+              if [[ -z "$CONSTRAINT_SYMBOL" ]]; then
+                STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Outdated")
+              elif [[ "$CONSTRAINT_SYMBOL" == "=" ]]; then
+                STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Not Supported")
+              elif [[ "$CONSTRAINT_SYMBOL" == ">" || "$CONSTRAINT_SYMBOL" == ">=" ]]; then
+                STATUS="🟡 ✅ Supported"
+              elif [[ "$CONSTRAINT_SYMBOL" == "<" || "$CONSTRAINT_SYMBOL" == "<=" ]]; then
+                STATUS=$([[ $(echo -e "$VERSION_NUMBER\n$LATEST_VERSION" | sort -V | tail -n1) == "$VERSION_NUMBER" ]] && echo "🔴 ❌ Not Supported" || echo "🟡 ✅ Supported")
+              elif [[ "$CONSTRAINT_SYMBOL" == "~>" ]]; then
+                MAJOR_MINOR=$(echo "$VERSION_NUMBER" | cut -d'.' -f1,2)
+                LATEST_MAJOR_MINOR=$(echo "$LATEST_VERSION" | cut -d'.' -f1,2)
+                STATUS=$([[ "$MAJOR_MINOR" == "$LATEST_MAJOR_MINOR" ]] && echo "🟡 ✅ Supported" || echo "🔴 ❌ Not Supported")
+              fi
       
-            LATEST_VERSION=$(echo "$MODULE_VERSIONS" | tail -n 1)
-      
-            GITHUB_FILE_URL="${REPO_URL}/${file}"
-            MODULE_REGISTRY_URL="https://registry.terraform.io/modules/${MODULE_SOURCE}"
-      
-            CONSTRAINT_SYMBOL=$(echo "$MODULE_VERSION" | grep -o '^[~>=<]*')
-            VERSION_NUMBER=$(echo "$MODULE_VERSION" | sed 's/^[~>=<]*//')
-      
-            STATUS="🔴 ❌ Not Supported"
-      
-            if [[ -z "$CONSTRAINT_SYMBOL" ]]; then
-              STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Outdated")
-            elif [[ "$CONSTRAINT_SYMBOL" == "=" ]]; then
-              STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Not Supported")
-            elif [[ "$CONSTRAINT_SYMBOL" == ">" || "$CONSTRAINT_SYMBOL" == ">=" ]]; then
-              STATUS="🟡 ✅ Supported"
-            elif [[ "$CONSTRAINT_SYMBOL" == "<" || "$CONSTRAINT_SYMBOL" == "<=" ]]; then
-              STATUS=$([[ $(echo -e "$VERSION_NUMBER\n$LATEST_VERSION" | sort -V | tail -n1) == "$VERSION_NUMBER" ]] && echo "🔴 ❌ Not Supported" || echo "🟡 ✅ Supported")
-            elif [[ "$CONSTRAINT_SYMBOL" == "~>" ]]; then
-              MAJOR_MINOR=$(echo "$VERSION_NUMBER" | cut -d'.' -f1,2)
-              LATEST_MAJOR_MINOR=$(echo "$LATEST_VERSION" | cut -d'.' -f1,2)
-              STATUS=$([[ "$MAJOR_MINOR" == "$LATEST_MAJOR_MINOR" ]] && echo "🟡 ✅ Supported" || echo "🔴 ❌ Not Supported")
-            fi
-      
-            [[ "$FIRST_ENTRY" == false ]] && echo "," >> "$RESULT_FILE"
-            FIRST_ENTRY=false
-      
-            echo "{ \"file\": \"$GITHUB_FILE_URL\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\" }" >> "$RESULT_FILE"
+              # Add the result to the output file
+              echo "{\"file\": \"$file\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/result.json
+            done
           done
-      
-          echo "]" >> "$RESULT_FILE"      
-
-      - name: Format JSON Output
-        run: |
-          echo "[" > results/final.json
-          cat results/result.json | sed '$!s/$/,/' >> results/final.json
-          echo "]" >> results/final.json
-
-      - name: Upload JSON to S3
-        run: |
-          aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION
+        - name: Format JSON Output
+          run: |
+            echo "[" > results/final.json
+            cat results/result.json | sed '$!s/$/,/' >> results/final.json
+            echo "]" >> results/final.json
+        - name: Upload JSON to S3
+          run: |
+            aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION      
