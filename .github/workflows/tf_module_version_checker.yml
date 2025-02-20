@@ -128,7 +128,13 @@ jobs:
       
             # Fetch latest version info from Terraform registry
             REGISTRY_URL="https://registry.terraform.io/v1/modules/$MODULE_SOURCE/versions"
-            MODULE_VERSIONS=$(curl -s "$REGISTRY_URL" | jq -r '.modules[0].versions[].version' | sort -V)
+            echo "Fetching registry data from $REGISTRY_URL"
+            RESPONSE=$(curl -s "$REGISTRY_URL")
+            if [[ -z "$RESPONSE" || "$RESPONSE" == "null" ]]; then
+              echo "No versions found for module $MODULE_SOURCE"
+              continue
+            fi
+            MODULE_VERSIONS=$(echo "$RESPONSE" | jq -r '.modules[0].versions[].version' | sort -V)
             LATEST_VERSION=$(echo "$MODULE_VERSIONS" | tail -n 1)
       
             # Prepare URLs for GitHub file and Terraform registry
@@ -157,7 +163,7 @@ jobs:
       
             # Write the results to a JSON file
             echo "{\"file\": \"$GITHUB_FILE_URL\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/final.json
-          done
+          done      
       
       - name: Format JSON Output
         run: |
