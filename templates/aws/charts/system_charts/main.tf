@@ -55,7 +55,6 @@ module "nvidia" {
   nvdp_chart_version = var.nvdp_chart_version
 }
 
-
 # INGRESS CONTROLLERS
 module "alb_controller" {
   count                     = var.alb_controller_enabled && !var.kong_enabled ? 1 : 0
@@ -260,7 +259,6 @@ module "ecr_cleanup" {
   ecr-cleanup-namespaces    = var.ecr-cleanup-namespaces
   depends_on                = [module.vpa]
 }
-
 
 # AWS IAM AUTHENTICATOR
 module "aws_iam_authenticator" {

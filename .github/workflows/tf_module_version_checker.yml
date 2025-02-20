@@ -20,7 +20,7 @@ permissions:
 
 env:
   DEBUG: true
-  # DEPLOY_ACCOUNT: ${{ vars.DEPLOY_ACCOUNT }}
+  DEPLOY_ACCOUNT: ${{ vars.DEPLOY_ACCOUNT }}
   PROVISIONER_REGION: ${{ vars.PROVISIONER_REGION }}
   DEPLOYMENT_ROLE_NAME: ${{ vars.DEPLOYMENT_ROLE_NAME }}
   S3_BUCKET: tf_module_s3_ui
