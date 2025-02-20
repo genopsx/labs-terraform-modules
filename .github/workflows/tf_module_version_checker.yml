@@ -155,13 +155,13 @@ jobs:
               fi
       
               # Add the result to the output file
-              echo "{\"file\": \"$file\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/result.json
+              echo "{\"file\": \"$file\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/final.json
             done
           done
       - name: Format JSON Output
         run: |
           echo "[" > results/final.json
-          cat results/result.json | sed '$!s/$/,/' >> results/final.json
+          cat results/final.json | sed '$!s/$/,/' >> results/final.json
           echo "]" >> results/final.json
       - name: Upload JSON to S3
         run: |
