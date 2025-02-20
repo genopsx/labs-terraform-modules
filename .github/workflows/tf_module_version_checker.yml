@@ -91,7 +91,7 @@ jobs:
         working-directory: ${{ ENV.SOURCE_TERRAFORM_MODULES_S3_UI}}
 
       - name: Terraform Plan
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         run: terraform plan -no-color
         continue-on-error: true
         working-directory: ${{ ENV.SOURCE_TERRAFORM_MODULES_S3_UI}}
@@ -115,6 +115,7 @@ jobs:
           find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while IFS= read -r file; do
             echo "Found file: $file"
             
+            # Extract module source and version from the .tf files
             MODULE_SOURCE=$(grep -oP 'source\s*=\s*"\K[^"]+' "$file" | head -n1)
             MODULE_VERSION=$(grep -oP 'version\s*=\s*"\K[^"]+' "$file" | head -n1)
       
@@ -172,6 +173,7 @@ jobs:
       
       - name: Format JSON Output
         run: |
+          # Format the JSON output as an array
           echo "[" > results/final.json
           cat results/final.json | sed '$!s/$/,/' >> results/final.json
           echo "]" >> results/final.json
@@ -179,5 +181,4 @@ jobs:
       - name: Upload JSON to S3
         run: |
           aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION
-      
       
