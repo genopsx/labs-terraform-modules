@@ -104,7 +104,7 @@ jobs:
       - name: Get Repository URL
         id: repo_info
         run: echo "REPO_URL=https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}" >> $GITHUB_ENV
-        
+
       - name: Find Terraform Modules
         id: find_modules
         run: |
