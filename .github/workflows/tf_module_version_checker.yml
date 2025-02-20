@@ -104,13 +104,13 @@ jobs:
       - name: Get Repository URL
         id: repo_info
         run: echo "REPO_URL=https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}" >> $GITHUB_ENV
-
+        
       - name: Find Terraform Modules
         id: find_modules
         run: |
           echo "Searching for Terraform modules..."
           mkdir -p results
-      
+          
           # Use find to list .tf files and loop over them to extract module info
           find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while IFS= read -r file; do
             MODULE_SOURCE=$(grep -oP 'source\s*=\s*"\K[^"]+' "$file" | head -n1)
@@ -126,32 +126,14 @@ jobs:
               continue
             fi
       
-            # Construct registry URL without submodule path
-            REGISTRY_URL="https://registry.terraform.io/v1/modules/${MODULE_SOURCE}/versions"
-            echo "Fetching registry data from $REGISTRY_URL"
-            
-            # Retry mechanism for fetching data
-            attempt=0
-            max_attempts=3
-            while (( attempt < max_attempts )); do
-              RESPONSE=$(curl -s "$REGISTRY_URL")
-              if [[ -z "$RESPONSE" || "$RESPONSE" == "null" ]]; then
-                echo "Attempt $attempt failed, retrying..."
-                attempt=$((attempt+1))
-                sleep 2
-              else
-                break
-              fi
-            done
+            # Get the latest version from GitHub releases (removing the 'v' prefix)
+            LATEST_VERSION=$(curl -s https://api.github.com/repos/terraform-aws-modules/terraform-aws-eks/releases/latest | jq -r '.tag_name' | sed 's/^v//')
       
-            # Handle empty responses
-            if [[ -z "$RESPONSE" || "$RESPONSE" == "null" ]]; then
-              echo "No versions found for module $MODULE_SOURCE"
+            # Check if the latest version was found
+            if [[ -z "$LATEST_VERSION" ]]; then
+              echo "Failed to fetch the latest version for $MODULE_SOURCE"
               continue
             fi
-      
-            MODULE_VERSIONS=$(echo "$RESPONSE" | jq -r '.modules[0].versions[].version' | sort -V)
-            LATEST_VERSION=$(echo "$MODULE_VERSIONS" | tail -n 1)
       
             # Prepare URLs for GitHub file and Terraform registry
             GITHUB_FILE_URL="${REPO_URL}/${file}"
@@ -186,6 +168,8 @@ jobs:
           echo "[" > results/final.json
           cat results/final.json | sed '$!s/$/,/' >> results/final.json
           echo "]" >> results/final.json
+      
       - name: Upload JSON to S3
         run: |
-          aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION      
+          aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION
+      
