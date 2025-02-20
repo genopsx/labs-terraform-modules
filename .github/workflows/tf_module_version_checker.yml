@@ -110,27 +110,46 @@ jobs:
         run: |
           echo "Searching for Terraform modules..."
           mkdir -p results
-
-          find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while read -r file; do
+          RESULT_FILE="results/final.json"
+      
+          echo "[" > "$RESULT_FILE"
+      
+          FIRST_ENTRY=true
+          find "$GITHUB_WORKSPACE/$SOURCE_TERRAFORM_MODULES_PATH" -type f -name "*.tf" | while read -r file; do
             MODULE_SOURCE=$(grep -oP 'source\s*=\s*"\K[^"]+' "$file" | head -n1)
             MODULE_VERSION=$(grep -oP 'version\s*=\s*"\K[^"]+' "$file" | head -n1)
-
+      
             if [[ -z "$MODULE_SOURCE" || -z "$MODULE_VERSION" ]]; then
               continue
             fi
-
+      
             REGISTRY_URL="https://registry.terraform.io/v1/modules/$MODULE_SOURCE/versions"
-            MODULE_VERSIONS=$(curl -s "$REGISTRY_URL" | jq -r '.modules[0].versions[].version' | sort -V)
+            MODULE_VERSIONS=$(curl -s "$REGISTRY_URL")
+      
+            # Check if the response is valid JSON
+            if [[ -z "$MODULE_VERSIONS" || "$MODULE_VERSIONS" == "null" ]]; then
+              echo "Warning: Unable to fetch versions for module $MODULE_SOURCE or empty response"
+              continue
+            fi
+      
+            # Parse the versions from the response
+            MODULE_VERSIONS=$(echo "$MODULE_VERSIONS" | jq -r '.modules[0].versions[].version' | sort -V)
+      
+            if [[ -z "$MODULE_VERSIONS" ]]; then
+              echo "Warning: No versions found for module $MODULE_SOURCE"
+              continue
+            fi
+      
             LATEST_VERSION=$(echo "$MODULE_VERSIONS" | tail -n 1)
-
+      
             GITHUB_FILE_URL="${REPO_URL}/${file}"
             MODULE_REGISTRY_URL="https://registry.terraform.io/modules/${MODULE_SOURCE}"
-
+      
             CONSTRAINT_SYMBOL=$(echo "$MODULE_VERSION" | grep -o '^[~>=<]*')
             VERSION_NUMBER=$(echo "$MODULE_VERSION" | sed 's/^[~>=<]*//')
-
+      
             STATUS="🔴 ❌ Not Supported"
-
+      
             if [[ -z "$CONSTRAINT_SYMBOL" ]]; then
               STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Outdated")
             elif [[ "$CONSTRAINT_SYMBOL" == "=" ]]; then
@@ -144,9 +163,14 @@ jobs:
               LATEST_MAJOR_MINOR=$(echo "$LATEST_VERSION" | cut -d'.' -f1,2)
               STATUS=$([[ "$MAJOR_MINOR" == "$LATEST_MAJOR_MINOR" ]] && echo "🟡 ✅ Supported" || echo "🔴 ❌ Not Supported")
             fi
-
-            echo "{\"file\": \"$GITHUB_FILE_URL\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/result.json
+      
+            [[ "$FIRST_ENTRY" == false ]] && echo "," >> "$RESULT_FILE"
+            FIRST_ENTRY=false
+      
+            echo "{ \"file\": \"$GITHUB_FILE_URL\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\" }" >> "$RESULT_FILE"
           done
+      
+          echo "]" >> "$RESULT_FILE"      
 
       - name: Format JSON Output
         run: |
