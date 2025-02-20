@@ -158,11 +158,11 @@ jobs:
               echo "{\"file\": \"$file\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/result.json
             done
           done
-        - name: Format JSON Output
-          run: |
-            echo "[" > results/final.json
-            cat results/result.json | sed '$!s/$/,/' >> results/final.json
-            echo "]" >> results/final.json
-        - name: Upload JSON to S3
-          run: |
-            aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION      
+      - name: Format JSON Output
+        run: |
+          echo "[" > results/final.json
+          cat results/result.json | sed '$!s/$/,/' >> results/final.json
+          echo "]" >> results/final.json
+      - name: Upload JSON to S3
+        run: |
+          aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION      
