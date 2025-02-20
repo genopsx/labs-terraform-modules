@@ -178,7 +178,7 @@ jobs:
             fi
       
             # Write the results to a JSON file
-            echo "{\"file\": \"$GITHUB_FILE_URL\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/result.json
+            echo "{\"file\": \"$GITHUB_FILE_URL\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/final.json
           done      
       
       - name: Format JSON Output
