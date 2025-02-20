@@ -35,23 +35,8 @@ module "s3_bucket_objects" {
   s3_bucket_objects_content_type = lookup(
     {
       ".html" = "text/html",
-      ".css"  = "text/css",
-      ".js"   = "application/javascript",
-      ".json" = "application/json",
-      ".png"  = "image/png",
-      ".jpeg" = "image/jpeg",
-      ".jpg"  = "image/jpeg",
-      ".gif"  = "image/gif",
-      ".svg"  = "image/svg+xml",
-      ".txt"  = "text/plain",
-      ".md"   = "text/markdown",
-      ".pdf"  = "application/pdf",
-      ".zip"  = "application/zip",
-      ".xml"  = "application/xml",
-      ".webp" = "image/webp",
-      ".yaml" = "application/x-yaml",
-      ".yml"  = "application/x-yaml",
-      ".jfif" = "image/jpeg" # Add this entry for .jfif files
+      ".json" = "application/json"
+
     },
     lower(regex("\\.[^.]+$", each.key)), # Extract file extension in lowercase
     "application/octet-stream"           # Default MIME type
