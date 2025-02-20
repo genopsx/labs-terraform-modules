@@ -111,53 +111,54 @@ jobs:
           echo "Searching for Terraform modules..."
           mkdir -p results
       
-          # Find all .tf files in the repository
-          find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while read -r file; do
-            # Extract the module block (source and version)
-            grep -Pzo '(?s)module\s+"[^"]+"\s*{[^}]*}' "$file" | while read -r module_block; do
-              MODULE_SOURCE=$(echo "$module_block" | grep -oP 'source\s*=\s*"\K[^"]+')
-              
-              # Filter modules where source starts with "terraform-aws-modules"
-              if [[ ! "$MODULE_SOURCE" =~ ^terraform-aws-modules ]]; then
-                continue
-              fi
+          # Use find to list .tf files and loop over them to extract module info
+          find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while IFS= read -r file; do
+            MODULE_SOURCE=$(grep -oP 'source\s*=\s*"\K[^"]+' "$file" | head -n1)
+            MODULE_VERSION=$(grep -oP 'version\s*=\s*"\K[^"]+' "$file" | head -n1)
       
-              MODULE_VERSION=$(echo "$module_block" | grep -oP 'version\s*=\s*"\K[^"]+')
+            # Skip if source or version is not found
+            if [[ -z "$MODULE_SOURCE" || -z "$MODULE_VERSION" ]]; then
+              continue
+            fi
       
-              if [[ -z "$MODULE_SOURCE" || -z "$MODULE_VERSION" ]]; then
-                continue
-              fi
+            # Only process modules with source starting with terraform-aws-modules
+            if [[ "$MODULE_SOURCE" != terraform-aws-modules* ]]; then
+              continue
+            fi
       
-              # Get the module registry URL
-              MODULE_REGISTRY_URL="https://registry.terraform.io/modules/${MODULE_SOURCE}"
+            # Fetch latest version info from Terraform registry
+            REGISTRY_URL="https://registry.terraform.io/v1/modules/$MODULE_SOURCE/versions"
+            MODULE_VERSIONS=$(curl -s "$REGISTRY_URL" | jq -r '.modules[0].versions[].version' | sort -V)
+            LATEST_VERSION=$(echo "$MODULE_VERSIONS" | tail -n 1)
       
-              # Build the status
-              STATUS="🔴 ❌ Not Supported"
-              REGISTRY_URL="https://registry.terraform.io/v1/modules/$MODULE_SOURCE/versions"
-              MODULE_VERSIONS=$(curl -s "$REGISTRY_URL" | jq -r '.modules[0].versions[].version' | sort -V)
-              LATEST_VERSION=$(echo "$MODULE_VERSIONS" | tail -n 1)
+            # Prepare URLs for GitHub file and Terraform registry
+            GITHUB_FILE_URL="${REPO_URL}/${file}"
+            MODULE_REGISTRY_URL="https://registry.terraform.io/modules/${MODULE_SOURCE}"
       
-              CONSTRAINT_SYMBOL=$(echo "$MODULE_VERSION" | grep -o '^[~>=<]*')
-              VERSION_NUMBER=$(echo "$MODULE_VERSION" | sed 's/^[~>=<]*//')
+            # Handle version constraints
+            CONSTRAINT_SYMBOL=$(echo "$MODULE_VERSION" | grep -o '^[~>=<]*')
+            VERSION_NUMBER=$(echo "$MODULE_VERSION" | sed 's/^[~>=<]*//')
       
-              if [[ -z "$CONSTRAINT_SYMBOL" ]]; then
-                STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Outdated")
-              elif [[ "$CONSTRAINT_SYMBOL" == "=" ]]; then
-                STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Not Supported")
-              elif [[ "$CONSTRAINT_SYMBOL" == ">" || "$CONSTRAINT_SYMBOL" == ">=" ]]; then
-                STATUS="🟡 ✅ Supported"
-              elif [[ "$CONSTRAINT_SYMBOL" == "<" || "$CONSTRAINT_SYMBOL" == "<=" ]]; then
-                STATUS=$([[ $(echo -e "$VERSION_NUMBER\n$LATEST_VERSION" | sort -V | tail -n1) == "$VERSION_NUMBER" ]] && echo "🔴 ❌ Not Supported" || echo "🟡 ✅ Supported")
-              elif [[ "$CONSTRAINT_SYMBOL" == "~>" ]]; then
-                MAJOR_MINOR=$(echo "$VERSION_NUMBER" | cut -d'.' -f1,2)
-                LATEST_MAJOR_MINOR=$(echo "$LATEST_VERSION" | cut -d'.' -f1,2)
-                STATUS=$([[ "$MAJOR_MINOR" == "$LATEST_MAJOR_MINOR" ]] && echo "🟡 ✅ Supported" || echo "🔴 ❌ Not Supported")
-              fi
+            # Determine module status
+            STATUS="🔴 ❌ Not Supported"
+            if [[ -z "$CONSTRAINT_SYMBOL" ]]; then
+              STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Outdated")
+            elif [[ "$CONSTRAINT_SYMBOL" == "=" ]]; then
+              STATUS=$([[ "$VERSION_NUMBER" == "$LATEST_VERSION" ]] && echo "🟢 ✅ Up-to-date" || echo "🔴 ❌ Not Supported")
+            elif [[ "$CONSTRAINT_SYMBOL" == ">" || "$CONSTRAINT_SYMBOL" == ">=" ]]; then
+              STATUS="🟡 ✅ Supported"
+            elif [[ "$CONSTRAINT_SYMBOL" == "<" || "$CONSTRAINT_SYMBOL" == "<=" ]]; then
+              STATUS=$([[ $(echo -e "$VERSION_NUMBER\n$LATEST_VERSION" | sort -V | tail -n1) == "$VERSION_NUMBER" ]] && echo "🔴 ❌ Not Supported" || echo "🟡 ✅ Supported")
+            elif [[ "$CONSTRAINT_SYMBOL" == "~>" ]]; then
+              MAJOR_MINOR=$(echo "$VERSION_NUMBER" | cut -d'.' -f1,2)
+              LATEST_MAJOR_MINOR=$(echo "$LATEST_VERSION" | cut -d'.' -f1,2)
+              STATUS=$([[ "$MAJOR_MINOR" == "$LATEST_MAJOR_MINOR" ]] && echo "🟡 ✅ Supported" || echo "🔴 ❌ Not Supported")
+            fi
       
-              # Add the result to the output file
-              echo "{\"file\": \"$file\", \"module\": \"$MODULE_SOURCE\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/final.json
-            done
+            # Write the results to a JSON file
+            echo "{\"file\": \"$GITHUB_FILE_URL\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/final.json
           done
+      
       - name: Format JSON Output
         run: |
           echo "[" > results/final.json
