@@ -31,6 +31,7 @@ env:
 jobs:
   check-modules:
     runs-on: ubuntu-latest
+    environment: dev
 
     env:
         ACTIONS_RUNNER_DEBUG: true
