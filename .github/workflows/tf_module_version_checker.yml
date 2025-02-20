@@ -23,7 +23,7 @@ env:
   DEPLOY_ACCOUNT: ${{ vars.DEPLOY_ACCOUNT }}
   PROVISIONER_REGION: ${{ vars.PROVISIONER_REGION }}
   DEPLOYMENT_ROLE_NAME: ${{ vars.DEPLOYMENT_ROLE_NAME }}
-  S3_BUCKET: tf_module_s3_ui
+  S3_BUCKET_NAME: tf_module_s3_ui
   SOURCE_TEFFORM_MODULES_PATH: ./templates
   SOURCE_TERRAFORM_MODULES_S3_UI: ./tf_module_checker_s3_ui
   DEPLOYMENT_ROLE_SESSION_NAME: github-action-tf-module-version-checker-session
@@ -156,4 +156,4 @@ jobs:
 
       - name: Upload JSON to S3
         run: |
-          aws s3 cp results/final.json s3://$S3_BUCKET/final.json --acl public-read --region $AWS_REGION
+          aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION
