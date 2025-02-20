@@ -113,6 +113,8 @@ jobs:
           
           # Use find to list .tf files and loop over them to extract module info
           find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while IFS= read -r file; do
+            echo "Found file: $file"
+            
             MODULE_SOURCE=$(grep -oP 'source\s*=\s*"\K[^"]+' "$file" | head -n1)
             MODULE_VERSION=$(grep -oP 'version\s*=\s*"\K[^"]+' "$file" | head -n1)
       
@@ -121,13 +123,18 @@ jobs:
               continue
             fi
       
+            echo "Module source: $MODULE_SOURCE"
+            echo "Module version: $MODULE_VERSION"
+      
             # Only process modules with source starting with terraform-aws-modules
             if [[ "$MODULE_SOURCE" != terraform-aws-modules* ]]; then
               continue
             fi
       
             # Get the latest version from GitHub releases (removing the 'v' prefix)
+            echo "Fetching latest version for $MODULE_SOURCE"
             LATEST_VERSION=$(curl -s https://api.github.com/repos/terraform-aws-modules/terraform-aws-eks/releases/latest | jq -r '.tag_name' | sed 's/^v//')
+            echo "Latest version: $LATEST_VERSION"
       
             # Check if the latest version was found
             if [[ -z "$LATEST_VERSION" ]]; then
@@ -172,4 +179,5 @@ jobs:
       - name: Upload JSON to S3
         run: |
           aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION
+      
       
