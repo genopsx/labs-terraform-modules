@@ -4,32 +4,26 @@ variable "cluster_oidc_provider_arn" {
   type        = string
   default     = "arn:aws:iam::account-id:oidc-provider/oidc.eks.region.amazonaws.com/id"
 }
-
 variable "cluster_name" {
   description = "The name of the cluster"
   type        = string
 }
-
 variable "cluster_version" {
   description = "The Kubernetes version to use for the EKS cluster"
   type        = string
 }
-
 variable "tags" {
   description = "Tags to be attached to resources"
   type        = map(string)
 }
-
 variable "region" {
   description = "The region to host the cluster in"
   type        = string
 }
-
 variable "vpc_id" {
   description = "The VPC ID to host the cluster in"
   type        = string
 }
-
 variable "domain_name" {
   type        = string
   description = "The domain filter to install external-dns"
@@ -139,7 +133,6 @@ variable "nvdp_chart_name" {
   type        = string
   description = "Name of chart for nvidia-device-plugin"
 }
-
 variable "nvdp_chart_version" {
   type        = string
   description = "Version of the chart for nvidia-device-plugin"
@@ -287,23 +280,21 @@ variable "rancher_chart_version" {
   default     = "1.15.0"
 }
 
+
 # Fairwinds
 # vpa (Vertical Pod Autoscaler)
 variable "vpa_enabled" {
   type    = bool
   default = false
 }
-
 variable "vpa_release_name" {
   type        = string
   description = "Name of the helm release"
 }
-
 variable "vpa_chart_version" {
   type        = string
   description = "Version of the chart"
 }
-
 variable "vpa_namespace" {
   type        = string
   description = "Namespace to install the chart into"
@@ -319,16 +310,15 @@ variable "goldilocks_release_name" {
   type        = string
   description = "Name of the helm release"
 }
-
 variable "goldilocks_chart_version" {
   type        = string
   description = "Version of the chart"
 }
-
 variable "goldilocks_namespace" {
   type        = string
   description = "Namespace to install the chart into"
 }
+
 
 # Polaris
 variable "polaris_enabled" {
@@ -339,168 +329,150 @@ variable "polaris_release_name" {
   type        = string
   description = "Name of the helm release"
 }
-
 variable "polaris_chart_version" {
   type        = string
   description = "Version of the chart"
 }
-
 variable "polaris_namespace" {
   type        = string
   description = "Namespace to install the chart into"
 }
+
 
 # Gemini
 variable "gemini_enabled" {
   type    = bool
   default = false
 }
-
 variable "gemini_release_name" {
   type        = string
   description = "Name of the helm release"
 }
-
 variable "gemini_chart_version" {
   type        = string
   description = "Version of the chart"
 }
-
 variable "gemini_namespace" {
   type        = string
   description = "Namespace to install the chart into"
 }
+
 
 # Helm Release Pruner 
 variable "helm_release_pruner_enabled" {
   type    = bool
   default = false
 }
-
 variable "helm_release_pruner_namespace" {
   type        = string
   description = "Namespace to install the chart into"
   default     = "kube-system"
 }
-
 variable "helm_release_pruner_chart_version" {
   type        = string
   description = "Version of the chart"
   default     = "0.1.0"
 }
-
 variable "helm_release_pruner_release_name" {
   type        = string
   description = "Name of the helm release"
   default     = "helm-release-pruner"
 }
 
+
 # RBAC Manager
 variable "rbac_manager_enabled" {
   type    = bool
   default = false
 }
-
 variable "rbac_manager_namespace" {
   type        = string
   description = "Namespace to install the chart into"
   default     = "kube-system"
 }
-
 variable "rbac_manager_chart_version" {
   type        = string
   description = "Version of the chart"
   default     = "0.1.0"
 }
-
 variable "rbac_manager_release_name" {
   type        = string
   description = "Name of the helm release"
   default     = "rbac-manager"
 }
 
+
 # Insights Admission
 variable "insights_admission_enabled" {
   type    = bool
   default = false
 }
-
 variable "insights_admission_namespace" {
   type        = string
   description = "Namespace to install the chart into"
   default     = "kube-system"
 }
-
 variable "insights_admission_chart_version" {
   type        = string
   description = "Version of the chart"
   default     = "0.1.0"
 }
-
 variable "insights_admission_release_name" {
   type        = string
   description = "Name of the helm release"
   default     = "insights-admission"
 }
 
+
 # Ecr Cleanup 
 variable "ecr_cleanup_enabled" {
   type    = bool
   default = false
 }
-
 variable "ecr_cleanup_namespace" {
   type        = string
   description = "Namespace to install the chart into"
   default     = "kube-system"
 }
-
 variable "ecr_cleanup_chart_version" {
   type        = string
   description = "Version of the chart"
   default     = "0.1.0"
 }
-
-
 variable "ecr-cleanup-repos" {
   description = "comma-separated list of repository names to watch."
   type        = string
 }
-
 variable "ecr-cleanup-region" {
   description = "region to use when talking to AWS. (default \"us-east-1\")"
   type        = string
 }
-
 variable "ecr-cleanup-namespaces" {
   description = "do not remove images used by pods in this comma-separated list of namespaces. (default \"default\")"
   type        = string
 }
-
 variable "ecr_cleanup_release_name" {
   type        = string
   description = "Name of the helm release"
   default     = "ecr-cleanup"
 }
 
+
 # AWS Iam Authenticator
 variable "aws_iam_authenticator_enabled" {
   type    = bool
   default = false
 }
-
 variable "aws_iam_authenticator_namespace" {
   type        = string
   description = "Namespace to install the chart into"
   default     = "kube-system"
 }
-
 variable "aws_iam_authenticator_chart_version" {
   type        = string
   description = "Version of the chart"
   default     = "0.1.0"
 }
-
 variable "aws_iam_authenticator_release_name" {
   type        = string
   description = "Name of the helm release"

@@ -23,7 +23,7 @@ env:
   DEPLOY_ACCOUNT: ${{ vars.DEPLOY_ACCOUNT }}
   PROVISIONER_REGION: ${{ vars.PROVISIONER_REGION }}
   DEPLOYMENT_ROLE_NAME: ${{ vars.DEPLOYMENT_ROLE_NAME }}
-  S3_BUCKET_NAME: tf_module_s3_ui
+  S3_BUCKET_NAME: tf-module-s3-ui
   SOURCE_TEFFORM_MODULES_PATH: ./templates
   SOURCE_TERRAFORM_MODULES_S3_UI: ./tf_module_checker_s3_ui
   DEPLOYMENT_ROLE_SESSION_NAME: github-action-tf-module-version-checker-session
