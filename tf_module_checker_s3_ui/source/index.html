@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform Module Version Check</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .status-up { color: green; font-weight: bold; }  /* ✅ Up-to-date */
+        .status-supported { color: orange; font-weight: bold; }  /* ✅ Supported */
+        .status-outdated, .status-not-supported { color: red; font-weight: bold; }  /* ❌ Outdated / Not Supported */
+        .tooltip { position: relative; cursor: help; }
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 50%;
+            top: -25px;
+            transform: translateX(-50%);
+            background: black;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>Terraform Module Version Check</h2>
+    <table>
+        <tr>
+            <th>Registry Module Name</th>
+            <th>My Module</th>
+            <th>Current Version</th>
+            <th>Latest Version</th>
+            <th>Status</th>
+        </tr>
+        <tbody id="moduleTable"></tbody>
+    </table>
+
+    <script>
+        async function loadModules() {
+            const response = await fetch("https://your-s3-bucket-name.s3.amazonaws.com/final.json");
+            const modules = await response.json();
+            const table = document.getElementById("moduleTable");
+
+            modules.forEach(module => {
+                let statusClass = module.status.includes("Up-to-date") ? "status-up" :
+                                  module.status.includes("Supported") ? "status-supported" :
+                                  "status-not-supported";
+
+                let tooltipText = module.status.includes("Up-to-date") ? "Matches the latest version."
+                              : module.status.includes("Supported") ? "Compatible with newer versions."
+                              : "Version is outdated or unsupported.";
+
+                table.innerHTML += `
+                    <tr>
+                        <td>
+                            <a href="${module.module_registry}" target="_blank">${module.module}</a>
+                        </td>
+                        <td><a href="${module.file}" target="_blank">View File</a></td>
+                        <td>${module.current_version}</td>
+                        <td>${module.latest_version}</td>
+                        <td class="tooltip ${statusClass}" data-tooltip="${tooltipText}">${module.status}</td>
+                    </tr>`;
+            });
+        }
+
+        loadModules();
+    </script>
+</body>
+</html>

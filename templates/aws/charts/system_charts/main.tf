@@ -195,7 +195,7 @@ module "goldilocks" {
   depends_on      = [module.vpa]
 }
 
-# POLARIS
+# POLARIS (The Cert Manager is a dependency for Polaris)
 module "polaris" {
   count           = var.polaris_enabled ? 1 : 0
   source          = "./fairwindsops/polaris"
@@ -204,7 +204,7 @@ module "polaris" {
   namespace       = var.polaris_namespace
   domain_name     = var.domain_name
   certificate_arn = var.acm_certificate_arn
-  depends_on      = [module.vpa]
+  depends_on      = [module.vpa, module.cert_manager]
 }
 
 # GEMINI
