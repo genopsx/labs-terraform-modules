@@ -154,10 +154,31 @@ jobs:
 
     - name: Install terraform-docs
       run: |
-        sudo apt-get update && sudo apt-get install -y jq
+        # Fetch latest terraform-docs version
         TERRAFORM_DOCS_VERSION=$(curl -s https://api.github.com/repos/terraform-docs/terraform-docs/releases/latest | jq -r .tag_name)
-        DOWNLOAD_URL="https://github.com/terraform-docs/terraform-docs/releases/download/${TERRAFORM_DOCS_VERSION}/terraform-docs-${TERRAFORM_DOCS_VERSION#v}-$(uname -s)-amd64.tar.gz"
+
+        # Check if the version was fetched correctly
+        if [[ -z "$TERRAFORM_DOCS_VERSION" || "$TERRAFORM_DOCS_VERSION" == "null" ]]; then
+          echo "Failed to fetch terraform-docs latest version."
+          exit 1
+        fi
+
+        # Construct the correct URL
+        DOWNLOAD_URL="https://github.com/terraform-docs/terraform-docs/releases/download/${TERRAFORM_DOCS_VERSION}/terraform-docs-${TERRAFORM_DOCS_VERSION#v}-$(uname -s | tr '[:upper:]' '[:lower:]')-amd64.tar.gz"
+
+        echo "Downloading terraform-docs from $DOWNLOAD_URL"
+
+        # Download the file
         curl -sSLo terraform-docs.tar.gz "$DOWNLOAD_URL"
+
+        # Validate if the file is actually a gzip archive
+        if ! file terraform-docs.tar.gz | grep -q 'gzip compressed data'; then
+          echo "Download failed or is not a valid gzip file."
+          cat terraform-docs.tar.gz  # Print the file content for debugging
+          exit 1
+        fi
+
+        # Extract and move the binary
         tar -xzf terraform-docs.tar.gz
         chmod +x terraform-docs
         sudo mv terraform-docs /usr/local/bin/
