@@ -216,7 +216,7 @@ module "gemini" {
   depends_on    = [module.vpa]
 }
 
-# HELM RELEASE PRUNER 
+# HELM RELEASE PRUNER
 module "helm_release_pruner" {
   count         = var.helm_release_pruner_enabled ? 1 : 0
   source        = "./fairwindsops/helm_release_pruner"
@@ -236,7 +236,7 @@ module "rbac_manager" {
   depends_on    = [module.vpa]
 }
 
-# INSIGHTS ADMISION 
+# INSIGHTS ADMISION
 module "insights_admission" {
   count         = var.insights_admission_enabled ? 1 : 0
   source        = "./fairwindsops/insights_admission"
@@ -246,7 +246,7 @@ module "insights_admission" {
   depends_on    = [module.vpa]
 }
 
-# ECR CLEANUP 
+# ECR CLEANUP
 module "ecr_cleanup" {
   count                     = var.ecr_cleanup_enabled ? 1 : 0
   source                    = "./fairwindsops/ecr_cleanup"

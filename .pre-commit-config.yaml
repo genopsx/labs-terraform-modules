@@ -32,8 +32,11 @@ repos:
         args:
           - --args=--minimum-severity CRITICAL
           - --args=--force-all-dirs
-exclude: ^templates/aws/airflow/ # single directory recursive
+# exclude: ^templates/aws/airflow/ # single directory recursive
 # exclude: ^(templates/aws/airflow|iac|automation)/ # multiple directories recursive (templates/aws/airflow, iac, automation)
+exclude: ^(templates/aws/airflow/|templates/aws/charts/engines/apache_airflow_merckk/)
+
+
 
 #  The  exclude  key is used to exclude certain directories from the pre-commit checks.
 #  The  repos  key is a list of repositories that contain the hooks that will be run. Each repository has a  hooks  key that contains a list of hooks that will be run.

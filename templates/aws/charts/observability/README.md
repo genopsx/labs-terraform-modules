@@ -18,8 +18,9 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_jaeger"></a> [jaeger](#module\_jaeger) | ./jaeger_service | n/a |
+| <a name="module_kube_prometheus_stack"></a> [kube\_prometheus\_stack](#module\_kube\_prometheus\_stack) | ./kube_prometheus_stack | n/a |
 | <a name="module_kubeshark"></a> [kubeshark](#module\_kubeshark) | ./kubeshark_service | n/a |
-| <a name="module_loki-stack"></a> [loki-stack](#module\_loki-stack) | ./loki_stack | n/a |
+| <a name="module_loki_stack"></a> [loki\_stack](#module\_loki\_stack) | ./loki_stack | n/a |
 
 ## Resources
 
@@ -30,15 +31,21 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_acm_certificate_arn"></a> [acm\_certificate\_arn](#input\_acm\_certificate\_arn) | n/a | `string` | n/a | yes |
+| <a name="input_alertmanager_sub_release_name"></a> [alertmanager\_sub\_release\_name](#input\_alertmanager\_sub\_release\_name) | Alertmanager sub release name | `string` | `"alertmanager"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | n/a | `string` | n/a | yes |
 | <a name="input_cluster_oidc_provider_arn"></a> [cluster\_oidc\_provider\_arn](#input\_cluster\_oidc\_provider\_arn) | tflint-ignore: terraform\_unused\_declarations | `string` | n/a | yes |
 | <a name="input_cluster_region"></a> [cluster\_region](#input\_cluster\_region) | # Common variables | `string` | n/a | yes |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | n/a | `string` | n/a | yes |
+| <a name="input_grafana_auths_secret_mgr_arn"></a> [grafana\_auths\_secret\_mgr\_arn](#input\_grafana\_auths\_secret\_mgr\_arn) | ARN of the secret with Grafana auths | `string` | n/a | yes |
+| <a name="input_grafana_sub_release_name"></a> [grafana\_sub\_release\_name](#input\_grafana\_sub\_release\_name) | Grafana sub release name | `string` | `"grafana"` | no |
 | <a name="input_jaeger_demo_app_enabled"></a> [jaeger\_demo\_app\_enabled](#input\_jaeger\_demo\_app\_enabled) | n/a | `bool` | `false` | no |
 | <a name="input_jaeger_enabled"></a> [jaeger\_enabled](#input\_jaeger\_enabled) | Jaeger vars | `bool` | `false` | no |
 | <a name="input_jaeger_name"></a> [jaeger\_name](#input\_jaeger\_name) | n/a | `string` | `"jaeger"` | no |
 | <a name="input_jaeger_namespace"></a> [jaeger\_namespace](#input\_jaeger\_namespace) | n/a | `string` | `"jaeger"` | no |
 | <a name="input_jaeger_scheme"></a> [jaeger\_scheme](#input\_jaeger\_scheme) | n/a | `string` | `"internet-facing"` | no |
+| <a name="input_kube_prometheus_stack_chart_version"></a> [kube\_prometheus\_stack\_chart\_version](#input\_kube\_prometheus\_stack\_chart\_version) | Version of kube-prometheus-stack chart | `string` | `"68.3.0"` | no |
+| <a name="input_kube_prometheus_stack_enabled"></a> [kube\_prometheus\_stack\_enabled](#input\_kube\_prometheus\_stack\_enabled) | Enable or not chart as a component | `bool` | `false` | no |
+| <a name="input_kube_prometheus_stack_namespace"></a> [kube\_prometheus\_stack\_namespace](#input\_kube\_prometheus\_stack\_namespace) | Namespace to install the chart into | `string` | `"monitoring"` | no |
 | <a name="input_kubeshark_enabled"></a> [kubeshark\_enabled](#input\_kubeshark\_enabled) | Kubeshark vars | `bool` | `false` | no |
 | <a name="input_kubeshark_name"></a> [kubeshark\_name](#input\_kubeshark\_name) | n/a | `string` | `"kubeshark"` | no |
 | <a name="input_kubeshark_namespace"></a> [kubeshark\_namespace](#input\_kubeshark\_namespace) | n/a | `string` | `"kube-system"` | no |
@@ -56,13 +63,18 @@ No resources.
 | <a name="input_loki_stack_prometheus_alert_manager_volume_size"></a> [loki\_stack\_prometheus\_alert\_manager\_volume\_size](#input\_loki\_stack\_prometheus\_alert\_manager\_volume\_size) | n/a | `string` | `"5Gi"` | no |
 | <a name="input_loki_stack_prometheus_server_volume_size"></a> [loki\_stack\_prometheus\_server\_volume\_size](#input\_loki\_stack\_prometheus\_server\_volume\_size) | n/a | `string` | `"20Gi"` | no |
 | <a name="input_loki_stack_serviceaccount"></a> [loki\_stack\_serviceaccount](#input\_loki\_stack\_serviceaccount) | n/a | `string` | `"loki_stack"` | no |
+| <a name="input_prometheus_sub_release_name"></a> [prometheus\_sub\_release\_name](#input\_prometheus\_sub\_release\_name) | Prometheus sub release name | `string` | `"prometheus"` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | tflint-ignore: terraform\_unused\_declarations | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| <a name="output_alertmanager_url"></a> [alertmanager\_url](#output\_alertmanager\_url) | n/a |
+| <a name="output_grafana_loki_url"></a> [grafana\_loki\_url](#output\_grafana\_loki\_url) | n/a |
 | <a name="output_grafana_url"></a> [grafana\_url](#output\_grafana\_url) | n/a |
+| <a name="output_jaeger_demo_url"></a> [jaeger\_demo\_url](#output\_jaeger\_demo\_url) | n/a |
 | <a name="output_jaeger_url"></a> [jaeger\_url](#output\_jaeger\_url) | n/a |
 | <a name="output_kubeshark_url"></a> [kubeshark\_url](#output\_kubeshark\_url) | n/a |
+| <a name="output_prometheus_url"></a> [prometheus\_url](#output\_prometheus\_url) | n/a |
 <!-- END_TF_DOCS -->

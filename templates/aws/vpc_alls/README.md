@@ -46,8 +46,11 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_azs"></a> [azs](#output\_azs) | n/a |
 | <a name="output_database_subnets"></a> [database\_subnets](#output\_database\_subnets) | n/a |
 | <a name="output_private_subnets"></a> [private\_subnets](#output\_private\_subnets) | n/a |
 | <a name="output_public_subnets"></a> [public\_subnets](#output\_public\_subnets) | n/a |
+| <a name="output_vpc_cidr_block"></a> [vpc\_cidr\_block](#output\_vpc\_cidr\_block) | n/a |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | n/a |
+| <a name="output_vpc_name"></a> [vpc\_name](#output\_vpc\_name) | n/a |
 <!-- END_TF_DOCS -->

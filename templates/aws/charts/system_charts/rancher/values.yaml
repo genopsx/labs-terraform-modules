@@ -14,7 +14,7 @@ ingress:
   # options: true, false
   enabled: true
   includeDefaultExtraAnnotations: true
-  extraAnnotations: 
+  extraAnnotations:
     # Example of adding an annotation
     # nginx.ingress.kubernetes.io/proxy-body-size: 50m
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'

@@ -83,6 +83,7 @@ No resources.
 | <a name="input_jenkins_enabled"></a> [jenkins\_enabled](#input\_jenkins\_enabled) | Jenkins server | `bool` | `false` | no |
 | <a name="input_jenkins_namespace"></a> [jenkins\_namespace](#input\_jenkins\_namespace) | n/a | `string` | `"jenkins"` | no |
 | <a name="input_jenkins_serviceaccount"></a> [jenkins\_serviceaccount](#input\_jenkins\_serviceaccount) | n/a | `string` | `"jenkins"` | no |
+| <a name="input_kyverno_enabled"></a> [kyverno\_enabled](#input\_kyverno\_enabled) | Whethe to install Kyverno | `bool` | `false` | no |
 | <a name="input_negative_feedback"></a> [negative\_feedback](#input\_negative\_feedback) | Whether to get negattive notifications from ArgoCD | `bool` | `true` | no |
 | <a name="input_policy_reporter_helm_chart_name"></a> [policy\_reporter\_helm\_chart\_name](#input\_policy\_reporter\_helm\_chart\_name) | Name of the chart to install | `string` | n/a | yes |
 | <a name="input_policy_reporter_helm_chart_version"></a> [policy\_reporter\_helm\_chart\_version](#input\_policy\_reporter\_helm\_chart\_version) | Version of the chart to install | `string` | n/a | yes |

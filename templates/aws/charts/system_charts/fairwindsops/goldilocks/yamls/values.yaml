@@ -154,7 +154,7 @@ dashboard:
       external-dns.alpha.kubernetes.io/hostname: ${release_name}.${domain}
     hosts:
       - host: ${release_name}.${domain}
-        paths: 
+        paths:
           - path: /
             type: Prefix
     tls: []

@@ -113,6 +113,7 @@ No modules.
 | <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create the namespace if it does not exist | `bool` | `true` | no |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | Argo-Workflows hostname | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Argo-Workflows namespace | `string` | n/a | yes |
+| <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Name of the helm release | `string` | `"argo-workflows"` | no |
 | <a name="input_repository"></a> [repository](#input\_repository) | Repository to install the chart from | `string` | `"https://argoproj.github.io/argo-helm"` | no |
 | <a name="input_sso_enabled"></a> [sso\_enabled](#input\_sso\_enabled) | Single sign-on (SSO) authentication for argo-workflows | `string` | n/a | yes |
 

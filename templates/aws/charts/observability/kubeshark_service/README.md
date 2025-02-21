@@ -30,7 +30,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_acm_certificate_arn"></a> [acm\_certificate\_arn](#input\_acm\_certificate\_arn) | The acm certificate arn of the kubeshark | `string` | n/a | yes |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The domain name of the kubeshark | `string` | n/a | yes |
-| <a name="input_kubeshark_helm_chart_version"></a> [kubeshark\_helm\_chart\_version](#input\_kubeshark\_helm\_chart\_version) | The version of the kubeshark helm chart | `string` | `"52.3.38"` | no |
+| <a name="input_kubeshark_helm_chart_version"></a> [kubeshark\_helm\_chart\_version](#input\_kubeshark\_helm\_chart\_version) | The version of the kubeshark helm chart | `string` | `"52.3.94"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the kubeshark | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The namespace to deploy the kubeshark | `string` | `"kubeshark"` | no |
 | <a name="input_region"></a> [region](#input\_region) | The region to deploy the kubeshark | `string` | n/a | yes |

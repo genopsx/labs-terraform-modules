@@ -120,7 +120,7 @@ variable "karpenter_namespace" {
 #   description = "Version of the chart for yunikorn"
 # }
 
-# NVIDIA 
+# NVIDIA
 variable "nvidia_enabled" {
   type    = bool
   default = false
@@ -358,7 +358,7 @@ variable "gemini_namespace" {
 }
 
 
-# Helm Release Pruner 
+# Helm Release Pruner
 variable "helm_release_pruner_enabled" {
   type    = bool
   default = false
@@ -424,7 +424,7 @@ variable "insights_admission_release_name" {
 }
 
 
-# Ecr Cleanup 
+# Ecr Cleanup
 variable "ecr_cleanup_enabled" {
   type    = bool
   default = false

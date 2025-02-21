@@ -39,14 +39,10 @@
 | [aws_ec2_tag.cluster_public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_tag) | resource |
 | [aws_ec2_tag.karpenter_private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_tag) | resource |
 | [aws_ec2_tag.karpenter_public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_tag) | resource |
-| [aws_iam_policy.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_role.role-with-oidc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_route53_record.ns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_zone.cluster_zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_eks_cluster_auth.eks](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
-| [aws_iam_policy_document.role_assume_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 | [aws_route53_zone.parent_hosted_zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
@@ -63,7 +59,6 @@
 | <a name="input_developer_user_group"></a> [developer\_user\_group](#input\_developer\_user\_group) | Name of the kube group for developers. | `string` | `"value"` | no |
 | <a name="input_developer_users"></a> [developer\_users](#input\_developer\_users) | List of Kubernetes developers. | `list(string)` | `[]` | no |
 | <a name="input_eks_managed_node_groups"></a> [eks\_managed\_node\_groups](#input\_eks\_managed\_node\_groups) | values for the EKS managed node groups. | <pre>map(object({<br>    ami_type       = string<br>    min_size       = number<br>    max_size       = number<br>    desired_size   = number<br>    instance_types = list(string)<br>    capacity_type  = string<br>    # use_custom_launch_template = bool<br>    # disk_size                  = number<br>    network_interfaces = list(object({<br>      delete_on_termination       = bool<br>      associate_public_ip_address = bool<br>    }))<br>  }))</pre> | <pre>{<br>  "name": {<br>    "ami_type": "value",<br>    "capacity_type": "value",<br>    "desired_size": 0,<br>    "instance_types": [<br>      "value"<br>    ],<br>    "max_size": 0,<br>    "min_size": 0,<br>    "network_interfaces": [<br>      {<br>        "associate_public_ip_address": false,<br>        "delete_on_termination": false<br>      }<br>    ]<br>  }<br>}</pre> | no |
-| <a name="input_enable_creation_role_with_oidc"></a> [enable\_creation\_role\_with\_oidc](#input\_enable\_creation\_role\_with\_oidc) | Enable creation of IAM roles with OIDC. | `bool` | `false` | no |
 | <a name="input_enable_eks_addons"></a> [enable\_eks\_addons](#input\_enable\_eks\_addons) | Flag to enable or disable EKS addons | `bool` | `true` | no |
 | <a name="input_fargate_profiles"></a> [fargate\_profiles](#input\_fargate\_profiles) | Map of Fargate profiles to create. | <pre>map(object({<br>    name          = string<br>    namespace     = string<br>    iam_role_name = string<br>    selectors = list(object({<br>      namespace = string<br>      labels    = map(string)<br>    }))<br>    additional_policies = map(string)<br>  }))</pre> | `{}` | no |
 | <a name="input_iam_node_group_role"></a> [iam\_node\_group\_role](#input\_iam\_node\_group\_role) | The name of the IAM role to attach to the EKS managed node group. | `string` | `"value"` | no |
@@ -73,7 +68,6 @@
 | <a name="input_node_add_policy_name"></a> [node\_add\_policy\_name](#input\_node\_add\_policy\_name) | Name of the policy to attach to the EKS managed node group. | `string` | `"value"` | no |
 | <a name="input_node_security_group_tags"></a> [node\_security\_group\_tags](#input\_node\_security\_group\_tags) | The tags to apply to the node security group. | `map(string)` | `{}` | no |
 | <a name="input_nodegroup_subnet_ids"></a> [nodegroup\_subnet\_ids](#input\_nodegroup\_subnet\_ids) | List of subnet IDs for the EKS Node Group. | `list(string)` | `[]` | no |
-| <a name="input_oic_role_configurations"></a> [oic\_role\_configurations](#input\_oic\_role\_configurations) | values for the OIDC role configurations. | <pre>map(object({<br>    role_name           = string<br>    assume_role_actions = list(string)<br>    namespace           = string<br>    service_account     = string<br>    policy_file         = string<br>  }))</pre> | <pre>{<br>  "name": {<br>    "assume_role_actions": [<br>      "value"<br>    ],<br>    "namespace": "value",<br>    "policy_file": "value",<br>    "role_name": "value",<br>    "service_account": "value"<br>  }<br>}</pre> | no |
 | <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | List of subnet IDs for the EKS Node Group. | `list(string)` | `[]` | no |
 | <a name="input_public_subnet_ids"></a> [public\_subnet\_ids](#input\_public\_subnet\_ids) | List of subnet IDs for the EKS Node Group. | `list(string)` | `[]` | no |
 | <a name="input_r53_hosted_zone_name"></a> [r53\_hosted\_zone\_name](#input\_r53\_hosted\_zone\_name) | Route53 hosted zone name | `string` | `""` | no |

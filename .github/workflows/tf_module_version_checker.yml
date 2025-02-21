@@ -14,7 +14,7 @@ on:
       - main
 
 
-permissions: 
+permissions:
   id-token: write
   contents: read
 
@@ -43,12 +43,12 @@ jobs:
         uses: actions/checkout@v4
         with:
          fetch-depth: 0
-    
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
          node-version: '20'
-    
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -68,7 +68,7 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ${{ ENV.SOURCE_TERRAFORM_MODULES_S3_UI}} 
+        working-directory: ${{ ENV.SOURCE_TERRAFORM_MODULES_S3_UI}}
 
       - name: Terraform Format Check
         run: terraform fmt -recursive -check
@@ -99,7 +99,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
         if: github.event_name == 'push'
-        working-directory: ${{ ENV.SOURCE_TERRAFORM_MODULES_S3_UI}} 
+        working-directory: ${{ ENV.SOURCE_TERRAFORM_MODULES_S3_UI}}
 
       - name: Get Repository URL
         id: repo_info
@@ -110,47 +110,47 @@ jobs:
         run: |
           echo "Searching for Terraform modules..."
           mkdir -p results
-          
+
           # Use find to list .tf files and loop over them to extract module info
           find $GITHUB_WORKSPACE/$SOURCE_TEFFORM_MODULES_PATH -type f -name "*.tf" | while IFS= read -r file; do
             echo "Found file: $file"
-            
+
             # Extract module source and version from the .tf files
             MODULE_SOURCE=$(grep -oP 'source\s*=\s*"\K[^"]+' "$file" | head -n1)
             MODULE_VERSION=$(grep -oP 'version\s*=\s*"\K[^"]+' "$file" | head -n1)
-      
+
             # Skip if source or version is not found
             if [[ -z "$MODULE_SOURCE" || -z "$MODULE_VERSION" ]]; then
               continue
             fi
-      
+
             echo "Module source: $MODULE_SOURCE"
             echo "Module version: $MODULE_VERSION"
-      
+
             # Only process modules with source starting with terraform-aws-modules
             if [[ "$MODULE_SOURCE" != terraform-aws-modules* ]]; then
               continue
             fi
-      
+
             # Get the latest version from GitHub releases (removing the 'v' prefix)
             echo "Fetching latest version for $MODULE_SOURCE"
             LATEST_VERSION=$(curl -s https://api.github.com/repos/terraform-aws-modules/terraform-aws-eks/releases/latest | jq -r '.tag_name' | sed 's/^v//')
             echo "Latest version: $LATEST_VERSION"
-      
+
             # Check if the latest version was found
             if [[ -z "$LATEST_VERSION" ]]; then
               echo "Failed to fetch the latest version for $MODULE_SOURCE"
               continue
             fi
-      
+
             # Prepare URLs for GitHub file and Terraform registry
             GITHUB_FILE_URL="${REPO_URL}/${file}"
             MODULE_REGISTRY_URL="https://registry.terraform.io/modules/${MODULE_SOURCE}"
-      
+
             # Handle version constraints
             CONSTRAINT_SYMBOL=$(echo "$MODULE_VERSION" | grep -o '^[~>=<]*')
             VERSION_NUMBER=$(echo "$MODULE_VERSION" | sed 's/^[~>=<]*//')
-      
+
             # Determine module status
             STATUS="🔴 ❌ Not Supported"
             if [[ -z "$CONSTRAINT_SYMBOL" ]]; then
@@ -166,19 +166,18 @@ jobs:
               LATEST_MAJOR_MINOR=$(echo "$LATEST_VERSION" | cut -d'.' -f1,2)
               STATUS=$([[ "$MAJOR_MINOR" == "$LATEST_MAJOR_MINOR" ]] && echo "🟡 ✅ Supported" || echo "🔴 ❌ Not Supported")
             fi
-      
+
             # Write the results to a JSON file
             echo "{\"file\": \"$GITHUB_FILE_URL\", \"module_registry\": \"$MODULE_REGISTRY_URL\", \"current_version\": \"$MODULE_VERSION\", \"latest_version\": \"$LATEST_VERSION\", \"status\": \"$STATUS\"}" >> results/final.json
-          done      
-      
+          done
+
       - name: Format JSON Output
         run: |
           # Format the JSON output as an array
           echo "[" > results/final.json
           cat results/final.json | sed '$!s/$/,/' >> results/final.json
           echo "]" >> results/final.json
-      
+
       - name: Upload JSON to S3
         run: |
           aws s3 cp results/final.json s3://$S3_BUCKET_NAME/final.json --acl public-read --region $AWS_REGION
-      
