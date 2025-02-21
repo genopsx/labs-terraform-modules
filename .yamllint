@@ -18,6 +18,8 @@
 #       true
 #     - >-  # Allow "on" key name in GHA CI/CD workflow definitions
 #       on
+
+
 extends: default
 
 rules:
@@ -32,17 +34,14 @@ rules:
     max: 100
   truthy:
     allowed-values:
-      - >-
-        false
-      - >-
-        true
-      - >-  # Allow "on" key name in GHA CI/CD workflow definitions
-        on
+      - "false"
+      - "true"
+      - "on"
 
 severity:
-  # Customize the severity for each rule to show as a warning
   indentation: warning
   document-start: warning
   quoted-strings: warning
   line-length: warning
   truthy: warning
+
