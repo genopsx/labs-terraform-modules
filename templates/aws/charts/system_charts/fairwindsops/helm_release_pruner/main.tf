@@ -7,6 +7,3 @@ resource "helm_release" "helm_release_pruner" {
   chart            = "helm-release-pruner"
   wait             = true # Wait for the deployment to be ready before marking the resource as complete
 }
-
-
-

@@ -193,4 +193,3 @@ variable "argocd_root_app_exclude" {
 #   default = ""
 #   description = "Name of AWS secret with OAuth client creds. See README for details"
 # }
-

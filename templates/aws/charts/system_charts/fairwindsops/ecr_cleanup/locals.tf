@@ -10,6 +10,3 @@ locals {
     namespaces = var.ecr-cleanup-namespaces
   })
 }
-
-
-

@@ -26,4 +26,3 @@ module "keda_poc" {
   region                    = var.region
   cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
 }
-

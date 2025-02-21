@@ -31,4 +31,3 @@ variable "region" {
   type        = string
   description = "AWS region where the ASG placed"
 }
-

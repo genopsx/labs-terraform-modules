@@ -7,6 +7,3 @@ resource "helm_release" "gemini" {
   chart            = "gemini"
   wait             = true # Wait for the deployment to be ready before marking the resource as complete
 }
-
-
-

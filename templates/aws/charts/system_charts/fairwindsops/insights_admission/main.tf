@@ -7,6 +7,3 @@ resource "helm_release" "insights_admission" {
   chart            = "insights-admission"
   wait             = true # Wait for the deployment to be ready before marking the resource as complete
 }
-
-
-

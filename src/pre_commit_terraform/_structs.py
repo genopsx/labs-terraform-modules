@@ -13,4 +13,4 @@ class ReturnCode(IntEnum):
     ERROR = 1
 
 
-__all__ = ('ReturnCode',)
+__all__ = ("ReturnCode",)

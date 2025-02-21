@@ -9,4 +9,4 @@ SUBCOMMAND_MODULES: list[CLISubcommandModuleProtocol] = [
 ]
 
 
-__all__ = ('SUBCOMMAND_MODULES',)
+__all__ = ("SUBCOMMAND_MODULES",)

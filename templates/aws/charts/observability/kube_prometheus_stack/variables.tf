@@ -48,5 +48,3 @@ variable "grafana_auths_secret_mgr_arn" {
   type        = string
   description = "ARN of the secret with Grafana auths"
 }
-
-

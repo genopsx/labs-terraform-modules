@@ -51,5 +51,3 @@ spec:
 # kubectl delete clusterpolicy add-labels
 # bash
 # Congratulations, you’ve just implemented a mutation policy in your Kubernetes cluster! For more details on mutate policies, see the mutate section.
-
-

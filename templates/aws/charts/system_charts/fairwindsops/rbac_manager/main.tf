@@ -7,6 +7,3 @@ resource "helm_release" "rbac_manager" {
   chart            = "rbac-manager"
   wait             = true # Wait for the deployment to be ready before marking the resource as complete
 }
-
-
-

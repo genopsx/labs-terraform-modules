@@ -53,5 +53,3 @@ variable "cluster_endpoint" {
   type        = string
   description = "EKS cluster OIDC provider ARN"
 }
-
-

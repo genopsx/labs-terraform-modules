@@ -42,7 +42,7 @@ YOUR_LOG_HERE
 
 ### Environment information
 
-* OS:  
+* OS:
 
 <!-- I.e.:
 OS: Windows 10
@@ -61,9 +61,9 @@ INSERT_OUTPUT_HERE
 
 </details>
 
-* Docker image tag/git commit:  
+* Docker image tag/git commit:
 
-* Tools versions. Don't forget to specify right tag in command -  
+* Tools versions. Don't forget to specify right tag in command -
   `TAG=latest && docker run --entrypoint cat pre-commit:$TAG /usr/bin/tools_versions_info`
 
 ```bash

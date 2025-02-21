@@ -6,4 +6,3 @@ module "eks_addons" {
   tags              = var.tags
   depends_on        = [module.nodes]
 }
-

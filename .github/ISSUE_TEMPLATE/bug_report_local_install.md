@@ -42,7 +42,7 @@ YOUR_LOG_HERE
 
 ### Environment information
 
-* OS:  
+* OS:
 <!-- I.e.:
 OS: Windows 10
 OS: Win10 with Ubuntu 20.04 on WSL2

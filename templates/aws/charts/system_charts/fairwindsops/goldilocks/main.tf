@@ -8,6 +8,3 @@ resource "helm_release" "goldilocks" {
   values           = [local.base_values]
   wait             = true # Wait for the deployment to be ready before marking the resource as complete
 }
-
-
-

@@ -7,6 +7,3 @@ resource "helm_release" "aws_iam_authenticator" {
   chart            = "aws-iam-authenticator"
   wait             = true # Wait for the deployment to be ready before marking the resource as complete
 }
-
-
-

@@ -110,7 +110,7 @@ repos:
       - pytest
       - pytest-mock
       - pytest-xdist
-      
+
       args:
       - --python-version=3.13
       - --any-exprs-report=.tox/.tmp/.test-results/mypy--py-3.13

@@ -145,4 +145,3 @@ variable "cert_manager_issuer_email" {
   type        = string
   default     = ""
 }
-
