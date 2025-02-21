@@ -55,7 +55,11 @@ repos:
     - id: trailing-whitespace
       args: [--markdown-linebreak-ext=md]
       exclude: CHANGELOG.md
+
     - id: check-yaml
+      # files: \.(yaml|yml)$  # Lint only YAML or YML files
+      # exclude: '.*values\.(yaml|yml)$'  # Exclude any files named values.yaml or values.yml, recursively
+
     - id: check-merge-conflict
     - id: check-executables-have-shebangs
 
