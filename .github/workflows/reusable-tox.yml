@@ -154,7 +154,10 @@ jobs:
 
     - name: Install terraform-docs
       run: |
-        curl -sSLo terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/latest/download/terraform-docs-$(uname -s)-amd64.tar.gz
+        sudo apt-get update && sudo apt-get install -y jq
+        TERRAFORM_DOCS_VERSION=$(curl -s https://api.github.com/repos/terraform-docs/terraform-docs/releases/latest | jq -r .tag_name)
+        DOWNLOAD_URL="https://github.com/terraform-docs/terraform-docs/releases/download/${TERRAFORM_DOCS_VERSION}/terraform-docs-${TERRAFORM_DOCS_VERSION#v}-$(uname -s)-amd64.tar.gz"
+        curl -sSLo terraform-docs.tar.gz "$DOWNLOAD_URL"
         tar -xzf terraform-docs.tar.gz
         chmod +x terraform-docs
         sudo mv terraform-docs /usr/local/bin/
@@ -170,7 +173,7 @@ jobs:
         tar -xzf trivy_*.tar.gz
         sudo mv trivy /usr/local/bin/
     # I addded this step to debug the issue (end)
-    
+
     - name: Export requested job-global environment variables
       if: inputs.environment-variables != ''
       run: >-
