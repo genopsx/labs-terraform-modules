@@ -6,18 +6,17 @@ rules:
     indent-sequences: false
   document-start:
     present: false
+  # https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.quoted_strings
   quoted-strings:
-    required: only-when-needed
+    required: only-when-needed    # Quotes are required only when needed (e.g., for strings with spaces or special characters)
+    quote-type: any               # Allows both single ('') and double ("") quotes
   line-length:
-    max: 100
+    max: 150
   truthy:
     allowed-values:
     - >-
       false
     - >-
       true
-    - >-  # Allow "on" key name in GHA CI/CD workflow definitions
+    - >-
       on
-
-
-

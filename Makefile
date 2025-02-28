@@ -1,11 +1,12 @@
 PRE_COMMIT_TERRAFORM_VERSION=latest
+PRE_COMMIT_CUSTOM_CONFIG=.main-pre-committer.yaml
 MODULES := $(shell find . -type f -name "versions.tf" -exec dirname {} \; | sed 's/^\.\///' | sort)
 OSNAME := $(shell uname -s)
 
 all: lint
 
 lint:
-	@docker run -v ${PWD}:/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:${PRE_COMMIT_TERRAFORM_VERSION} run -a
+	@docker run -v ${PWD}:/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:${PRE_COMMIT_TERRAFORM_VERSION} run -a --config ${PRE_COMMIT_CUSTOM_CONFIG}
 
 install: install_precommit
 
@@ -28,7 +29,7 @@ update-readme:
 	@echo "| ----------- | ---------- |" >> README.md
 	@for module in $(MODULES); do \
 		module_name=$$(echo $$module | tr / -); \
-		module_url=$$(echo "https://github.com/kwatatshey/labs-terraform-modules/tree/main/$$module"); \
+		module_url=$$(echo "https://github.com/Assassin010/pre-commit-terraform-poc/tree/main/$$module"); \
 		echo "| $$module_name | $$module_url |" >> README.md; \
 	done
 	@echo "README.md updated with module list."

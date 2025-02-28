@@ -36,5 +36,5 @@ run-name: >-
 jobs:
   main-ci-cd-pipeline:
     name: ∞ Main CI/CD pipeline
-    uses: ./.github/workflows/ci-cd.yml
+    uses: ./.github/workflows/all.yml
     secrets: inherit
