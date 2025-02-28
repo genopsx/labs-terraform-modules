@@ -2,10 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    # branches: [ "main" ]
-  workflow_call:  # a way to embed the main tests 
 
 jobs:
   build:
