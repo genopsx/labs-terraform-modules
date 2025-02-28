@@ -9,7 +9,7 @@ on:
       - gh-readonly-queue/**  # Temporary merge queue-related GH-made branches
       - pre-commit-ci-update-config  # pre-commit.ci always creates a PR
   pull_request:
-    branches: [ "main" ]
+    # branches: [ "main" ]
   workflow_call:  # a way to embed the main tests 
 
 jobs:
