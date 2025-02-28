@@ -29,12 +29,6 @@ variable "publish" {
   default     = true
 }
 
-variable "vpc_config" {
-  description = "A map of vpc config to apply to AWS resources"
-  type        = map(string)
-  default     = {}
-}
-
 variable "subnet_ids" {
   description = "List of subnet IDs within the VPC"
   type        = list(string)

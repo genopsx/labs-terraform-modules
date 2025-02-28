@@ -6,9 +6,10 @@ params:
 groups:
   type: Security
   mapping:
-    dbricks-cdnas-dev-us-tspotcld-developers: msd_op_dev
-    dbricks-cdnas-dev-us-tspotcld-developers: msd_user_dev
-    dbricks-cdnas-dev-us-tspotcld-developers: msd_viewer_dev
+    dbricks-cdnas-dev-us-tspotcld-developers:
+      - msd_op_dev
+      - msd_user_dev
+      - msd_viewer_dev
 size:
   dags_count: 10
   concurent_tasks: 10

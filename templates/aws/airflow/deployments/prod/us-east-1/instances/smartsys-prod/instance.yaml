@@ -9,4 +9,3 @@ groups:
     SMARTSYS-airflow-prod-admin-role: msd_op_prod
     SMARTSYS-airflow-prod-developer-role: msd_user_prod
     SMARTSYS-airflow-prod-analyst-role: msd_viewer_prod
-    

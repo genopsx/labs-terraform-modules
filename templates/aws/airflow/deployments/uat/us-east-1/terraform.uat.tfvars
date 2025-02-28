@@ -25,7 +25,7 @@ routable_subnets = ["subnet-0f75a5798f748e716", "subnet-0b2ed195b87f5ed3a"]
 # Subnet IDs of Merck non-routable NAT gateway subnets
 non_routable_subnets = ["subnet-0c461ce16fef9c25f", "subnet-0c8f381a15e1bfc06"]
 
-# Names of security groups that will attached to EKS cluster 
+# Names of security groups that will attached to EKS cluster
 cluster_security_groups_names = ["default", "mcs-baseline-sg-global"]
 # Version of kubernetes
 kubernetes_version = "1.29"

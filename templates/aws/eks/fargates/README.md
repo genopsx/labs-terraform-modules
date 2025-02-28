@@ -34,7 +34,7 @@ No resources.
 | <a name="input_fargate_profile_iam_role_name"></a> [fargate\_profile\_iam\_role\_name](#input\_fargate\_profile\_iam\_role\_name) | Name of the IAM role for the Fargate Profile. | `string` | n/a | yes |
 | <a name="input_fargate_profile_name"></a> [fargate\_profile\_name](#input\_fargate\_profile\_name) | Name of the Fargate Profile. | `string` | n/a | yes |
 | <a name="input_fargate_profile_namespace"></a> [fargate\_profile\_namespace](#input\_fargate\_profile\_namespace) | Namespace to be used by the Fargate Profile. | `string` | n/a | yes |
-| <a name="input_fargate_profile_selectors"></a> [fargate\_profile\_selectors](#input\_fargate\_profile\_selectors) | The selectors for the Fargate profile. | <pre>list(object({<br>    namespace = string<br>    labels    = map(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_fargate_profile_selectors"></a> [fargate\_profile\_selectors](#input\_fargate\_profile\_selectors) | The selectors for the Fargate profile. | <pre>list(object({<br/>    namespace = string<br/>    labels    = map(string)<br/>  }))</pre> | n/a | yes |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet IDs to launch Fargate Profiles in. | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Map of tags for the resources. | `map(string)` | n/a | yes |
 

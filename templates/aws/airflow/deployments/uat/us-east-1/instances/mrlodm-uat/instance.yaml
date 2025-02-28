@@ -3,7 +3,7 @@ params:
   web-instance-name: MRLODM UAT instance
   repository-name: https://github.com/merck-gen/peac-odm-airflow.git
   repository-branch: uat
-groups:  
+groups:
   type: Security
   mapping:
     ODM-airflow-uat-admin-role: msd_op_uat

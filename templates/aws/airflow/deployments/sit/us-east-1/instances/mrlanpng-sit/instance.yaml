@@ -9,4 +9,3 @@ groups:
     MRLANPNG-airflow-sit-admin-role: msd_op_sit
     MRLANPNG-airflow-sit-developer-role: msd_user_sit
     MRLANPNG-airflow-sit-analyst-role: msd_viewer_sit
-    

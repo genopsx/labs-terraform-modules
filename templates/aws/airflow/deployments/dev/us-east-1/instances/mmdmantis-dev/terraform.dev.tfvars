@@ -49,4 +49,4 @@ redis_maintenance_window = "Wed:05:30-Wed:06:30"
 redis_automatic_failover = false
 
 # Name of AWS Secretsmanager secret in us-east-1 region that contains common sensitive values(reused across instances)
-secretsmanager_common_secrets_name = "aparflow/airflowfdna/commonsecrets" 
+secretsmanager_common_secrets_name = "aparflow/airflowfdna/commonsecrets"

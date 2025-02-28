@@ -4,7 +4,7 @@
     "<web-instance-name>": "MRLDPGXP SIT instance",
     "<repository-name>": "https://github.com/merck-gen/mrl-mrldpgxp-dbt-airflow.git",
     "<repository-branch>": "sit"
-  },  
+  },
   "groups": {
     "<group-type>": "Security",
     "<msd-op-group>": "MRLDPGXP-airflow-sit-admin-role",

@@ -19,7 +19,7 @@ module "eks" {
   eks_kms_alias             = "alias/eks-kms"
 }
 
-# Deploy OIDC Identity provider 
+# Deploy OIDC Identity provider
 module "oidc" {
   source = "../../../modules/oidc"
 

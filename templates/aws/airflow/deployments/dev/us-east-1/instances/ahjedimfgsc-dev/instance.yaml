@@ -9,4 +9,3 @@ groups:
     ahjedi-mfgsc-airflow-executor-dev: msd_op_dev
     ahjedi-mfgsc-airflow-developer-dev: msd_user_dev
     ahjedi-mfgsc-airflow-viewer-dev: msd_viewer_dev
-    

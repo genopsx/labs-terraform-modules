@@ -45,10 +45,6 @@ variable "rds_instance_class" {
   type = string
 }
 
-variable "rds_parameter_group_family" {
-  type = string
-}
-
 variable "rds_vpc_security_group_names" {
   type = list(string)
 }
@@ -125,4 +121,3 @@ variable "redis_automatic_failover" {
   type        = bool
   description = "Automatic failover primary to replica. For single node set to false."
 }
-

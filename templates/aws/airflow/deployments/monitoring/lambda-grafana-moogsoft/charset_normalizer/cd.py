@@ -1,8 +1,7 @@
 import importlib
-from codecs import IncrementalDecoder
 from collections import Counter, OrderedDict
 from functools import lru_cache
-from typing import Dict, List, Optional, Tuple
+from typing import List, Optional, Tuple
 
 from .assets import FREQUENCIES
 from .constant import KO_NAMES, LANGUAGE_SUPPORTED_COUNT, TOO_SMALL_SEQUENCE, ZH_NAMES

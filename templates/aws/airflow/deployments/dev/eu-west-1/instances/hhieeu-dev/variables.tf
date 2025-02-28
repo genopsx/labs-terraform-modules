@@ -125,4 +125,3 @@ variable "redis_automatic_failover" {
   type        = bool
   description = "Automatic failover primary to replica. For single node set to false."
 }
-

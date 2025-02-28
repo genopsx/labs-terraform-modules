@@ -44,7 +44,7 @@
 | <a name="input_secrets_manager_arns"></a> [secrets\_manager\_arns](#input\_secrets\_manager\_arns) | secrets manager ARNS | `string` | `"arn:aws:secretsmanager:%s:%s:secret:%s"` | no |
 | <a name="input_secrets_regex"></a> [secrets\_regex](#input\_secrets\_regex) | AWS SM Secrets regex for ARN | `string` | `"*"` | no |
 | <a name="input_serviceaccount"></a> [serviceaccount](#input\_serviceaccount) | Serviceaccount name | `string` | `"external-secrets"` | no |
-| <a name="input_ssm_parameter_arns"></a> [ssm\_parameter\_arns](#input\_ssm\_parameter\_arns) | SSM parameter ARNS | `list(string)` | <pre>[<br>  "arn:aws:ssm:*:*:parameter/*"<br>]</pre> | no |
+| <a name="input_ssm_parameter_arns"></a> [ssm\_parameter\_arns](#input\_ssm\_parameter\_arns) | SSM parameter ARNS | `list(string)` | <pre>[<br/>  "arn:aws:ssm:*:*:parameter/*"<br/>]</pre> | no |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | Timeout for the helm release | `number` | `600` | no |
 
 ## Outputs

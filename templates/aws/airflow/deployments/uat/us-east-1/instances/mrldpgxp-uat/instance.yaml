@@ -6,9 +6,10 @@ params:
 groups:
   type: Security
   mapping:
-    MRLDPGXP-airflow-uat-developer-role: msd_op_uat
+    MRLDPGXP-airflow-uat-developer-role:
+      - msd_op_uat
+      - msd_user_uat
     MRLDPGXP-airflow-uat-analyst-role: msd_user_uat
-    MRLDPGXP-airflow-uat-developer-role: msd_op_uat
 size:
   dags_count: 10
   concurent_tasks: 15

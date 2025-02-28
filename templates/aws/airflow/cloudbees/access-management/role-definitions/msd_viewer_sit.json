@@ -224,7 +224,7 @@
             "resource": {
                 "name": "Providers"
             }
-        },		
+        },
         {
             "action": {
                 "name": "can_read"

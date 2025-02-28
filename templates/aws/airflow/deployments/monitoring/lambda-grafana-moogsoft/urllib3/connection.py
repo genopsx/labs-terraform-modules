@@ -310,7 +310,7 @@ class HTTPSConnection(HTTPConnection):
         timeout=socket._GLOBAL_DEFAULT_TIMEOUT,
         ssl_context=None,
         server_hostname=None,
-        **kw
+        **kw,
     ):
 
         HTTPConnection.__init__(self, host, port, strict=strict, timeout=timeout, **kw)
@@ -561,8 +561,6 @@ def _get_default_user_agent():
 
 class DummyConnection(object):
     """Used to detect a failed ConnectionCls import."""
-
-    pass
 
 
 if not ssl:

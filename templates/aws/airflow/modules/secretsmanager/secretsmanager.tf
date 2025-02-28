@@ -30,7 +30,7 @@ resource "aws_secretsmanager_secret_version" "airflow_secret_values" {
     "gitsync_password":"${var.git_sync_github_pat}",
     "airflow_read_password":"${var.airflow_read_password}",
     "postgres_master_password":"${var.postgres_master_password}"
-   } 
+   }
    EOF
   lifecycle {
     ignore_changes = [

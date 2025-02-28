@@ -9,4 +9,3 @@ groups:
     hhiegf-airflow-uat-op: msd_op_uat
     hhiegf-airflow-uat-user: msd_user_uat
     hhiegf-airflow-uat-viewer: msd_viewer_uat
-    

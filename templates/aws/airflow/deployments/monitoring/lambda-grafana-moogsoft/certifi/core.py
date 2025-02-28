@@ -4,6 +4,7 @@ certifi.py
 
 This module returns the installation location of cacert.pem or its contents.
 """
+
 import sys
 
 
@@ -91,8 +92,8 @@ else:
     def read_text(
         package: Package,
         resource: Resource,
-        encoding: str = 'utf-8',
-        errors: str = 'strict'
+        encoding: str = "utf-8",
+        errors: str = "strict",
     ) -> str:
         with open(where(), encoding=encoding) as data:
             return data.read()

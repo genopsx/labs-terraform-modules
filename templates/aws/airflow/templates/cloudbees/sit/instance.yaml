@@ -17,4 +17,3 @@ groups:
 size:
   dags_count: <dags-number>
   concurent_tasks: <tasks-number>
-  

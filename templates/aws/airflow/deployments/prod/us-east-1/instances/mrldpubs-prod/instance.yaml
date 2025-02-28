@@ -9,5 +9,3 @@ groups:
     MRLDPUBS-airflow-admin-prd: msd_op_prod
     MRLDPUBS-airflow-developer-prd: msd_user_prod
     MRLDPUBS-airflow-analyst-prd: msd_viewer_prod
-
-    

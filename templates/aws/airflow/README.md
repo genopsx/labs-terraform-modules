@@ -18,7 +18,7 @@ Repository structure looks as follow:
 │   │       │   ├── projectA
 │   │       │   │   └── projectA-main.tf
 │   │       │   └── projectB
-│   │       │       └── projectB-main.tf        
+│   │       │       └── projectB-main.tf  
 │   │       └── region-main.tf
 │   └── env2
 │       └── region2
@@ -26,8 +26,8 @@ Repository structure looks as follow:
 │           │   ├── projectA
 │           │   │   └── projectA-main.tf
 │           │   └── projectB
-│           │       └── projectB-main.tf        
-│           └── region-main.tf    
+│           │       └── projectB-main.tf  
+│           └── region-main.tf  
 ├── modules
 ├── scripts
 ├── templates
@@ -71,5 +71,5 @@ At minimum in provider*.tf setup proper s3 backend and in variable-values*.tfvar
 
 You can now run terraform init and terraform apply from given folder.
 
- 
+
 ***After changes to .tf files are done, commit everything back to remote repository***

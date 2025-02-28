@@ -11,4 +11,4 @@ groups:
     MRLDPGXP-airflow-dev-analyst-role: msd_viewer_dev
 size:
   dags_count: 10
-  concurent_tasks: 15 
+  concurent_tasks: 15

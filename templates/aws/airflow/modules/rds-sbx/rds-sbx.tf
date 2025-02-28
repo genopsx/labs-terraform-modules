@@ -76,7 +76,7 @@ resource "null_resource" "create_airflow_user" {
     command = "psql -v airflow_password=\"'${var.airflow_password}'\" -h ${aws_db_instance.metadatapgrds.address} -p ${var.port} -U postgres -d postgres -f \"../../scripts/create_airflow_user_sbx.sql\""
 
     environment = {
-      PGPASSWORD = "${var.password}"
+      PGPASSWORD = var.password
     }
   }
   depends_on = [

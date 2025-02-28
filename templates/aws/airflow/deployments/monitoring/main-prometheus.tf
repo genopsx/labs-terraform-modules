@@ -44,4 +44,3 @@ module "moogsoft-alerts-lambda" {
 data "aws_sns_topic" "lambda_moogsoft_sns_topic" {
   name = "aparflow-sns-topic-central-moogsoft-alerts"
 }
-
