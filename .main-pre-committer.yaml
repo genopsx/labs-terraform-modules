@@ -116,4 +116,4 @@ repos:
     - -sr
     - -w
   - id: shellcheck
-exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/gcp/.*|templates/azure/.*)
+exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/aws/charts/engines/apache_airflow_merckk/.*|templates/gcp/.*|templates/azure/.*)
