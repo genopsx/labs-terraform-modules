@@ -62,7 +62,7 @@ repos:
     args:
     - --strict
     # exclude: '.*values\.ya?ml$'
-    exclude: '.*values\.ya?ml$|templates/aws/charts/engines/argocd/yamls/app-project\.yaml|templates/aws/charts/engines/argocd/github_repositories/yamls/gitops-argocd-ssh\.yaml'
+    exclude: '.*values\.ya?ml$|templates/aws/charts/engines/argocd/yamls/app-project\.yaml|templates/aws/charts/engines/argocd/github_repositories/yamls/gitops-argocd-ssh\.yaml|templates/aws/charts/engines/argo_workflows/yamls/values.yaml'
 - repo: https://github.com/psf/black-pre-commit-mirror
   rev: 24.10.0
   hooks:
