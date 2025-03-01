@@ -62,7 +62,7 @@ repos:
     args:
     - --strict
     # exclude: '.*values\.ya?ml$'
-    exclude: '.*%{.*%}.*|.*{%.*%}.*'  # Exclude files with Jinja syntax
+    exclude: '.*values\.ya?ml$|templates/aws/charts/engines/argocd/yamls/app-project\.yaml|templates/aws/charts/engines/argocd/github_repositories/yamls/gitops-argocd-ssh\.yaml'
 - repo: https://github.com/psf/black-pre-commit-mirror
   rev: 24.10.0
   hooks:
@@ -117,4 +117,3 @@ repos:
     - -w
   - id: shellcheck
 exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/gcp/.*|templates/azure/.*)
-# exclude: '^.*%{.*%}.*|^.*{%.*%}.*'  # Exclude files starting with Jinja-like syntax
