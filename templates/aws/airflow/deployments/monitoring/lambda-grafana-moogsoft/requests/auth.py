@@ -1,6 +1,6 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
-# Gauthier edited this file (orignal be found in zip from merck folder under companies)
+# Gauthier edited this file (the orignal file be found in zip file from merck folder under companies)
 import re
 import time
 import threading
