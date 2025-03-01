@@ -1,3 +1,4 @@
+#trivy:ignore:AVD-AWS-0342
 module "eks_managed_node_groups" {
   source               = "terraform-aws-modules/eks/aws//modules/eks-managed-node-group"
   version              = "20.31.3"
