@@ -103,7 +103,6 @@ repos:
     - --args=--force-all-dirs
   - id: terraform_trivy
     args:
-    - --minimum-severity="HIGH"
     - --args=--skip-dirs="**/gcp/**"
     - --args=--skip-dirs="**/azure/**"
 # shfmt and shellcheck are not supported by pre-commit-terraform
