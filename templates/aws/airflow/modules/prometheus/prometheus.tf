@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "prometheus_policy_document" {
       for_each = var.prometheus_agent_roles
       content {
         type        = "AWS"
-        identifiers = ["${principals.value}"]
+        identifiers = [principals.value]
       }
     }
     sid = "prometheusaccess"

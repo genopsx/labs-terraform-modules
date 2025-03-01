@@ -9,4 +9,3 @@ groups:
     MRLSO-airflow-dev-admin-role: msd_op_dev
     MRLSO-airflow-dev-developer-role: msd_user_dev
     MRLSO-airflow-dev-analyst-role: msd_viewer_dev
-    

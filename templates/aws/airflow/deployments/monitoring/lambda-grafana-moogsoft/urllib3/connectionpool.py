@@ -103,7 +103,6 @@ class ConnectionPool(object):
         """
         Close all pooled connections and disable the pool.
         """
-        pass
 
 
 # This is taken from http://hg.python.org/cpython/file/7aaba721ebc0/Lib/socket.py#l252
@@ -187,7 +186,7 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
         _proxy=None,
         _proxy_headers=None,
         _proxy_config=None,
-        **conn_kw
+        **conn_kw,
     ):
         ConnectionPool.__init__(self, host, port)
         RequestMethods.__init__(self, headers)
@@ -255,7 +254,7 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
             port=self.port,
             timeout=self.timeout.connect_timeout,
             strict=self.strict,
-            **self.conn_kw
+            **self.conn_kw,
         )
         return conn
 
@@ -333,7 +332,6 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
         """
         Called right before a request is made, after the socket is created.
         """
-        pass
 
     def _prepare_proxy(self, conn):
         # Nothing to do for HTTP connections.
@@ -545,7 +543,7 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
         release_conn=None,
         chunked=False,
         body_pos=None,
-        **response_kw
+        **response_kw,
     ):
         """
         Get a connection from the pool and perform an HTTP request. This is the
@@ -737,7 +735,7 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
                 pool=self,
                 connection=response_conn,
                 retries=retries,
-                **response_kw
+                **response_kw,
             )
 
             # Everything went great!
@@ -837,7 +835,7 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
                 release_conn=release_conn,
                 chunked=chunked,
                 body_pos=body_pos,
-                **response_kw
+                **response_kw,
             )
 
         # Handle redirect?
@@ -874,7 +872,7 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
                 release_conn=release_conn,
                 chunked=chunked,
                 body_pos=body_pos,
-                **response_kw
+                **response_kw,
             )
 
         # Check if we should retry the HTTP response.
@@ -904,7 +902,7 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
                 release_conn=release_conn,
                 chunked=chunked,
                 body_pos=body_pos,
-                **response_kw
+                **response_kw,
             )
 
         return response
@@ -948,7 +946,7 @@ class HTTPSConnectionPool(HTTPConnectionPool):
         assert_hostname=None,
         assert_fingerprint=None,
         ca_cert_dir=None,
-        **conn_kw
+        **conn_kw,
     ):
 
         HTTPConnectionPool.__init__(
@@ -963,7 +961,7 @@ class HTTPSConnectionPool(HTTPConnectionPool):
             retries,
             _proxy,
             _proxy_headers,
-            **conn_kw
+            **conn_kw,
         )
 
         self.key_file = key_file
@@ -1042,7 +1040,7 @@ class HTTPSConnectionPool(HTTPConnectionPool):
             cert_file=self.cert_file,
             key_file=self.key_file,
             key_password=self.key_password,
-            **self.conn_kw
+            **self.conn_kw,
         )
 
         return self._prepare_conn(conn)

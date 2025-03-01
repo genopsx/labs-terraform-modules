@@ -64,7 +64,7 @@
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | `"eu-west-1"` | no |
 | <a name="input_repository"></a> [repository](#input\_repository) | Keda Chart Repository | `string` | `"https://kedacore.github.io/charts"` | no |
 | <a name="input_sqs_name"></a> [sqs\_name](#input\_sqs\_name) | n/a | `string` | `"keda-queue"` | no |
-| <a name="input_sqs_policy_actions"></a> [sqs\_policy\_actions](#input\_sqs\_policy\_actions) | Permissions to attach to the SQS Policy | `list(string)` | <pre>[<br>  "sqs:SendMessage"<br>]</pre> | no |
+| <a name="input_sqs_policy_actions"></a> [sqs\_policy\_actions](#input\_sqs\_policy\_actions) | Permissions to attach to the SQS Policy | `list(string)` | <pre>[<br/>  "sqs:SendMessage"<br/>]</pre> | no |
 | <a name="input_sqs_queue_length"></a> [sqs\_queue\_length](#input\_sqs\_queue\_length) | The queue length used to scaled the workloads | `string` | `"10"` | no |
 
 ## Outputs

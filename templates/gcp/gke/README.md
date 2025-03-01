@@ -53,7 +53,7 @@
 | <a name="input_regional"></a> [regional](#input\_regional) | Whether the cluster is regional | `bool` | `false` | no |
 | <a name="input_remove_default_node_pool"></a> [remove\_default\_node\_pool](#input\_remove\_default\_node\_pool) | Whether the default node pool should be removed | `bool` | `true` | no |
 | <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | The name of the subnetwork to create | `string` | `"wf-dev-subnet-01"` | no |
-| <a name="input_zones"></a> [zones](#input\_zones) | The zones to host the cluster in | `list(string)` | <pre>[<br>  "us-central1-a"<br>]</pre> | no |
+| <a name="input_zones"></a> [zones](#input\_zones) | The zones to host the cluster in | `list(string)` | <pre>[<br/>  "us-central1-a"<br/>]</pre> | no |
 
 ## Outputs
 

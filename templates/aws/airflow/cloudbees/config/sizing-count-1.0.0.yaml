@@ -34,4 +34,3 @@ flux_count:
 cost_count:
   min_workers_cost: "y=$(awk 'BEGIN {x=8*0.0162337*30*24+20.992*0.00178258*30*24+40.89; print x}'); result=$(printf %.0f $y)"
   max_workers_cost: "y=$(awk 'BEGIN {x=20*0.0162337*30*24+54.784*0.00178258*30*24+40.89; print x}'); result=$(printf %.0f $y)"
-  

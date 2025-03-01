@@ -11,4 +11,4 @@ groups:
     hhdda-dgenie-airflow-eu-viewer-henv: msd_viewer_uat
 size:
   dags_count: 300
-  concurent_tasks: 100 
+  concurent_tasks: 100

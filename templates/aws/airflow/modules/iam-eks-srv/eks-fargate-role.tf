@@ -1,4 +1,4 @@
-# Create IAM policy that will attached to fargate role. It allows pods to log to Cloudwatch 
+# Create IAM policy that will attached to fargate role. It allows pods to log to Cloudwatch
 resource "aws_iam_policy" "eks-fargate-logging-policy" {
   name        = coalesce(var.eks_fargate_logging_policy_name, "${var.project_prefix}-airflow-eks-fargate-logging-policy-${var.region}")
   path        = "/"

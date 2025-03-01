@@ -7,4 +7,3 @@ groups:
   type: Security
   mapping:
     cd_aparflow_developers: msd_op_dev
-    

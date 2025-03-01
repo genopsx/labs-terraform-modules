@@ -9,4 +9,3 @@ groups:
     hhdda-dgenie-airflow-eu-op-dev: msd_op_dev
     hhdda-dgenie-airflow-eu-user-dev: msd_user_dev
     hhdda-dgenie-airflow-eu-viewer-dev: msd_viewer_dev
-    

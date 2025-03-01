@@ -1,6 +1,6 @@
 import logging
 from os.path import basename, splitext
-from typing import BinaryIO, List, Optional, Set
+from typing import BinaryIO, List
 
 try:
     from os import PathLike
@@ -217,16 +217,20 @@ def from_bytes(
         try:
             if is_too_large_sequence and is_multi_byte_decoder is False:
                 str(
-                    sequences[: int(50e4)]
-                    if strip_sig_or_bom is False
-                    else sequences[len(sig_payload) : int(50e4)],
+                    (
+                        sequences[: int(50e4)]
+                        if strip_sig_or_bom is False
+                        else sequences[len(sig_payload) : int(50e4)]
+                    ),
                     encoding=encoding_iana,
                 )
             else:
                 decoded_payload = str(
-                    sequences
-                    if strip_sig_or_bom is False
-                    else sequences[len(sig_payload) :],
+                    (
+                        sequences
+                        if strip_sig_or_bom is False
+                        else sequences[len(sig_payload) :]
+                    ),
                     encoding=encoding_iana,
                 )
         except (UnicodeDecodeError, LookupError) as e:
@@ -299,7 +303,9 @@ def from_bytes(
                     encoding_iana,
                     errors="ignore" if is_multi_byte_decoder else "strict",
                 )  # type: str
-            except UnicodeDecodeError as e:  # Lazy str loading may have missed something there
+            except (
+                UnicodeDecodeError
+            ) as e:  # Lazy str loading may have missed something there
                 logger.log(
                     TRACE,
                     "LazyStr Loading: After MD chunk decode, code page %s does not fit given bytes sequence at ALL. %s",

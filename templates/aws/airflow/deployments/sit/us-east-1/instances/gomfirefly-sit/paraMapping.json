@@ -4,7 +4,7 @@
     "<web-instance-name>": "GOM FireFly SIT instance",
     "<repository-name>": "INSERT",
     "<repository-branch>": "INSERT"
-  },  
+  },
   "groups": {
     "<group-type>": "Security",
     "<msd-op-group>": "INSERT",

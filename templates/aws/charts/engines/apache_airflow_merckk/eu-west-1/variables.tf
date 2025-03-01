@@ -43,4 +43,3 @@ variable "rds_parameters" {
   description = "A list of DB parameters (map) to apply"
   type        = list(map(string))
 }
-

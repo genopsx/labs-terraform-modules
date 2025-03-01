@@ -9,4 +9,3 @@ groups:
     MRLDHUB-airflow-prd-admin-role: msd_op_prod
     MRLDHUB-airflow-prd-developer-role: msd_user_prod
     MRLDHUB-airflow-prd-analyst-role: msd_viewer_prod
-    

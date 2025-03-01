@@ -106,7 +106,7 @@ Execute `terraform apply` to create the resources on AWS as defined in the modul
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"keda"` | no |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | `"eu-west-1"` | no |
 | <a name="input_repository"></a> [repository](#input\_repository) | Keda Chart Repository | `string` | `"https://kedacore.github.io/charts"` | no |
-| <a name="input_sqs_policy_actions"></a> [sqs\_policy\_actions](#input\_sqs\_policy\_actions) | Permissions to attach to the SQS Policy | `list(string)` | <pre>[<br>  "sqs:SendMessage"<br>]</pre> | no |
+| <a name="input_sqs_policy_actions"></a> [sqs\_policy\_actions](#input\_sqs\_policy\_actions) | Permissions to attach to the SQS Policy | `list(string)` | <pre>[<br/>  "sqs:SendMessage"<br/>]</pre> | no |
 
 ## Outputs
 

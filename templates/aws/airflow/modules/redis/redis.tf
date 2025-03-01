@@ -4,7 +4,7 @@ data "aws_security_group" "redis_sg" {
 
 }
 
-# Create elasticache Redis cluster 
+# Create elasticache Redis cluster
 resource "aws_elasticache_replication_group" "redisQ" {
 
   auth_token                 = var.auth_token

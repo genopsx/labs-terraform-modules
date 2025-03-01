@@ -51,7 +51,7 @@
 | <a name="input_github_token"></a> [github\_token](#input\_github\_token) | GitHub PAT token | `string` | `""` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | `"actions-runner-system"` | no |
 | <a name="input_runnerGithubURL"></a> [runnerGithubURL](#input\_runnerGithubURL) | n/a | `string` | `""` | no |
-| <a name="input_runners_deploy_list"></a> [runners\_deploy\_list](#input\_runners\_deploy\_list) | tflint-ignore: terraform\_unused\_declarations | <pre>list(object({<br>    name          = optional(string)<br>    repository    = optional(string)<br>    limits_cpu    = optional(string)<br>    limits_memory = optional(string)<br>    replicas_min  = optional(number)<br>    replicas_max  = optional(number)<br>  }))</pre> | `[]` | no |
+| <a name="input_runners_deploy_list"></a> [runners\_deploy\_list](#input\_runners\_deploy\_list) | tflint-ignore: terraform\_unused\_declarations | <pre>list(object({<br/>    name          = optional(string)<br/>    repository    = optional(string)<br/>    limits_cpu    = optional(string)<br/>    limits_memory = optional(string)<br/>    replicas_min  = optional(number)<br/>    replicas_max  = optional(number)<br/>  }))</pre> | `[]` | no |
 | <a name="input_serviceaccount"></a> [serviceaccount](#input\_serviceaccount) | Serviceaccount for Github runners | `string` | `"actions-runner-system"` | no |
 | <a name="input_ssm_prefix"></a> [ssm\_prefix](#input\_ssm\_prefix) | SSM Path to Github tokens | `string` | `"/github"` | no |
 | <a name="input_token_ssm_parameter"></a> [token\_ssm\_parameter](#input\_token\_ssm\_parameter) | tflint-ignore: terraform\_unused\_declarations | `string` | `""` | no |

@@ -19,10 +19,10 @@ spec:
         image: asyncdeveloper/keda-consumer
         imagePullPolicy: Always
         env:
-          - name: SQS_QUEUE_URL
-            value: ${sqs_queue_url}
-          - name: SQS_QUEUE_NAME
-            value: ${sqs_queue_name}
+        - name: SQS_QUEUE_URL
+          value: ${sqs_queue_url}
+        - name: SQS_QUEUE_NAME
+          value: ${sqs_queue_name}
         resources:
           requests:
             memory: 64Mi

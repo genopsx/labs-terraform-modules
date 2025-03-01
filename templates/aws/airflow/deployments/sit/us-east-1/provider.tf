@@ -1,10 +1,16 @@
 # Required AWS provider version
 terraform {
+  required_version = ">= 0.13"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.55.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.0.0"
+    }
+
   }
 
   # Setup S3 and DynamoDB backend. Both S3 bucket and DynamoDB are created as a prerequisite during AWS account setup. Backend key must be unique in given AWS account.

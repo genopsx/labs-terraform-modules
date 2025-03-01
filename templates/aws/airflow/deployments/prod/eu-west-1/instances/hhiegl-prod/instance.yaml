@@ -9,4 +9,3 @@ groups:
     hhiegl-airflow-prd-op: msd_op_prod
     hhiegl-airflow-prd-user: msd_user_prod
     hhiegl-airflow-prd-viewer: msd_viewer_prod
-    

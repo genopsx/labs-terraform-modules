@@ -9,4 +9,3 @@ groups:
     hhiegf-airflow-tst-op: msd_op_sit
     hhiegf-airflow-tst-user: msd_user_sit
     hhiegf-airflow-tst-viewer: msd_viewer_sit
-    

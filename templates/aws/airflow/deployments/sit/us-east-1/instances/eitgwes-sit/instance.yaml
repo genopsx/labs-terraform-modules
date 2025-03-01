@@ -9,4 +9,3 @@ groups:
     GWESDL-airflow-sit-admin-role: msd_op_dev
     GWESDL-airflow-sit-developer-role: msd_user_dev
     GWESDL-airflow-sit-analyst-role: msd_viewer_dev
-    

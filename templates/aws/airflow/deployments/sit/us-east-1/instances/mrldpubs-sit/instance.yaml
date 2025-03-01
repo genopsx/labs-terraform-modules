@@ -7,4 +7,3 @@ groups:
   type: Security
   mapping:
     MRLDPUBS-airflow-admin-sit: msd_op_sit
-    

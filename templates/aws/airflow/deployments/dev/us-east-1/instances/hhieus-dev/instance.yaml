@@ -9,4 +9,3 @@ groups:
     hhieus-airflow-dev-op: msd_op_dev
     hhieus-airflow-dev-user: msd_user_dev
     hhieus-airflow-dev-viewer: msd_viewer_dev
-    
