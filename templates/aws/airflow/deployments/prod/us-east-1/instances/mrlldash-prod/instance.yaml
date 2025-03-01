@@ -9,4 +9,3 @@ groups:
     MRLLDASH-airflow-prd-owner-role: msd_op_uat
     MRLLDASH-airflow-prd-developer-role: msd_user_uat
     MRLLDASH-airflow-prd-analyst-role: msd_viewer_uat
-    

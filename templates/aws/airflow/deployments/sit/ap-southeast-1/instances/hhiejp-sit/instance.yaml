@@ -12,4 +12,3 @@ groups:
 size:
   dags_count: 1500
   concurent_tasks: 500
-  

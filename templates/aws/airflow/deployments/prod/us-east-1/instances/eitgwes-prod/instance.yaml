@@ -9,4 +9,3 @@ groups:
     GWESDL-airflow-prod-admin-role: msd_op_prod
     GWESDL-airflow-prod-developer-role: msd_user_prod
     GWESDL-airflow-prod-analyst-role: msd_viewer_prod
-    

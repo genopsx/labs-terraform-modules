@@ -8,4 +8,4 @@ groups:
   mapping:
     MRLAIM-airflow-eks-dev-admin-role-Member: msd_op_dev
     MRLAIM-airflow-eks-dev-analyst-role-Membe: msd_viewer_dev
-    ODM-airflow-dev-analyst-role: msd_viewer_dev         
+    ODM-airflow-dev-analyst-role: msd_viewer_dev

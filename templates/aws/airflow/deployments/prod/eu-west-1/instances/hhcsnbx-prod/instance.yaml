@@ -9,4 +9,3 @@ groups:
     cs_nbx_admins: msd_op_prod
     cs_nbx_devs: msd_user_prod
     cs_nbx_ro: msd_viewer_prod
-    

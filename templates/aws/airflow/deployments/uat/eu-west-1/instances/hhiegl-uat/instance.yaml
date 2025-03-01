@@ -8,4 +8,4 @@ groups:
   mapping:
     hhiegl-airflow-uat-op: msd_op_sit
     hhiegl-airflow-uat-user: msd_user_sit
-    hhiegl-airflow-uat-viewer: msd_viewer_sit     
+    hhiegl-airflow-uat-viewer: msd_viewer_sit

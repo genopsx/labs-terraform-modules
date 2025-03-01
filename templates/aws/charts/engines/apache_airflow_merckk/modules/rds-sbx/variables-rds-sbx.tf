@@ -67,4 +67,3 @@ variable "airflow_password" {
   type      = string
   sensitive = true
 }
-

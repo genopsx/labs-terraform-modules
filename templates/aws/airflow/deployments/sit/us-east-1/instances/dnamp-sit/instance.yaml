@@ -6,9 +6,10 @@ params:
 groups:
   type: Security
   mapping:
-    dnamp-advancesearch: msd_op_sit
-    dnamp-advancesearch: msd_user_sit
-    dnamp-advancesearch: msd_viewer_sit
+    dnamp-advancesearch:
+      - msd_op_sit
+      - msd_user_sit
+      - msd_viewer_sit
 size:
   dags_count: 30
   concurent_tasks: 12

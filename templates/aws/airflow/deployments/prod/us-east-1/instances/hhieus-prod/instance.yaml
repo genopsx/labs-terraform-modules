@@ -9,4 +9,3 @@ groups:
     hhieus-airflow-prd-op: msd_op_prod
     hhieus-airflow-prd-user: msd_user_prod
     hhieus-airflow-prd-viewer: msd_viewer_prod
-    

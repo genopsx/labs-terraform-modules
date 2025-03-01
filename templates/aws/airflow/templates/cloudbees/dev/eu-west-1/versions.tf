@@ -1,5 +1,6 @@
 # Required AWS provider version
 terraform {
+  required_version = ">= 0.13"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -60,4 +61,3 @@ provider "aws" {
     role_arn = "arn:aws:iam::331013986936:role/airflow-eks-deployment-role"
   }
 }
-

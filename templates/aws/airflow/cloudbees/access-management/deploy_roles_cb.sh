@@ -10,12 +10,14 @@ API_URL=$1
 USERVAR=$2
 PASSVAR=$3
 ROLES=$4
-ROLES_ARRAY=(${ROLES// / })
+
+# Safely split roles into an array
+IFS=' ' read -r -a ROLES_ARRAY <<<"$ROLES"
 
 echo -e "API_URL=$API_URL"
 echo -e "ROLES=$ROLES"
 
 for ROLE in "${ROLES_ARRAY[@]}"; do
   echo "Deploying role $ROLE"
-  curl -X POST -H 'content-type: application/json' -d @./role-definitions/$ROLE.json "${API_URL}" --user "${USERVAR}:${PASSVAR}"
+  curl -X POST -H 'content-type: application/json' -d @./role-definitions/"$ROLE".json "$API_URL" --user "$USERVAR:$PASSVAR"
 done

@@ -6,6 +6,7 @@ params:
 groups:
   type: Security
   mapping:
-    INSERT: msd_op_sit
-    INSERT: msd_user_sit
-    INSERT: msd_viewer_sit
+    INSERT:
+      - msd_op_sit
+      - msd_user_sit
+      - msd_viewer_sit

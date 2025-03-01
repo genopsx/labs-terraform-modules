@@ -4,7 +4,7 @@
     "<web-instance-name>": "MRLAIM DEV instance",
     "<repository-name>": "https://github.com/merck-gen/mrl-mrlaims-dbt-airflow.git",
     "<repository-branch>": "airflow-dev"
-  },  
+  },
   "groups": {
     "<group-type>": "Security",
     "<msd-op-group>": "MRLAIM-airflow-eks-dev-admin-role-Member",

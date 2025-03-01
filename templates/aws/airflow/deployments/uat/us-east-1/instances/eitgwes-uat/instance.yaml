@@ -9,4 +9,3 @@ groups:
     GWESDL-airflow-uat-admin-role: msd_op_uat
     GWESDL-airflow-uat-developer-role: msd_user_uat
     GWESDL-airflow-uat-analyst-role: msd_viewer_uat
-    

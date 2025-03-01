@@ -9,4 +9,3 @@ groups:
     airflow-op-gsg-dev-sg: msd_op_dev
     airflow-user-gsg-dev-sg: msd_user_dev
     airflow-viewer-gsg-dev-sg: msd_viewer_dev
-    

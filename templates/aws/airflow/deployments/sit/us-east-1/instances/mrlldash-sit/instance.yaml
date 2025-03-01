@@ -9,4 +9,3 @@ groups:
     cd_ldash_owners: msd_op_sit
     cd_ldash_developers: msd_user_sit
     cd_ldash_approvers: msd_viewer_sit
-    

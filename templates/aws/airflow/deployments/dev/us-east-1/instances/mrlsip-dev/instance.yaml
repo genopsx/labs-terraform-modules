@@ -9,4 +9,3 @@ groups:
     MRLSIP-airflow-dev-admin-role: msd_op_dev
     MRLSIP-airflow-dev-developer-role: msd_user_dev
     MRLSIP-airflow-dev-analyst-role: msd_viewer_dev
-    

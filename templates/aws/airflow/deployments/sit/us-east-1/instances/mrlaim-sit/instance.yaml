@@ -9,4 +9,3 @@ groups:
     MRLAIM-airflow-eks-sit-admin-role-Member: msd_op_sit
     MRLAIM-airflow-eks-sit-developer-role-Member: msd_user_sit
     MRLAIM-airflow-eks-sit-analyst-role-Member: msd_viewer_sit
-    

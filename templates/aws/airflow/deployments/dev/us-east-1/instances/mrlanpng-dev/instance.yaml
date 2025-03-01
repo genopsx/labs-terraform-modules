@@ -9,4 +9,3 @@ groups:
     MRLANPNG-airflow-dev-admin-role: msd_op_dev
     MRLANPNG-airflow-dev-developer-role: msd_user_dev
     MRLANPNG-airflow-dev-analyst-role: msd_viewer_dev
-    

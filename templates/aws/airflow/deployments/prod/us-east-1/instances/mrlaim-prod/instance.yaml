@@ -7,4 +7,3 @@ groups:
   type: Security
   mapping:
     aim_mrl_dpl_dev: msd_viewer_prod
-    

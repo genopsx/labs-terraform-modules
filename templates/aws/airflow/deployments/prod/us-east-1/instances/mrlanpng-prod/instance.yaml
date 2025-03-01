@@ -9,4 +9,3 @@ groups:
     MRLANPNG-airflow-prd-admin-role: msd_op_prod
     MRLANPNG-airflow-prd-developer-role: msd_user_prod
     MRLANPNG-airflow-prd-analyst-role: msd_viewer_prod
-    

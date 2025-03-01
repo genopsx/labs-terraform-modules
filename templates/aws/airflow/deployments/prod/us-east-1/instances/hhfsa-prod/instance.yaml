@@ -9,4 +9,3 @@ groups:
     group-1: msd_op_prod
     group-2: msd_user_prod
     group-3: msd_viewer_prod
-    

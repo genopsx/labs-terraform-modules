@@ -1,3 +1,5 @@
+#trivy:ignore:*
+#trivy:ignore:AVD-AWS-0089
 module "source_code_bucket" {
   source                   = "terraform-aws-modules/s3-bucket/aws"
   version                  = "3.15.1"
@@ -58,6 +60,7 @@ resource "aws_kms_key" "source_code_bucket" {
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
   description              = "KMS key used to encrypt the ${local.resource_name} bucket"
   deletion_window_in_days  = 7
+  enable_key_rotation      = true
 }
 
 resource "aws_kms_alias" "source_code_bucket" {

@@ -68,11 +68,6 @@ variable "non_routable_subnets" {
   description = "List of subnet IDs that the k8s pods will be deployed in. Merck non routables"
 }
 
-variable "route53_hosted_zone_name" {
-  type        = string
-  description = "Hosted zone name for this cluster e.g. usdev.airflow.merck.com"
-}
-
 variable "efs_throughput_mode" {
   type        = string
   description = "Throughput mode of EFS drive. bursting or elastic"

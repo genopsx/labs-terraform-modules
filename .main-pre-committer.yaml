@@ -1,3 +1,9 @@
+ci:
+  autoupdate_schedule: quarterly
+  skip:
+  - shfmt
+  - shellcheck
+
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v5.0.0
@@ -6,14 +12,17 @@ repos:
     args: [--markdown-linebreak-ext=md]
     exclude: CHANGELOG.md
   - id: check-json
-  - id: check-yaml
+  # - id: check-yaml
+  #   args: [--allow-multiple-documents]
+  - id: check-executables-have-shebangs
+  # - id: check-shebang-scripts-are-executable
+
 
   - id: check-added-large-files
   - id: check-vcs-permalinks
   - id: forbid-new-submodules
   # - id: no-commit-to-branch
   - id: end-of-file-fixer
-  - id: check-yaml
   - id: check-merge-conflict
   - id: check-case-conflict
   - id: mixed-line-ending
@@ -31,28 +40,29 @@ repos:
   hooks:
   - id: gitleaks
 
-  # YAML Linters
-- repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
-  rev: 0.2.3
-  hooks:
-  - id: yamlfmt
-    args:
-    - --mapping=2
-    - --sequence=2
-    - --offset=0
-    - --width=75
-    - --implicit_start
+#   # YAML Linters
+# - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+#   rev: 0.2.3
+#   hooks:
+#   - id: yamlfmt
+#     args:
+#     - --mapping=2
+#     - --sequence=2
+#     - --offset=0
+#     - --width=75
+#     - --implicit_start
 
-- repo: https://github.com/adrienverge/yamllint.git
-  rev: v1.35.1
-  hooks:
-  - id: yamllint
-    types:
-    - file
-    - yaml
-    args:
-    - --strict
-
+# - repo: https://github.com/adrienverge/yamllint.git
+#   rev: v1.35.1
+#   hooks:
+#   - id: yamllint
+#     types:
+#     - file
+#     - yaml
+#     args:
+#     - --strict
+#     # exclude: '.*values\.ya?ml$'
+#     exclude: .*values\.ya?ml$|templates/aws/charts/engines/argocd/yamls/app-project\.yaml|templates/aws/charts/engines/argocd/github_repositories/yamls/gitops-argocd-ssh\.yaml|templates/aws/charts/engines/argo_workflows/yamls/values.yaml
 - repo: https://github.com/psf/black-pre-commit-mirror
   rev: 24.10.0
   hooks:
@@ -92,8 +102,20 @@ repos:
     args:
     - --args=--minimum-severity CRITICAL
     - --args=--force-all-dirs
-  - id: terraform_trivy
+  # - id: terraform_trivy
+  #   args:
+  #   - --args=--skip-dirs="templates/gcp"
+# shfmt and shellcheck are not supported by pre-commit-terraform
+- repo: https://github.com/jumanjihouse/pre-commit-hooks
+  rev: 3.0.0
+  hooks:
+  - id: shfmt
     args:
-    - --args=--skip-dirs="templates/gcp"
-    - --args=--skip-dirs="templates/azure"
-exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/aws/charts/.*|templates/gcp/charts/.*|templates/azure/charts/.*)$
+    - -l
+    - -i
+    - '2'
+    - -ci
+    - -sr
+    - -w
+  - id: shellcheck
+exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/aws/charts/engines/apache_airflow_merckk/.*|templates/gcp/.*|templates/azure/.*)

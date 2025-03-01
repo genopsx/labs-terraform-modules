@@ -38,11 +38,6 @@ variable "environment" {
   description = "Environment of deployment. dev/test/uat/prod"
 }
 
-variable "target_vpc_id" {
-  type        = string
-  description = "ID of target VPC"
-}
-
 variable "routable_subnets" {
   type        = list(any)
   description = "List of subnet IDs that the EKS cluster will be deployed in"

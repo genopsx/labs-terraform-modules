@@ -9,4 +9,3 @@ groups:
     hhdda-dgenie-airflow-eu-op-henv: msd_op_sit
     hhdda-dgenie-airflow-eu-user-henv: msd_user_sit
     hhdda-dgenie-airflow-eu-viewer-henv: msd_viewer_sit
-    

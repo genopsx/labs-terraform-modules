@@ -85,7 +85,7 @@ resource "null_resource" "create_airflow_user" {
     command = "psql -v airflow_password=\"'${var.airflow_password}'\" -h ${aws_db_instance.metadatapgrds.address} -p ${var.port} -U postgres -d postgres -f \"../../../../../scripts/create_airflow_user.sql\""
 
     environment = {
-      PGPASSWORD = "${var.password}"
+      PGPASSWORD = var.password
     }
   }
   depends_on = [
@@ -101,7 +101,7 @@ resource "null_resource" "create_airflow_read_user" {
     command = "psql -v airflow_read_password=\"'${var.airflow_read_password}'\" -h ${aws_db_instance.metadatapgrds.address} -p ${var.port} -U postgres -d airflow -f \"../../../../../scripts/create_airflow_read_user.sql\""
 
     environment = {
-      PGPASSWORD = "${var.password}"
+      PGPASSWORD = var.password
     }
   }
   depends_on = [
@@ -117,7 +117,7 @@ resource "null_resource" "grant_airflow_read_access" {
     command = "psql -h ${aws_db_instance.metadatapgrds.address} -p ${var.port} -U airflow -d airflow -f \"../../../../../scripts/grant_airflow_read_access.sql\""
 
     environment = {
-      PGPASSWORD = "${var.airflow_password}"
+      PGPASSWORD = var.airflow_password
     }
   }
   depends_on = [

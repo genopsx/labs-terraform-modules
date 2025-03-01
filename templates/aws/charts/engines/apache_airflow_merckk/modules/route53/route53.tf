@@ -57,4 +57,3 @@ resource "aws_route53_zone" "route53_hosted_zone" {
     vpc_id = var.route53_vpc_id
   }
 }
-
