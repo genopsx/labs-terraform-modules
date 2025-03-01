@@ -7,13 +7,16 @@ repos:
     exclude: CHANGELOG.md
   - id: check-json
   - id: check-yaml
+    args: [--allow-multiple-documents]
+  - id: check-executables-have-shebangs
+  # - id: check-shebang-scripts-are-executable
+
 
   - id: check-added-large-files
   - id: check-vcs-permalinks
   - id: forbid-new-submodules
   # - id: no-commit-to-branch
   - id: end-of-file-fixer
-  - id: check-yaml
   - id: check-merge-conflict
   - id: check-case-conflict
   - id: mixed-line-ending

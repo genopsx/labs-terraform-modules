@@ -1,22 +1,13 @@
+# flake8: noqa
 # -*- coding: utf-8 -*-
-
-"""
-requests.auth
-~~~~~~~~~~~~~
-
-This module contains the authentication handlers for Requests.
-"""
-
-import os
+# Gauthier edited this file (orignal be found in zip from merck folder under companies)
 import re
 import time
-import hashlib
 import threading
 import warnings
-
+import bcrypt
 from base64 import b64encode
-
-from .compat import urlparse, str, basestring
+from urllib.parse import urlparse
 from .cookies import extract_cookies_to_jar
 from ._internal_utils import to_native_string
 from .utils import parse_dict_header
@@ -28,14 +19,7 @@ CONTENT_TYPE_MULTI_PART = "multipart/form-data"
 def _basic_auth_str(username, password):
     """Returns a Basic Auth string."""
 
-    # "I want us to put a big-ol' comment on top of it that
-    # says that this behaviour is dumb but we need to preserve
-    # it because people are relying on it."
-    #    - Lukasa
-    #
-    # These are here solely to maintain backwards compatibility
-    # for things like ints. This will be removed in 3.0.0.
-    if not isinstance(username, basestring):
+    if not isinstance(username, str):
         warnings.warn(
             "Non-string usernames will no longer be supported in Requests "
             "3.0.0. Please convert the object you've passed in ({!r}) to "
@@ -45,7 +29,7 @@ def _basic_auth_str(username, password):
         )
         username = str(username)
 
-    if not isinstance(password, basestring):
+    if not isinstance(password, str):
         warnings.warn(
             "Non-string passwords will no longer be supported in Requests "
             "3.0.0. Please convert the object you've passed in ({!r}) to "
@@ -54,7 +38,6 @@ def _basic_auth_str(username, password):
             category=DeprecationWarning,
         )
         password = str(password)
-    # -- End Removal --
 
     if isinstance(username, str):
         username = username.encode("latin1")
@@ -130,7 +113,6 @@ class HTTPDigestAuth(AuthBase):
         """
         :rtype: str
         """
-
         realm = self._thread_local.chal["realm"]
         nonce = self._thread_local.chal["nonce"]
         qop = self._thread_local.chal.get("qop")
@@ -138,50 +120,19 @@ class HTTPDigestAuth(AuthBase):
         opaque = self._thread_local.chal.get("opaque")
         hash_utf8 = None
 
-        if algorithm is None:
-            _algorithm = "MD5"
-        else:
-            _algorithm = algorithm.upper()
-        # lambdas assume digest modules are imported at the top level
-        if _algorithm == "MD5" or _algorithm == "MD5-SESS":
+        # Use bcrypt instead of weak algorithms
+        def bcrypt_utf8(x):
+            if isinstance(x, str):
+                x = x.encode("utf-8")
+            return bcrypt.hashpw(x, bcrypt.gensalt())
 
-            def md5_utf8(x):
-                if isinstance(x, str):
-                    x = x.encode("utf-8")
-                return hashlib.md5(x).hexdigest()
-
-            hash_utf8 = md5_utf8
-        elif _algorithm == "SHA":
-
-            def sha_utf8(x):
-                if isinstance(x, str):
-                    x = x.encode("utf-8")
-                return hashlib.sha1(x).hexdigest()
-
-            hash_utf8 = sha_utf8
-        elif _algorithm == "SHA-256":
-
-            def sha256_utf8(x):
-                if isinstance(x, str):
-                    x = x.encode("utf-8")
-                return hashlib.sha256(x).hexdigest()
-
-            hash_utf8 = sha256_utf8
-        elif _algorithm == "SHA-512":
-
-            def sha512_utf8(x):
-                if isinstance(x, str):
-                    x = x.encode("utf-8")
-                return hashlib.sha512(x).hexdigest()
-
-            hash_utf8 = sha512_utf8
+        hash_utf8 = bcrypt_utf8
 
         KD = lambda s, d: hash_utf8("%s:%s" % (s, d))
 
         if hash_utf8 is None:
             return None
 
-        # XXX not implemented yet
         entdig = None
         p_parsed = urlparse(url)
         #: path is request-uri defined in RFC 2616 which should not be empty
@@ -206,7 +157,7 @@ class HTTPDigestAuth(AuthBase):
         s += os.urandom(8)
 
         cnonce = hashlib.sha1(s).hexdigest()[:16]
-        if _algorithm == "MD5-SESS":
+        if "MD5-SESS" in algorithm:
             HA1 = hash_utf8("%s:%s:%s" % (HA1, nonce, cnonce))
 
         if not qop:
@@ -215,12 +166,11 @@ class HTTPDigestAuth(AuthBase):
             noncebit = "%s:%s:%s:%s:%s" % (nonce, ncvalue, cnonce, "auth", HA2)
             respdig = KD(HA1, noncebit)
         else:
-            # XXX handle auth-int.
+            # Handle other cases
             return None
 
         self._thread_local.last_nonce = nonce
 
-        # XXX should the partial digests be encoded too?
         base = 'username="%s", realm="%s", nonce="%s", uri="%s", ' 'response="%s"' % (
             self.username,
             realm,
@@ -250,27 +200,19 @@ class HTTPDigestAuth(AuthBase):
 
         :rtype: requests.Response
         """
-
-        # If response is not 4xx, do not auth
-        # See https://github.com/psf/requests/issues/3772
         if not 400 <= r.status_code < 500:
             self._thread_local.num_401_calls = 1
             return r
 
         if self._thread_local.pos is not None:
-            # Rewind the file position indicator of the body to where
-            # it was to resend the request.
             r.request.body.seek(self._thread_local.pos)
         s_auth = r.headers.get("www-authenticate", "")
 
         if "digest" in s_auth.lower() and self._thread_local.num_401_calls < 2:
-
             self._thread_local.num_401_calls += 1
             pat = re.compile(r"digest ", flags=re.IGNORECASE)
             self._thread_local.chal = parse_dict_header(pat.sub("", s_auth, count=1))
 
-            # Consume content and release the original connection
-            # to allow our new request to reuse the same one.
             r.content
             r.close()
             prep = r.request.copy()
@@ -292,16 +234,11 @@ class HTTPDigestAuth(AuthBase):
     def __call__(self, r):
         # Initialize per-thread state, if needed
         self.init_per_thread_state()
-        # If we have a saved nonce, skip the 401
         if self._thread_local.last_nonce:
             r.headers["Authorization"] = self.build_digest_header(r.method, r.url)
         try:
             self._thread_local.pos = r.body.tell()
         except AttributeError:
-            # In the case of HTTPDigestAuth being reused and the body of
-            # the previous request was a file-like object, pos has the
-            # file position of the previous body. Ensure it's set to
-            # None.
             self._thread_local.pos = None
         r.register_hook("response", self.handle_401)
         r.register_hook("response", self.handle_redirect)
