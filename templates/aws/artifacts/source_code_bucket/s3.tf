@@ -58,6 +58,7 @@ resource "aws_kms_key" "source_code_bucket" {
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
   description              = "KMS key used to encrypt the ${local.resource_name} bucket"
   deletion_window_in_days  = 7
+  enable_key_rotation      = true
 }
 
 resource "aws_kms_alias" "source_code_bucket" {

@@ -1,3 +1,9 @@
+ci:
+  autoupdate_schedule: quarterly
+  skip:
+  - shfmt
+  - shellcheck
+
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v5.0.0
@@ -97,6 +103,20 @@ repos:
     - --args=--force-all-dirs
   - id: terraform_trivy
     args:
-    - --args=--skip-dirs="templates/gcp"
-    - --args=--skip-dirs="templates/azure"
+    - --minimum-severity="HIGH"
+    - --args=--skip-dirs="**/gcp/**"
+    - --args=--skip-dirs="**/azure/**"
+# shfmt and shellcheck are not supported by pre-commit-terraform
+- repo: https://github.com/jumanjihouse/pre-commit-hooks
+  rev: 3.0.0
+  hooks:
+  - id: shfmt
+    args:
+    - -l
+    - -i
+    - '2'
+    - -ci
+    - -sr
+    - -w
+  - id: shellcheck
 exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/aws/charts/.*|templates/gcp/charts/.*|templates/azure/charts/.*)$
