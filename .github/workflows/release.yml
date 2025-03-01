@@ -7,11 +7,13 @@ on:
     - main
     paths:
     - '**/*.py'
+    - '**/*.tf'
     - '**/*.sh'
     - Dockerfile
     - .pre-commit-hooks.yaml
     # Ignore paths
     - '!tests/**'
+    - 'txt.txt'
 
 permissions:
   contents: read
