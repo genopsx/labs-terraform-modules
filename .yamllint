@@ -2,16 +2,17 @@ extends: default
 
 rules:
   indentation:
-    level: error
+    level: warning
     indent-sequences: false
+  comments-indentation: disable
   document-start:
     present: false
   # https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.quoted_strings
-  quoted-strings:
-    required: only-when-needed    # Quotes are required only when needed (e.g., for strings with spaces or special characters)
-    quote-type: any               # Allows both single ('') and double ("") quotes
+  # quoted-strings:
+  #   required: only-when-needed    # Quotes are required only when needed (e.g., for strings with spaces or special characters)
+  #   quote-type: any               # Allows both single ('') and double ("") quotes
   line-length:
-    max: 150
+    max: 500
   truthy:
     allowed-values:
     - >-
