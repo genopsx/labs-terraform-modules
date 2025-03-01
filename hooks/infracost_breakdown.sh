@@ -31,10 +31,10 @@ function main {
 function infracost_breakdown_ {
   local -r hook_config="$1"
   local args
-  read -r -a args <<<"$2"
+  read -r -a args <<< "$2"
 
   # Get hook settings
-  IFS=";" read -r -a checks <<<"$hook_config"
+  IFS=";" read -r -a checks <<< "$hook_config"
   # Suppress infracost color
   if [ "$PRE_COMMIT_COLOR" = "never" ]; then
     args+=("--no-color")
@@ -43,7 +43,7 @@ function infracost_breakdown_ {
   local RESULTS
   RESULTS="$(infracost breakdown "${args[@]}" --format json)"
   local API_VERSION
-  API_VERSION="$(jq -r .version <<<"$RESULTS")"
+  API_VERSION="$(jq -r .version <<< "$RESULTS")"
 
   if [ "$API_VERSION" != "0.2" ]; then
     common::colorify "yellow" "WARNING: Hook supports Infracost API version \"0.2\", got \"$API_VERSION\""
@@ -51,7 +51,7 @@ function infracost_breakdown_ {
   fi
 
   local dir
-  dir="$(jq '.projects[].metadata.vcsSubPath' <<<"$RESULTS")"
+  dir="$(jq '.projects[].metadata.vcsSubPath' <<< "$RESULTS")"
   echo -e "\nRunning in $dir"
 
   local have_failed_checks=false
@@ -84,12 +84,12 @@ function infracost_breakdown_ {
     # [.projects[].diff.totalMonthlyCost | select (.!=null) | tonumber] | add > 1000
     operation=${operations[-1]}
 
-    IFS="$operation" read -r -a jq_check <<<"$check"
-    real_value="$(jq "${jq_check[0]}" <<<"$RESULTS")"
+    IFS="$operation" read -r -a jq_check <<< "$check"
+    real_value="$(jq "${jq_check[0]}" <<< "$RESULTS")"
     compare_value="${jq_check[1]}${jq_check[2]}"
     # Check types
-    jq_check_type="$(jq -r "${jq_check[0]} | type" <<<"$RESULTS")"
-    compare_value_type="$(jq -r "$compare_value | type" <<<"$RESULTS")"
+    jq_check_type="$(jq -r "${jq_check[0]} | type" <<< "$RESULTS")"
+    compare_value_type="$(jq -r "$compare_value | type" <<< "$RESULTS")"
     # Fail if comparing different types
     if [ "$jq_check_type" != "$compare_value_type" ]; then
       common::colorify "yellow" "Warning: Comparing values with different types may give incorrect result"
@@ -126,12 +126,12 @@ function infracost_breakdown_ {
   done
 
   # Fancy informational output
-  currency="$(jq -r '.currency' <<<"$RESULTS")"
+  currency="$(jq -r '.currency' <<< "$RESULTS")"
 
-  echo -e "\nSummary: $(jq -r '.summary' <<<"$RESULTS")"
+  echo -e "\nSummary: $(jq -r '.summary' <<< "$RESULTS")"
 
-  echo -e "\nTotal Monthly Cost:        $(jq -r .totalMonthlyCost <<<"$RESULTS") $currency"
-  echo "Total Monthly Cost (diff): $(jq -r .projects[].diff.totalMonthlyCost <<<"$RESULTS") $currency"
+  echo -e "\nTotal Monthly Cost:        $(jq -r .totalMonthlyCost <<< "$RESULTS") $currency"
+  echo "Total Monthly Cost (diff): $(jq -r .projects[].diff.totalMonthlyCost <<< "$RESULTS") $currency"
 
   if $have_failed_checks; then
     exit 1

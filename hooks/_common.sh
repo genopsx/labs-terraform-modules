@@ -67,49 +67,49 @@ function common::parse_cmdline {
 
   for argv; do
     case $argv in
-    -a | --args)
-      shift
-      # `argv` is an string from array with content like:
-      #     ('provider aws' '--version "> 0.14"' '--ignore-path "some/path"')
-      #   where each element is the value of each `--args` from hook config.
-      # `echo` prints contents of `argv` as an expanded string
-      # `xargs` passes expanded string to `printf`
-      # `printf` which splits it into NUL-separated elements,
-      # NUL-separated elements read by `read` using empty separator
-      #     (`-d ''` or `-d $'\0'`)
-      #     into an `ARGS` array
+      -a | --args)
+        shift
+        # `argv` is an string from array with content like:
+        #     ('provider aws' '--version "> 0.14"' '--ignore-path "some/path"')
+        #   where each element is the value of each `--args` from hook config.
+        # `echo` prints contents of `argv` as an expanded string
+        # `xargs` passes expanded string to `printf`
+        # `printf` which splits it into NUL-separated elements,
+        # NUL-separated elements read by `read` using empty separator
+        #     (`-d ''` or `-d $'\0'`)
+        #     into an `ARGS` array
 
-      # This allows to "rebuild" initial `args` array of sort of grouped elements
-      # into a proper array, where each element is a standalone array slice
-      # with quoted elements being treated as a standalone slice of array as well.
-      while read -r -d '' ARG; do
-        ARGS+=("$ARG")
-      done < <(echo "$1" | xargs printf '%s\0')
-      shift
-      ;;
-    -h | --hook-config)
-      shift
-      HOOK_CONFIG+=("$1;")
-      shift
-      ;;
-    # TODO: Planned breaking change: remove `--init-args` as not self-descriptive
-    -i | --init-args | --tf-init-args)
-      shift
-      TF_INIT_ARGS+=("$1")
-      shift
-      ;;
-    # TODO: Planned breaking change: remove `--envs` as not self-descriptive
-    -e | --envs | --env-vars)
-      shift
-      ENV_VARS+=("$1")
-      shift
-      ;;
-    --)
-      shift
-      # shellcheck disable=SC2034 # Variable is used
-      FILES=("$@")
-      break
-      ;;
+        # This allows to "rebuild" initial `args` array of sort of grouped elements
+        # into a proper array, where each element is a standalone array slice
+        # with quoted elements being treated as a standalone slice of array as well.
+        while read -r -d '' ARG; do
+          ARGS+=("$ARG")
+        done < <(echo "$1" | xargs printf '%s\0')
+        shift
+        ;;
+      -h | --hook-config)
+        shift
+        HOOK_CONFIG+=("$1;")
+        shift
+        ;;
+      # TODO: Planned breaking change: remove `--init-args` as not self-descriptive
+      -i | --init-args | --tf-init-args)
+        shift
+        TF_INIT_ARGS+=("$1")
+        shift
+        ;;
+      # TODO: Planned breaking change: remove `--envs` as not self-descriptive
+      -e | --envs | --env-vars)
+        shift
+        ENV_VARS+=("$1")
+        shift
+        ;;
+      --)
+        shift
+        # shellcheck disable=SC2034 # Variable is used
+        FILES=("$@")
+        break
+        ;;
     esac
   done
 }
@@ -168,8 +168,8 @@ function common::is_hook_run_on_whole_repo {
   local -r root_config_dir="$(dirname "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)")"
   # get included and excluded files from .pre-commit-hooks.yaml file
   local -r hook_config_block=$(sed -n "/^- id: $hook_id$/,/^$/p" "$root_config_dir/.pre-commit-hooks.yaml")
-  local -r included_files=$(awk '$1 == "files:" {print $2; exit}' <<<"$hook_config_block")
-  local -r excluded_files=$(awk '$1 == "exclude:" {print $2; exit}' <<<"$hook_config_block")
+  local -r included_files=$(awk '$1 == "files:" {print $2; exit}' <<< "$hook_config_block")
+  local -r excluded_files=$(awk '$1 == "exclude:" {print $2; exit}' <<< "$hook_config_block")
   # sorted string with the files passed to the hook by pre-commit
   local -r files_to_check=$(printf '%s\n' "${files[@]}" | sort | tr '\n' ' ')
   # git ls-files sorted string
@@ -209,8 +209,8 @@ function common::get_cpu_num {
   if [[ -f /sys/fs/cgroup/cpu/cpu.cfs_quota_us &&
     ! -f /proc/sys/fs/binfmt_misc/WSLInterop ]]; then # WSL have cfs_quota_us, but WSL should be checked as usual Linux host
     # Inside K8s pod or DinD in K8s
-    cpu_quota=$(</sys/fs/cgroup/cpu/cpu.cfs_quota_us)
-    cpu_period=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us 2>/dev/null || echo "$cpu_quota")
+    cpu_quota=$(< /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
+    cpu_period=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us 2> /dev/null || echo "$cpu_quota")
 
     if [[ $cpu_quota -eq -1 || $cpu_period -lt 1 ]]; then
       # K8s no limits or in DinD
@@ -253,7 +253,7 @@ function common::get_cpu_num {
 
     if [[ $cpu_quota == max || $cpu_period -lt 1 ]]; then
       # No limits
-      nproc 2>/dev/null || echo 1
+      nproc 2> /dev/null || echo 1
       return
     fi
 
@@ -264,7 +264,7 @@ function common::get_cpu_num {
 
   # On host machine or any other case
   # `nproc` - Linux/FreeBSD/WSL, `sysctl -n hw.ncpu` - macOS/BSD, `echo 1` - fallback
-  nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 1
+  nproc 2> /dev/null || sysctl -n hw.ncpu 2> /dev/null || echo 1
 }
 
 #######################################################################
@@ -320,9 +320,9 @@ function common::per_dir_hook {
   local change_dir_in_unique_part=false
 
   local parallelism_limit
-  IFS=";" read -r -a configs <<<"${HOOK_CONFIG[*]}"
+  IFS=";" read -r -a configs <<< "${HOOK_CONFIG[*]}"
   for c in "${configs[@]}"; do
-    IFS="=" read -r -a config <<<"$c"
+    IFS="=" read -r -a config <<< "$c"
 
     # $hook_config receives string like '--foo=bar; --baz=4;' etc.
     # It gets split by `;` into array, which we're parsing here ('--foo=bar' ' --baz=4')
@@ -331,21 +331,21 @@ function common::per_dir_hook {
     value=${config[1]}
 
     case $key in
-    --delegate-chdir)
-      # this flag will skip pushing and popping directories
-      # delegating the responsibility to the hooked plugin/binary
-      if [[ ! $value || $value == true ]]; then
-        change_dir_in_unique_part="delegate_chdir"
-      fi
-      ;;
-    --parallelism-limit)
-      # this flag will limit the number of parallel processes
-      parallelism_limit="$value"
-      ;;
-    --parallelism-ci-cpu-cores)
-      # Used in edge cases when number of CPU cores can't be derived automatically
-      parallelism_ci_cpu_cores="$value"
-      ;;
+      --delegate-chdir)
+        # this flag will skip pushing and popping directories
+        # delegating the responsibility to the hooked plugin/binary
+        if [[ ! $value || $value == true ]]; then
+          change_dir_in_unique_part="delegate_chdir"
+        fi
+        ;;
+      --parallelism-limit)
+        # this flag will limit the number of parallel processes
+        parallelism_limit="$value"
+        ;;
+      --parallelism-ci-cpu-cores)
+        # Used in edge cases when number of CPU cores can't be derived automatically
+        parallelism_ci_cpu_cores="$value"
+        ;;
     esac
   done
 
@@ -394,7 +394,7 @@ function common::per_dir_hook {
     dir_path="${dir_paths_unique[$i]//__REPLACED__SPACE__/ }"
     {
       if [[ $change_dir_in_unique_part == false ]]; then
-        pushd "$dir_path" >/dev/null
+        pushd "$dir_path" > /dev/null
       fi
 
       per_dir_hook_unique_part "$dir_path" "$change_dir_in_unique_part" "$parallelism_disabled" "$tf_path" "${args[@]}"
@@ -496,12 +496,12 @@ function common::get_tf_binary_path {
     return
 
   # check if Terraform binary is available
-  elif command -v terraform &>/dev/null; then
+  elif command -v terraform &> /dev/null; then
     command -v terraform
     return
 
   # finally, check if Tofu binary is available
-  elif command -v tofu &>/dev/null; then
+  elif command -v tofu &> /dev/null; then
     command -v tofu
     return
 

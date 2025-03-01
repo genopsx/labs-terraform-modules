@@ -10,7 +10,7 @@ function run_tests {
   local TEST_NUM=$1
   local TEST_DIR=$2
   local TEST_COMMAND
-  IFS=" " read -r -a TEST_COMMAND <<<"$3"
+  IFS=" " read -r -a TEST_COMMAND <<< "$3"
   local FILE_NAME_TO_SAVE_TEST_RESULTS=$4
 
   local RESULTS_DIR
@@ -25,10 +25,10 @@ function run_tests {
       echo -e "\n\nTest run $i times\n\n"
       /usr/bin/time --quiet -f '%U user %S system %P cpu %e total' \
         "${TEST_COMMAND[@]}"
-    } 2>>"$RESULTS_DIR/$FILE_NAME_TO_SAVE_TEST_RESULTS"
+    } 2>> "$RESULTS_DIR/$FILE_NAME_TO_SAVE_TEST_RESULTS"
   done
   # shellcheck disable=2164 # Always exist
-  cd - >/dev/null
+  cd - > /dev/null
 }
 
 function generate_table {
@@ -82,7 +82,7 @@ function save_result {
 
   local FILE_NAME=${5:-"tests_result.md"}
 
-  echo -e "\n$DESCRIPTION\n$TABLE" >>"tests/results/$FILE_NAME"
+  echo -e "\n$DESCRIPTION\n$TABLE" >> "tests/results/$FILE_NAME"
   # shellcheck disable=SC2016,SC2128 # Irrelevant
   echo -e '
 <details><summary>Run details</summary>
@@ -113,7 +113,7 @@ Virtual (hyper-threading) procs: '"$(grep -c ^processor /proc/cpuinfo)"'
 ```
 
 </details>
-' >>"tests/results/$FILE_NAME"
+' >> "tests/results/$FILE_NAME"
 
 }
 

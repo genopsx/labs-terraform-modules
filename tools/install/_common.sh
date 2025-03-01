@@ -46,25 +46,25 @@ function common::install_from_gh_release {
   local -r UNUSUAL_TOOL_NAME_IN_PKG=$5
 
   case $DISTRIBUTED_AS in
-  tar.gz | zip)
-    local -r PKG="${TOOL}.${DISTRIBUTED_AS}"
-    ;;
-  binary)
-    local -r PKG="$TOOL"
-    ;;
-  *)
-    echo "Unknown DISTRIBUTED_AS: '$DISTRIBUTED_AS'. Should be one of: 'tar.gz', 'zip' or 'binary'." >&2
-    exit 1
-    ;;
+    tar.gz | zip)
+      local -r PKG="${TOOL}.${DISTRIBUTED_AS}"
+      ;;
+    binary)
+      local -r PKG="$TOOL"
+      ;;
+    *)
+      echo "Unknown DISTRIBUTED_AS: '$DISTRIBUTED_AS'. Should be one of: 'tar.gz', 'zip' or 'binary'." >&2
+      exit 1
+      ;;
   esac
 
   # Download tool
   local -r RELEASES="https://api.github.com/repos/${GH_ORG}/${TOOL}/releases"
 
   if [[ $VERSION == latest ]]; then
-    curl -L "$(curl -s "${RELEASES}/latest" | grep -o -E -i -m 1 "$GH_RELEASE_REGEX_LATEST")" >"$PKG"
+    curl -L "$(curl -s "${RELEASES}/latest" | grep -o -E -i -m 1 "$GH_RELEASE_REGEX_LATEST")" > "$PKG"
   else
-    curl -L "$(curl -s "$RELEASES" | grep -o -E -i -m 1 "$GH_RELEASE_REGEX_SPECIFIC_VERSION")" >"$PKG"
+    curl -L "$(curl -s "$RELEASES" | grep -o -E -i -m 1 "$GH_RELEASE_REGEX_SPECIFIC_VERSION")" > "$PKG"
   fi
 
   # Make tool ready to use

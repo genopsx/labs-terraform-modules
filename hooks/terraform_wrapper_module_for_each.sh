@@ -144,7 +144,7 @@ inputs = {
 
 function terraform_module_wrapper_ {
   local args
-  read -r -a args <<<"$1"
+  read -r -a args <<< "$1"
 
   local root_dir
   local module_dir="" # values: empty (default), "." (just root module), or a single module (e.g. "modules/iam-user")
@@ -157,7 +157,7 @@ function terraform_module_wrapper_ {
   local dry_run="false"
   local verbose="false"
 
-  root_dir=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+  root_dir=$(git rev-parse --show-toplevel 2> /dev/null || pwd)
   module_repo_org="terraform-aws-modules"
   module_repo_name=${root_dir##*/}
   module_repo_shortname="${module_repo_name#terraform-aws-}"
@@ -169,32 +169,32 @@ function terraform_module_wrapper_ {
     local value="${argv#*=}"
 
     case "$key" in
-    --root-dir)
-      root_dir="$value"
-      ;;
-    --module-dir)
-      module_dir="$value"
-      ;;
-    --wrapper-dir)
-      wrapper_dir="$value"
-      ;;
-    --module-repo-org)
-      module_repo_org="$value"
-      ;;
-    --module-repo-shortname)
-      module_repo_shortname="$value"
-      ;;
-    --module-repo-provider)
-      module_repo_provider="$value"
-      ;;
-    --dry-run)
-      dry_run="true"
-      ;;
-    --verbose)
-      verbose="true"
-      ;;
-    *)
-      cat <<EOF
+      --root-dir)
+        root_dir="$value"
+        ;;
+      --module-dir)
+        module_dir="$value"
+        ;;
+      --wrapper-dir)
+        wrapper_dir="$value"
+        ;;
+      --module-repo-org)
+        module_repo_org="$value"
+        ;;
+      --module-repo-shortname)
+        module_repo_shortname="$value"
+        ;;
+      --module-repo-provider)
+        module_repo_provider="$value"
+        ;;
+      --dry-run)
+        dry_run="true"
+        ;;
+      --verbose)
+        verbose="true"
+        ;;
+      *)
+        cat << EOF
 ERROR: Unrecognized argument: $key
 Hook ID: $HOOK_ID.
 Generate Terraform module wrapper. Available arguments:
@@ -214,8 +214,8 @@ Example:
 --module-dir=.                - Generate wrapper for the root module.
 --module-repo-org=terraform-google-modules --module-repo-shortname=network --module-repo-provider=google  - Generate wrappers for repository available by name "terraform-google-modules/network/google" in the Terraform registry and it includes all modules (root and in "modules/*").
 EOF
-      exit 1
-      ;;
+        exit 1
+        ;;
     esac
 
   done
@@ -392,20 +392,20 @@ EOF
 
       mv "$tmp_file_tf" "${output_dir}/main.tf"
 
-      echo "$CONTENT_VARIABLES_TF" >"${output_dir}/variables.tf"
+      echo "$CONTENT_VARIABLES_TF" > "${output_dir}/variables.tf"
 
       # If the root module has a versions.tf, use that; otherwise, create it
       if [[ -f "${full_module_dir}/versions.tf" ]]; then
         cp "${full_module_dir}/versions.tf" "${output_dir}/versions.tf"
       else
-        echo "$CONTENT_VERSIONS_TF" >"${output_dir}/versions.tf"
+        echo "$CONTENT_VERSIONS_TF" > "${output_dir}/versions.tf"
       fi
 
-      echo "$CONTENT_OUTPUTS_TF" >"${output_dir}/outputs.tf"
+      echo "$CONTENT_OUTPUTS_TF" > "${output_dir}/outputs.tf"
       sed -i.bak "s|WRAPPER_OUTPUT_SENSITIVE|${wrapper_output_sensitive}|g" "${output_dir}/outputs.tf"
       rm -rf "${output_dir}/outputs.tf.bak"
 
-      echo "$CONTENT_README" >"${output_dir}/README.md"
+      echo "$CONTENT_README" > "${output_dir}/README.md"
       sed -i.bak -e "
       s#WRAPPER_TITLE#${wrapper_title}#g
       s#WRAPPER_PATH#${wrapper_path}#g
@@ -423,7 +423,7 @@ EOF
 }
 
 function check_dependencies {
-  if ! command -v hcledit >/dev/null; then
+  if ! command -v hcledit > /dev/null; then
     echo "ERROR: The binary 'hcledit' is required by this hook but is not installed or is not in the system's PATH."
     echo "Check documentation: https://github.com/minamijoyo/hcledit"
     exit 1
@@ -439,7 +439,7 @@ function create_tmp_file_tf {
   # mktemp creates with no group/other read permissions
   chmod a+r "$tmp_file_tf"
 
-  echo "$CONTENT_MAIN_TF" >"$tmp_file_tf"
+  echo "$CONTENT_MAIN_TF" > "$tmp_file_tf"
 }
 
 [[ "${BASH_SOURCE[0]}" != "$0" ]] || main "$@"
