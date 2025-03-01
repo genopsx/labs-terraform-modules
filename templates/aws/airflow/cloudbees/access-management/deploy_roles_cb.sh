@@ -12,7 +12,7 @@ PASSVAR=$3
 ROLES=$4
 
 # Safely split roles into an array
-IFS=' ' read -r -a ROLES_ARRAY <<< "$ROLES"
+IFS=' ' read -r -a ROLES_ARRAY <<<"$ROLES"
 
 echo -e "API_URL=$API_URL"
 echo -e "ROLES=$ROLES"

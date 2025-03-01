@@ -42,7 +42,7 @@ function replace_old_markers {
   local -r file=$1
 
   # Determine the appropriate sed command based on the operating system (GNU sed or BSD sed)
-  sed --version &> /dev/null && SED_CMD=(sed -i) || SED_CMD=(sed -i '')
+  sed --version &>/dev/null && SED_CMD=(sed -i) || SED_CMD=(sed -i '')
   "${SED_CMD[@]}" -e "s/^${old_insertion_marker_begin}$/${insertion_marker_begin//\//\\/}/" "$file"
   "${SED_CMD[@]}" -e "s/^${old_insertion_marker_end}$/${insertion_marker_end//\//\\/}/" "$file"
 }
@@ -90,11 +90,11 @@ function terraform_docs {
   local use_standard_markers=true
   local have_config_flag=false
 
-  IFS=";" read -r -a configs <<< "$hook_config"
+  IFS=";" read -r -a configs <<<"$hook_config"
 
   for c in "${configs[@]}"; do
 
-    IFS="=" read -r -a config <<< "$c"
+    IFS="=" read -r -a config <<<"$c"
     # $hook_config receives string like '--foo=bar; --baz=4;' etc.
     # It gets split by `;` into array, which we're parsing here ('--foo=bar' ' --baz=4')
     # Next line removes leading spaces, to support >1 `--hook-config` args
@@ -102,33 +102,33 @@ function terraform_docs {
     value=${config[1]}
 
     case $key in
-      --path-to-file)
-        output_file=$value
-        use_path_to_file=true
-        ;;
-      --add-to-existing-file)
-        add_to_existing=$value
-        ;;
-      --create-file-if-not-exist)
-        create_if_not_exist=$value
-        ;;
-      --use-standard-markers)
-        use_standard_markers=$value
-        common::colorify "yellow" "WARNING: --use-standard-markers is deprecated and will be removed in the future."
-        common::colorify "yellow" "         All needed changes already done by the hook, feel free to remove --use-standard-markers setting from your pre-commit config"
-        ;;
-      --custom-marker-begin)
-        insertion_marker_begin=$value
-        common::colorify "green" "INFO: --custom-marker-begin is used and the marker is set to \"$value\"."
-        ;;
-      --custom-marker-end)
-        insertion_marker_end=$value
-        common::colorify "green" "INFO: --custom-marker-end is used and the marker is set to \"$value\"."
-        ;;
-      --custom-doc-header)
-        doc_header=$value
-        common::colorify "green" "INFO: --custom-doc-header is used and the doc header is set to \"$value\"."
-        ;;
+    --path-to-file)
+      output_file=$value
+      use_path_to_file=true
+      ;;
+    --add-to-existing-file)
+      add_to_existing=$value
+      ;;
+    --create-file-if-not-exist)
+      create_if_not_exist=$value
+      ;;
+    --use-standard-markers)
+      use_standard_markers=$value
+      common::colorify "yellow" "WARNING: --use-standard-markers is deprecated and will be removed in the future."
+      common::colorify "yellow" "         All needed changes already done by the hook, feel free to remove --use-standard-markers setting from your pre-commit config"
+      ;;
+    --custom-marker-begin)
+      insertion_marker_begin=$value
+      common::colorify "green" "INFO: --custom-marker-begin is used and the marker is set to \"$value\"."
+      ;;
+    --custom-marker-end)
+      insertion_marker_end=$value
+      common::colorify "green" "INFO: --custom-marker-end is used and the marker is set to \"$value\"."
+      ;;
+    --custom-doc-header)
+      doc_header=$value
+      common::colorify "green" "INFO: --custom-doc-header is used and the doc header is set to \"$value\"."
+      ;;
     esac
   done
 
@@ -160,7 +160,7 @@ function terraform_docs {
     # `--hook-config=--path-to-file=` if it set
     local config_output_file
     # Get latest non-commented `output.file` from `.terraform-docs.yml`
-    config_output_file=$(grep -A1000 -e '^output:$' "$config_file" 2> /dev/null | grep -E '^[[:space:]]+file:' | tail -n 1) || true
+    config_output_file=$(grep -A1000 -e '^output:$' "$config_file" 2>/dev/null | grep -E '^[[:space:]]+file:' | tail -n 1) || true
 
     if [[ $config_output_file ]]; then
       # Extract filename from `output.file` line
@@ -176,7 +176,7 @@ function terraform_docs {
 
     # Use `.terraform-docs.yml` `output.mode` if it set
     local config_output_mode
-    config_output_mode=$(grep -A1000 -e '^output:$' "$config_file" 2> /dev/null | grep -E '^[[:space:]]+mode:' | tail -n 1) || true
+    config_output_mode=$(grep -A1000 -e '^output:$' "$config_file" 2>/dev/null | grep -E '^[[:space:]]+mode:' | tail -n 1) || true
     if [[ $config_output_mode ]]; then
       # Extract mode from `output.mode` line
       output_mode=$(echo "$config_output_mode" | awk -F':' '{print $2}' | tr -d '[:space:]"' | tr -d "'")
@@ -191,7 +191,7 @@ function terraform_docs {
       [[ $(grep '  color: ' "$config_file") != *"false"* ]]; then
 
       cp "$config_file" "$config_file_no_color"
-      echo -e "settings:\n  color: false" >> "$config_file_no_color"
+      echo -e "settings:\n  color: false" >>"$config_file_no_color"
       args=${args/$config_file/$config_file_no_color}
     fi
   fi
@@ -200,7 +200,7 @@ function terraform_docs {
   for dir_path in $(echo "${paths[*]}" | tr ' ' '\n' | sort -u); do
     dir_path="${dir_path//__REPLACED__SPACE__/ }"
 
-    pushd "$dir_path" > /dev/null || continue
+    pushd "$dir_path" >/dev/null || continue
 
     #
     # Create file if it not exist and `--create-if-not-exist=true` provided
@@ -212,7 +212,7 @@ function terraform_docs {
       )"
 
       # if no TF files - skip dir
-      [ ! "$dir_have_tf_files" ] && popd > /dev/null && continue
+      [ ! "$dir_have_tf_files" ] && popd >/dev/null && continue
 
       dir="$(dirname "$output_file")"
 
@@ -223,11 +223,11 @@ function terraform_docs {
         echo -e "${doc_header}${PWD##*/}\n"
         echo "$insertion_marker_begin"
         echo "$insertion_marker_end"
-      } >> "$output_file"
+      } >>"$output_file"
     fi
 
     # If file still not exist - skip dir
-    [[ ! -f "$output_file" ]] && popd > /dev/null && continue
+    [[ ! -f "$output_file" ]] && popd >/dev/null && continue
 
     replace_old_markers "$output_file"
 
@@ -238,7 +238,7 @@ function terraform_docs {
     #
     if [[ $add_to_existing == false ]]; then
       have_marker=$(grep -o "$insertion_marker_begin" "$output_file") || unset have_marker
-      [[ ! $have_marker ]] && popd > /dev/null && continue
+      [[ ! $have_marker ]] && popd >/dev/null && continue
     fi
 
     # shellcheck disable=SC2206
@@ -251,12 +251,12 @@ function terraform_docs {
       $args
     )
     if [[ $have_config_flag == true ]]; then
-      "${tfdocs_cmd[@]}" "--config=$config_file" ./ > /dev/null
+      "${tfdocs_cmd[@]}" "--config=$config_file" ./ >/dev/null
     else
-      "${tfdocs_cmd[@]}" ./ > /dev/null
+      "${tfdocs_cmd[@]}" ./ >/dev/null
     fi
 
-    popd > /dev/null
+    popd >/dev/null
   done
 
   # Cleanup

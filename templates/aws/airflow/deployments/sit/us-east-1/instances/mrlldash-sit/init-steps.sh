@@ -18,7 +18,7 @@ export OUTPUT_EFS_ACCESS_POINT_ID
 echo -e "OUTPUT_EFS_ACCESS_POINT_ID=${OUTPUT_EFS_ACCESS_POINT_ID}"
 echo "terraform output json"
 terraform output -json
-terraform output -json >> "${ORIG_DIR}/terraform_output.json"
+terraform output -json >>"${ORIG_DIR}/terraform_output.json"
 echo "terraform ouput json > jq"
 terraform output -json | jq -r ".efs_access_point_id.value"
 echo "testing PSQL version - already installed in image"

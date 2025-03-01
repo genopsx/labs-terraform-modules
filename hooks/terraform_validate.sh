@@ -40,7 +40,7 @@ function match_validate_errors {
   local valid
   local summary
 
-  valid=$(jq -rc '.valid' <<< "$validate_output")
+  valid=$(jq -rc '.valid' <<<"$validate_output")
 
   if [ "$valid" == "true" ]; then
     return 0
@@ -48,17 +48,17 @@ function match_validate_errors {
 
   # Parse error message for retry-able errors.
   while IFS= read -r error_message; do
-    summary=$(jq -rc '.summary' <<< "$error_message")
+    summary=$(jq -rc '.summary' <<<"$error_message")
     case $summary in
-      "missing or corrupted provider plugins") return 1 ;;
-      "Module source has changed") return 1 ;;
-      "Module version requirements have changed") return 1 ;;
-      "Module not installed") return 1 ;;
-      "Could not load plugin") return 1 ;;
-      "Missing required provider") return 1 ;;
-      *"there is no package for"*"cached in .terraform/providers") return 1 ;;
+    "missing or corrupted provider plugins") return 1 ;;
+    "Module source has changed") return 1 ;;
+    "Module version requirements have changed") return 1 ;;
+    "Module not installed") return 1 ;;
+    "Could not load plugin") return 1 ;;
+    "Missing required provider") return 1 ;;
+    *"there is no package for"*"cached in .terraform/providers") return 1 ;;
     esac
-  done < <(jq -rc '.diagnostics[]' <<< "$validate_output")
+  done < <(jq -rc '.diagnostics[]' <<<"$validate_output")
 
   return 2 # Some other error; don't retry
 }
@@ -96,29 +96,29 @@ function per_dir_hook_unique_part {
   #
   local retry_once_with_cleanup
 
-  IFS=";" read -r -a configs <<< "${HOOK_CONFIG[*]}"
+  IFS=";" read -r -a configs <<<"${HOOK_CONFIG[*]}"
 
   for c in "${configs[@]}"; do
 
-    IFS="=" read -r -a config <<< "$c"
+    IFS="=" read -r -a config <<<"$c"
     key=${config[0]}
     value=${config[1]}
 
     case $key in
-      --retry-once-with-cleanup)
-        if [ "$retry_once_with_cleanup" ]; then
-          common::colorify "yellow" 'Invalid hook config. Make sure that you specify not more than one "--retry-once-with-cleanup" flag'
-          exit 1
-        fi
-        retry_once_with_cleanup=$value
-        ;;
+    --retry-once-with-cleanup)
+      if [ "$retry_once_with_cleanup" ]; then
+        common::colorify "yellow" 'Invalid hook config. Make sure that you specify not more than one "--retry-once-with-cleanup" flag'
+        exit 1
+      fi
+      retry_once_with_cleanup=$value
+      ;;
     esac
   done
 
   # First try `terraform validate` with the hope that all deps are
   # pre-installed. That is needed for cases when `.terraform/modules`
   # or `.terraform/providers` missed AND that is expected.
-  "$tf_path" validate "${args[@]}" &> /dev/null && {
+  "$tf_path" validate "${args[@]}" &>/dev/null && {
     exit_code=$?
     return $exit_code
   }

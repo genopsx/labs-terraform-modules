@@ -15,6 +15,6 @@ else
 fi
 readonly version
 
-curl -L "https://releases.hashicorp.com/terraform/${version}/${TOOL}_${version}_${TARGETOS}_${TARGETARCH}.zip" > "${TOOL}.zip"
+curl -L "https://releases.hashicorp.com/terraform/${version}/${TOOL}_${version}_${TARGETOS}_${TARGETARCH}.zip" >"${TOOL}.zip"
 unzip "${TOOL}.zip" "$TOOL"
 rm "${TOOL}.zip"

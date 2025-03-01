@@ -38,23 +38,23 @@ function lockfile_contains_all_needed_sha {
   # Reading each line
   while read -r line; do
 
-    if grep -Eq '^"h1:' <<< "$line"; then
+    if grep -Eq '^"h1:' <<<"$line"; then
       h1_counter=$((h1_counter - 1))
       continue
     fi
 
-    if grep -Eq '^"zh:' <<< "$line"; then
+    if grep -Eq '^"zh:' <<<"$line"; then
       zh_counter=0
       continue
     fi
 
-    if grep -Eq '^provider' <<< "$line"; then
+    if grep -Eq '^provider' <<<"$line"; then
       h1_counter="$platforms_count"
       zh_counter=$((zh_counter + 1))
       continue
     fi
     # Not all SHA inside provider lock definition block found
-    if grep -Eq '^}' <<< "$line"; then
+    if grep -Eq '^}' <<<"$line"; then
       if [ "$h1_counter" -ge 1 ] || [ "$zh_counter" -ge 1 ]; then
         # h1_counter can be less than 0, in the case when lockfile
         # contains more platforms than you currently specify
@@ -66,7 +66,7 @@ function lockfile_contains_all_needed_sha {
 
     # lockfile always exists, because the hook triggered only on
     # `files: (\.terraform\.lock\.hcl)$`
-  done < ".terraform.lock.hcl"
+  done <".terraform.lock.hcl"
 
   # When you specify `-platform``, but don't specify current platform -
   # platforms_count will be less than `h1:` headers`
@@ -102,7 +102,7 @@ function per_dir_hook_unique_part {
 
   local platforms_count=0
   for arg in "${args[@]}"; do
-    if grep -Eq '^-platform=' <<< "$arg"; then
+    if grep -Eq '^-platform=' <<<"$arg"; then
       platforms_count=$((platforms_count + 1))
     fi
   done
@@ -113,22 +113,22 @@ function per_dir_hook_unique_part {
   #
   local mode
 
-  IFS=";" read -r -a configs <<< "${HOOK_CONFIG[*]}"
+  IFS=";" read -r -a configs <<<"${HOOK_CONFIG[*]}"
 
   for c in "${configs[@]}"; do
 
-    IFS="=" read -r -a config <<< "$c"
+    IFS="=" read -r -a config <<<"$c"
     key=${config[0]}
     value=${config[1]}
 
     case $key in
-      --mode)
-        if [ "$mode" ]; then
-          common::colorify "yellow" 'Invalid hook config. Make sure that you specify not more than one "--mode" flag'
-          exit 1
-        fi
-        mode=$value
-        ;;
+    --mode)
+      if [ "$mode" ]; then
+        common::colorify "yellow" 'Invalid hook config. Make sure that you specify not more than one "--mode" flag'
+        exit 1
+      fi
+      mode=$value
+      ;;
     esac
   done
 
