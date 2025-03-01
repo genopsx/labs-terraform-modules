@@ -103,6 +103,7 @@ repos:
     - --args=--minimum-severity CRITICAL
     - --args=--force-all-dirs
   - id: terraform_trivy
+    exclude: ^(templates/aws/airflow/.*|templates/aws/charts/engines/apache_airflow_merckk/.*|templates/gcp/.*|templates/azure/.*)
 # shfmt and shellcheck are not supported by pre-commit-terraform
 - repo: https://github.com/jumanjihouse/pre-commit-hooks
   rev: 3.0.0
