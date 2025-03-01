@@ -2,27 +2,17 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
-    branches-ignore:
-      - dependabot/**  # Dependabot always creates PRs
-      - renovate/**  # Our Renovate setup always creates PRs
-      - gh-readonly-queue/**  # Temporary merge queue-related GH-made branches
-      - pre-commit-ci-update-config  # pre-commit.ci always creates a PR
+    branches:
+    - main
   pull_request:
-    branches: [ "main" ]
-  workflow_call:  # a way to embed the main tests 
+    branches:
+    - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-
     - name: Lint
       run: |
         make lint
