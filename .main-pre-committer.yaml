@@ -105,7 +105,7 @@ repos:
     args:
     - --args=--skip-dirs="**/templates/gcp"
     - --args=--skip-dirs="**/templates/azure"
-    exclude: ^(templates/aws/airflow/.*|templates/aws/charts/.*|templates/gcp/charts/.*|templates/azure/charts/.*)
+    # exclude: ^(templates/aws/airflow/.*|templates/aws/charts/.*|templates/gcp/charts/.*|templates/azure/charts/.*)
 
 # shfmt and shellcheck are not supported by pre-commit-terraform
 - repo: https://github.com/jumanjihouse/pre-commit-hooks
@@ -120,5 +120,4 @@ repos:
     - -sr
     - -w
   - id: shellcheck
-exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/aws/charts/.*|templates/gcp/charts/.*|templates/azure/charts/.*)
-
+exclude: ^(.vscode/.*|templates/aws/charts/.*|templates/gcp/charts/.*|templates/azure/charts/.*)
