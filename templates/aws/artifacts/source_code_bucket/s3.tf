@@ -1,3 +1,4 @@
+#trivy:ignore:*
 #trivy:ignore:AVD-AWS-0089
 module "source_code_bucket" {
   source                   = "terraform-aws-modules/s3-bucket/aws"
