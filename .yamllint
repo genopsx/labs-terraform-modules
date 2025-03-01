@@ -1,15 +1,10 @@
 extends: default
 
 rules:
-  # braces: disable
-  #   # forbid: false  # Allow flow mappings
-  #   # min-spaces-inside: 0
-  #   # max-spaces-inside: 0
-  #   # min-spaces-inside-empty: -1
-  #   # max-spaces-inside-empty: -1
   indentation:
     level: warning
     indent-sequences: false
+  comments: disable
   comments-indentation: disable
   document-start:
     present: false

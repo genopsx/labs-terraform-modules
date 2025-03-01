@@ -61,8 +61,8 @@ repos:
     - yaml
     args:
     - --strict
-    exclude: '.*values\.ya?ml$'
-
+    # exclude: '.*values\.ya?ml$'
+    exclude: '.*%{.*%}.*|.*{%.*%}.*'  # Exclude files with Jinja syntax
 - repo: https://github.com/psf/black-pre-commit-mirror
   rev: 24.10.0
   hooks:
@@ -117,3 +117,4 @@ repos:
     - -w
   - id: shellcheck
 exclude: ^(.vscode/.*|templates/aws/airflow/.*|templates/gcp/.*|templates/azure/.*)
+# exclude: '^.*%{.*%}.*|^.*{%.*%}.*'  # Exclude files starting with Jinja-like syntax
