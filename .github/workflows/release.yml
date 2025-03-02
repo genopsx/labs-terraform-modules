@@ -13,7 +13,6 @@ on:
     - .pre-commit-hooks.yaml
     # Ignore paths
     - '!tests/**'
-    - 'txt.txt'
 
 permissions:
   contents: read
