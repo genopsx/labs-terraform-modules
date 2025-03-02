@@ -23,3 +23,9 @@ variable "slack_poc_enabled" {
   default     = false
   description = "Whether to test your slack channel with ArgoCD notification"
 }
+
+variable "github_org" {
+  type        = string
+  description = "GitHub organization name"
+  default     = ""
+}

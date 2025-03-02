@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:kwatatshey/labs-terraform.git
+    repoURL: git@github.com:genopsx/labs-terraform.git
     path: templates/aws/charts/engines/argocd/slack/slack_poc/manifests
     targetRevision: HEAD
     directory:

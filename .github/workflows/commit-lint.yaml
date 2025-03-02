@@ -1,0 +1,32 @@
+name: Commit Lint
+
+on:
+  pull_request:
+  push:
+    branches:
+    - main
+    - develop
+    - feature/*
+    - hotfix/*
+
+jobs:
+  commit-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: |
+        npm install --save-dev @commitlint/{cli,config-conventional}
+
+    - name: Run commitlint
+      run: |
+        git fetch --depth=50 origin ${{ github.event.pull_request.base.ref }}
+        npx commitlint --from=HEAD~10 --to=HEAD --config commitlint.config.js
