@@ -1,0 +1,21 @@
+name: Commit-lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  commit-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v20
+
+    - name: Install dependencies
+      run: npm install --save-dev @commitlint/cli @commitlint/config-conventional conventional-changelog-conventionalcommits
+
+    - name: Run Commitlint
+      run: npx commitlint --edit $(git rev-parse HEAD)

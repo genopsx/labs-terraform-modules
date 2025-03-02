@@ -1,4 +1,4 @@
-name: CI
+name: ∞
 
 on:
   push:
@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
     - main
+  merge_group:
+  workflow_call:  # a way to embed the main tests
 
 jobs:
   build:

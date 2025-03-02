@@ -22,7 +22,7 @@ module.exports = {
       ],
       'type-case': [2, 'always', 'lower-case'],
       'type-empty': [2, 'never'],
-      'subject-case': [2, 'always', ['snake-case', 'lower-case', 'sentence-case', 'start-case']],
+      'subject-case': [2, 'always', 'sentence-case'],
       'subject-empty': [2, 'never'],
       'body-leading-blank': [1, 'always'],
       'footer-leading-blank': [1, 'always'],
