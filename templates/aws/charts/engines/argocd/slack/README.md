@@ -34,6 +34,7 @@
 | <a name="input_argocd_slack_app_secret"></a> [argocd\_slack\_app\_secret](#input\_argocd\_slack\_app\_secret) | Name of secret contains Slack app token | `string` | `"argocd-slack-app-secret"` | no |
 | <a name="input_awssm_secret_name"></a> [awssm\_secret\_name](#input\_awssm\_secret\_name) | Name of AWSSM secret | `string` | n/a | yes |
 | <a name="input_cluster_secret_store_ref_name"></a> [cluster\_secret\_store\_ref\_name](#input\_cluster\_secret\_store\_ref\_name) | ClusterSecretStore name | `string` | n/a | yes |
+| <a name="input_github_org"></a> [github\_org](#input\_github\_org) | GitHub organization name | `string` | `""` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | n/a | `string` | n/a | yes |
 | <a name="input_slack_poc_enabled"></a> [slack\_poc\_enabled](#input\_slack\_poc\_enabled) | Whether to test your slack channel with ArgoCD notification | `bool` | `false` | no |
 
