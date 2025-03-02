@@ -1,4 +1,4 @@
-# Notes for contributors
+<!-- # Notes for contributors
 
 * [Run and debug hooks locally](#run-and-debug-hooks-locally)
 * [Run hook performance test](#run-hook-performance-test)
@@ -181,4 +181,4 @@ You can use [this PR](https://github.com/antonbabenko/pre-commit-terraform/pull/
 
     ```bash
     tox list
-    ```
+    ``` -->

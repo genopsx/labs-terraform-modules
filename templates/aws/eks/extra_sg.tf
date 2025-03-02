@@ -110,7 +110,7 @@ module "security_alb_ingress" {
 # Module for Node Security Group
 module "security_node" {
   source = "./extra_sg"
-  #   source                          = "git::git@github.com:kwatatshey/prototyping-modules-repos.git//security?ref=v1.0.0s"
+  #   source                          = "git::git@github.com:genopsx/prototyping-modules-repos.git//security?ref=v1.0.0s"
   additional_sg_name              = "node"
   description                     = "Security group for nodes"
   vpc_id                          = var.vpc_id
