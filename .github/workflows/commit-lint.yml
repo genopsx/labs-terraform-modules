@@ -20,4 +20,4 @@ jobs:
         npm install --save-dev conventional-changelog-conventionalcommits
 
     - name: Run Commitlint
-      run: npx commitlint --edit $(git rev-parse HEAD)
+      run: npx commitlint --from=HEAD~1 --to=HEAD
