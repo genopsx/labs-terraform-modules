@@ -15,7 +15,9 @@ jobs:
       uses: actions/setup-node@v4
 
     - name: Install dependencies
-      run: npm install --save-dev @commitlint/cli @commitlint/config-conventional conventional-changelog-conventionalcommits
+      run: |
+        npm install --save-dev @commitlint/cli @commitlint/config-conventional
+        npm install --save-dev conventional-changelog-conventionalcommits
 
     - name: Run Commitlint
       run: npx commitlint --edit $(git rev-parse HEAD)
