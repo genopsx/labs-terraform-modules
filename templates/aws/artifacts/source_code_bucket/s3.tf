@@ -29,9 +29,9 @@ module "source_code_bucket" {
     {
       id      = "delete-old-versions"
       enabled = var.enable_versioning
+      filter  = {}  # Ensure a filter is provided to apply rule globally
       noncurrent_version_expiration = {
-        days = var.max_days_noncurrent_version_lifetime
-      }
+        noncurrent_days = var.max_days_noncurrent_version_lifetime
     }
   ]
   server_side_encryption_configuration = var.use_custom_kms_key == true ? {
