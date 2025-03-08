@@ -119,7 +119,6 @@ output "combined_primary_and_nodes_security_group_ids" {
   value       = concat([module.cluster.cluster_primary_security_group_id], [module.cluster.node_security_group_id])
 }
 
-
 output "cluster_oidc_provider" {
   description = "OIDC provider"
   value       = module.cluster.oidc_provider
