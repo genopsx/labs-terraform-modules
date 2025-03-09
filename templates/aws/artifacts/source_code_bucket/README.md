@@ -38,11 +38,9 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_acl"></a> [acl](#input\_acl) | The canned ACL profile | `string` | `"private"` | no |
-| <a name="input_branches_folder_lifetime_days"></a> [branches\_folder\_lifetime\_days](#input\_branches\_folder\_lifetime\_days) | The lifetime duration (in days) for objects in the <repo name>/branches/ folder in the source code bucket. After this duration, the objects in the folder will be automatically removed. | `number` | `30` | no |
 | <a name="input_enable_versioning"></a> [enable\_versioning](#input\_enable\_versioning) | Enable object versioning | `bool` | `true` | no |
 | <a name="input_external_full_access_objects_arns"></a> [external\_full\_access\_objects\_arns](#input\_external\_full\_access\_objects\_arns) | List of ARNs that have full access to the bucekt's objects | `list(string)` | `[]` | no |
 | <a name="input_force_destroy_buckets"></a> [force\_destroy\_buckets](#input\_force\_destroy\_buckets) | Test mode: force destroy buckets | `bool` | `false` | no |
-| <a name="input_max_days_noncurrent_version_lifetime"></a> [max\_days\_noncurrent\_version\_lifetime](#input\_max\_days\_noncurrent\_version\_lifetime) | Maximum lifetime in days of an object's version in the S3 bucket | `number` | `7` | no |
 | <a name="input_object_ownership"></a> [object\_ownership](#input\_object\_ownership) | The onwnership policy of the object created in the bucket | `string` | `"ObjectWriter"` | no |
 | <a name="input_qualify_bucket_name"></a> [qualify\_bucket\_name](#input\_qualify\_bucket\_name) | Append the region and the account id | `bool` | `true` | no |
 | <a name="input_resource_base_name"></a> [resource\_base\_name](#input\_resource\_base\_name) | The name that appears after the suffix | `string` | `"source-code"` | no |
