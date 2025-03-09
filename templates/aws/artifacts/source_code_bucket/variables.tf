@@ -46,17 +46,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "max_days_noncurrent_version_lifetime" {
-  type        = number
-  description = "Maximum lifetime in days of an object's version in the S3 bucket"
-  default     = 7
-}
-variable "branches_folder_lifetime_days" {
-  type        = number
-  description = "The lifetime duration (in days) for objects in the <repo name>/branches/ folder in the source code bucket. After this duration, the objects in the folder will be automatically removed."
-  default     = 30
-}
-
 variable "external_full_access_objects_arns" {
   type        = list(string)
   description = "List of ARNs that have full access to the bucekt's objects"
