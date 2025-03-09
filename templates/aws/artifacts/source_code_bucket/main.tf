@@ -14,27 +14,7 @@ module "source_code_bucket" {
   versioning = {
     enabled = var.enable_versioning
   }
-  lifecycle_rule = [
-    {
-      id = "delete-branches-folder-contents"
-      filter = {
-        prefix = "branches/"
-      }
 
-      enabled = true
-      expiration = {
-        days = var.branches_folder_lifetime_days
-      }
-    },
-    {
-      id      = "delete-old-versions"
-      enabled = var.enable_versioning
-      filter  = {} # Ensure a filter is provided to apply rule globally
-      noncurrent_version_expiration = {
-        noncurrent_days = var.max_days_noncurrent_version_lifetime
-      }
-    }
-  ]
   server_side_encryption_configuration = var.use_custom_kms_key == true ? {
     rule = {
       apply_server_side_encryption_by_default = {
